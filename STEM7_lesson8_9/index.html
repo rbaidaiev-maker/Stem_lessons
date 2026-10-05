@@ -1,0 +1,1708 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>STEM 7 · Проміжний урок · Енергія, тіло, захист: що стоїть за калоріями</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+
+:root{
+  --bg:#f6f5fb;--surface:#ffffff;--surface-2:#f0eefa;--surface-3:#e6e2f5;--border:#ddd8ee;
+  --ink:#14162a;--ink-dim:#4a4d68;--ink-faint:#7a7d96;
+  --accent:#7c3aed;--accent-ink:#ffffff;--accent-soft:#ede9fe;
+  --shadow:0 1px 2px rgba(20,22,42,.06),0 4px 14px rgba(20,22,42,.06);
+  --shadow-lg:0 10px 40px rgba(60,30,140,.16);
+  --s:#16a34a;--s-soft:#dcfce7;--t:#2563eb;--t-soft:#dbeafe;--e:#ca8a04;--e-soft:#fef9c3;--m:#dc2626;--m-soft:#fee2e2;
+  --ok:#16a34a;--warn:#ca8a04;--bad:#dc2626;
+  --font-display:'Unbounded','Trebuchet MS',system-ui,sans-serif;
+  --font-body:'IBM Plex Sans',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  --font-mono:'IBM Plex Mono',ui-monospace,Menlo,Consolas,monospace;
+  --radius:16px;
+}
+@media(prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#0f1020;--surface:#181a30;--surface-2:#20223d;--surface-3:#2a2d4d;--border:#33365a;
+    --ink:#eceefb;--ink-dim:#b4b8d6;--ink-faint:#878cb0;
+    --accent:#a78bfa;--accent-ink:#14162a;--accent-soft:#2d2551;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 4px 14px rgba(0,0,0,.35);--shadow-lg:0 10px 40px rgba(0,0,0,.5);
+    --s:#4ade80;--s-soft:#12301f;--t:#60a5fa;--t-soft:#14264d;--e:#facc15;--e-soft:#3a3208;--m:#f87171;--m-soft:#3d1717;
+    --ok:#4ade80;--warn:#facc15;--bad:#f87171;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0f1020;--surface:#181a30;--surface-2:#20223d;--surface-3:#2a2d4d;--border:#33365a;
+  --ink:#eceefb;--ink-dim:#b4b8d6;--ink-faint:#878cb0;
+  --accent:#a78bfa;--accent-ink:#14162a;--accent-soft:#2d2551;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 4px 14px rgba(0,0,0,.35);--shadow-lg:0 10px 40px rgba(0,0,0,.5);
+  --s:#4ade80;--s-soft:#12301f;--t:#60a5fa;--t-soft:#14264d;--e:#facc15;--e-soft:#3a3208;--m:#f87171;--m-soft:#3d1717;
+  --ok:#4ade80;--warn:#facc15;--bad:#f87171;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{height:100%;margin:0}
+body{background:var(--bg);color:var(--ink);font-family:var(--font-body);font-size:17px;line-height:1.55;overflow:hidden;-webkit-font-smoothing:antialiased}
+button{font-family:inherit}
+img{max-width:100%;height:auto;display:block}
+a{color:var(--accent)}
+
+/* ── bars ── */
+.topbar{position:fixed;top:0;left:0;right:0;height:56px;z-index:50;display:flex;align-items:center;gap:12px;padding:0 16px;background:var(--surface);border-bottom:1px solid var(--border)}
+.brand{display:flex;align-items:baseline;gap:1px;font-family:var(--font-display);font-weight:800;font-size:20px;letter-spacing:.02em;white-space:nowrap}
+.brand .bs{color:var(--s)}.brand .bt{color:var(--t)}.brand .be{color:var(--e)}.brand .bm{color:var(--m)}
+.brand-sub{margin-left:10px;font-family:var(--font-mono);font-weight:500;font-size:12px;color:var(--ink-dim);letter-spacing:0}
+.progress{flex:1;height:6px;background:var(--surface-3);border-radius:99px;overflow:hidden;min-width:40px}
+.progress>i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--s),var(--t),var(--e),var(--m));border-radius:99px;transition:width .4s ease}
+.icon-btn{width:40px;height:40px;flex:none;display:grid;place-items:center;border:1px solid var(--border);background:var(--surface-2);color:var(--ink);border-radius:12px;cursor:pointer;font-size:16px}
+.icon-btn:hover{background:var(--accent-soft);border-color:var(--accent)}
+.icon-btn:focus-visible,.btn:focus-visible,.seg button:focus-visible,.chip-btn:focus-visible,.opt:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.bottombar{position:fixed;bottom:0;left:0;right:0;height:56px;z-index:50;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:0 16px;background:var(--surface);border-top:1px solid var(--border)}
+.nav-btn{display:inline-flex;align-items:center;gap:8px;height:40px;padding:0 16px;border-radius:12px;border:1px solid var(--border);background:var(--surface-2);color:var(--ink);font-weight:600;font-size:15px;cursor:pointer}
+.nav-btn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.nav-btn:disabled{opacity:.4;cursor:default}
+.counter{font-family:var(--font-mono);font-size:13px;color:var(--ink-dim)}
+.kbd-hint{font-family:var(--font-mono);font-size:12px;color:var(--ink-faint)}
+
+/* ── menu ── */
+.menu-overlay{position:fixed;inset:0;z-index:80;background:rgba(10,10,30,.55);display:none;align-items:flex-start;justify-content:center;padding:70px 16px 16px;overflow-y:auto}
+.menu-overlay.open{display:flex}
+.menu-panel{width:min(560px,100%);background:var(--surface);border:1px solid var(--border);border-radius:20px;box-shadow:var(--shadow-lg);padding:18px}
+.menu-panel h3{font-family:var(--font-display);font-size:15px;margin:0 0 10px}
+.menu-list{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.menu-list button{width:100%;display:flex;gap:12px;align-items:center;text-align:left;padding:10px 12px;border-radius:12px;border:1px solid transparent;background:var(--surface-2);color:var(--ink);cursor:pointer;font-size:15px}
+.menu-list button:hover{border-color:var(--accent)}
+.menu-list button.current{background:var(--accent-soft);border-color:var(--accent)}
+.menu-list .n{font-family:var(--font-mono);font-size:12px;color:var(--ink-dim);min-width:24px}
+.menu-list .t{font-family:var(--font-mono);font-size:11px;color:var(--ink-faint);margin-left:auto;white-space:nowrap}
+
+/* ── deck/slides ── */
+.deck{position:fixed;top:56px;bottom:56px;left:0;right:0}
+.slide{position:absolute;inset:0;opacity:0;pointer-events:none;visibility:hidden;transform:translateY(10px);transition:opacity .5s ease,transform .5s ease,visibility 0s linear .5s;overflow-y:auto;overflow-x:hidden;display:flex;flex-direction:column;justify-content:flex-start;padding:24px 16px 40px}
+.slide.active{opacity:1;pointer-events:auto;visibility:visible;transform:none;transition:opacity .5s ease,transform .5s ease,visibility 0s}
+.slide-inner{width:100%;max-width:1180px;margin-left:auto;margin-right:auto;margin-top:auto;margin-bottom:auto;display:flex;flex-direction:column;gap:18px}
+.eyebrow{font-family:var(--font-mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-dim);display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center}
+h1,h2,h3{font-family:var(--font-display);margin:0;line-height:1.15;font-weight:700}
+h1{font-size:clamp(28px,4.4vw,52px);font-weight:800}
+h2{font-size:clamp(22px,3vw,34px)}
+h3{font-size:16px;font-weight:600}
+.lead{font-size:clamp(17px,1.6vw,20px);color:var(--ink-dim);margin:0;max-width:78ch}
+p{margin:0}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.grid-2-1{display:grid;grid-template-columns:1.35fr 1fr;gap:18px;align-items:start}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow)}
+.card.soft{background:var(--surface-2);box-shadow:none}
+.card h3{margin-bottom:8px}
+.card-title{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.card-title i{color:var(--accent)}
+.tags{display:flex;flex-wrap:wrap;gap:8px}
+.tag{display:inline-flex;align-items:center;gap:6px;font-family:var(--font-mono);font-size:12px;font-weight:600;padding:4px 10px;border-radius:99px;border:1px solid var(--border);background:var(--surface-2);color:var(--ink)}
+.tag.s{background:var(--s-soft);color:var(--s);border-color:var(--s)}
+.tag.t{background:var(--t-soft);color:var(--t);border-color:var(--t)}
+.tag.e{background:var(--e-soft);color:var(--e);border-color:var(--e)}
+.tag.m{background:var(--m-soft);color:var(--m);border-color:var(--m)}
+.driving{background:linear-gradient(135deg,var(--accent-soft),var(--surface));border:1px solid var(--accent);border-radius:20px;padding:20px 22px;box-shadow:var(--shadow-lg)}
+.driving .label{font-family:var(--font-mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:6px}
+.driving p{font-family:var(--font-display);font-size:clamp(17px,2vw,24px);font-weight:600;line-height:1.35}
+.obj{display:grid;gap:10px;grid-template-columns:repeat(5,1fr)}
+.obj .card{padding:12px 14px;box-shadow:none}
+.obj b{display:block;font-family:var(--font-mono);font-size:12px;text-transform:uppercase;letter-spacing:.05em;color:var(--accent);margin-bottom:4px}
+.obj span{font-size:14px;color:var(--ink-dim);line-height:1.4;display:block}
+.figure{margin:0}
+.figure img{border-radius:14px}
+.figure figcaption{font-size:13px;color:var(--ink-faint);margin-top:6px;line-height:1.4}
+.hero-fig{background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:14px 14px 10px;box-shadow:var(--shadow)}
+.meta-row{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:14px;color:var(--ink-dim)}
+.meta-row b{color:var(--ink)}
+
+/* ── timer ── */
+.timer{display:inline-flex;align-items:center;gap:10px;flex-wrap:wrap;background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:6px 10px;box-shadow:var(--shadow);align-self:flex-start}
+.timer-cap{font-family:var(--font-mono);font-size:12px;color:var(--ink-dim)}
+.timer-display{font-family:var(--font-mono);font-weight:600;font-size:22px;min-width:64px;text-align:center;color:var(--ink)}
+.timer.running .timer-display{color:var(--accent)}
+.timer.done .timer-display{color:var(--bad);animation:blink 1s steps(2) infinite}
+.timer.mark-hit .timer-display{color:var(--warn)}
+.timer-note{font-size:13px;font-weight:600;color:var(--warn)}
+.timer button{width:34px;height:34px;border-radius:10px;border:1px solid var(--border);background:var(--surface-2);color:var(--ink);cursor:pointer}
+.timer button:hover{border-color:var(--accent)}
+@keyframes blink{50%{opacity:.35}}
+
+/* ── online note / web insert ── */
+.online-note{display:flex;gap:12px;align-items:flex-start;background:var(--t-soft);border:1px solid var(--t);border-left-width:5px;border-radius:12px;padding:12px 14px;font-size:14.5px;color:var(--ink)}
+.online-note i{color:var(--t);margin-top:3px}
+.online-note b{color:var(--t)}
+.web-insert{background:var(--surface);border:1px dashed var(--accent);border-radius:14px;padding:14px 16px;display:flex;flex-direction:column;gap:6px;position:relative}
+.web-insert .wi-badge{align-self:flex-start;font-family:var(--font-mono);font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;background:var(--accent);color:var(--accent-ink);padding:3px 9px;border-radius:99px}
+.web-insert h3{font-size:15px}
+.web-insert p{font-size:14.5px;color:var(--ink-dim)}
+.web-insert .src{font-family:var(--font-mono);font-size:12px;color:var(--ink-faint);word-break:break-word}
+.web-insert .src a{color:var(--accent)}
+.callout{border-radius:14px;padding:14px 16px;border:1px solid var(--border);background:var(--surface-2);font-size:15.5px}
+.callout.warm{background:var(--e-soft);border-color:var(--e)}
+.callout.green{background:var(--s-soft);border-color:var(--s)}
+.callout.red{background:var(--m-soft);border-color:var(--m)}
+.callout b{font-weight:700}
+
+/* ── forms ── */
+.field{display:flex;flex-direction:column;gap:6px}
+.field label,.lbl{font-family:var(--font-mono);font-size:12px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--ink-dim)}
+input[type=text],input[type=number],input[type=date],select,textarea{width:100%;font:inherit;font-size:16px;color:var(--ink);background:var(--surface);border:2px solid var(--border);border-radius:12px;padding:10px 12px;min-height:44px}
+textarea{resize:vertical;min-height:80px}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+.invalid{border-color:var(--bad)!important;animation:shake .35s}
+@keyframes shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-6px)}40%{transform:translateX(6px)}60%{transform:translateX(-4px)}80%{transform:translateX(4px)}}
+.row{display:flex;gap:10px;align-items:flex-end;flex-wrap:wrap}
+.row>.field{flex:1;min-width:160px}
+.row>input:not([type=checkbox]){flex:1 1 120px;min-width:0;width:auto}
+.row>.field>.row{flex-wrap:nowrap}
+.seg{max-width:100%}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 18px;border-radius:12px;border:1px solid var(--border);background:var(--surface-2);color:var(--ink);font-weight:600;font-size:15px;cursor:pointer}
+.btn:hover{border-color:var(--accent)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.btn.small{min-height:36px;padding:0 12px;font-size:14px}
+.btn:disabled{opacity:.5;cursor:default}
+.seg{display:inline-flex;background:var(--surface-2);border:1px solid var(--border);border-radius:12px;padding:3px;gap:2px;flex-wrap:wrap}
+.seg button{border:0;background:transparent;color:var(--ink-dim);padding:8px 14px;border-radius:9px;font-weight:600;font-size:14px;cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink)}
+.msg{font-size:14.5px;min-height:1.4em;color:var(--ink-dim)}
+.msg.ok{color:var(--ok)}.msg.warn{color:var(--warn)}.msg.bad{color:var(--bad)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip-btn{border:1px solid var(--border);background:var(--surface-2);color:var(--ink);padding:7px 12px;border-radius:99px;font-size:14px;cursor:pointer}
+.chip-btn:hover{border-color:var(--accent)}
+.chip-btn[aria-pressed="true"]{background:var(--accent-soft);border-color:var(--accent);color:var(--ink);font-weight:600}
+.chip-x{background:var(--surface-2);border:1px solid var(--border);border-radius:99px;padding:3px 6px 3px 10px;font-family:var(--font-mono);font-size:13px;display:inline-flex;gap:6px;align-items:center}
+.chip-x button{border:0;background:transparent;color:var(--ink-faint);cursor:pointer;font-size:14px;padding:0 4px}
+
+/* ── table ── */
+.table-wrap{overflow-x:auto;border-radius:12px;border:1px solid var(--border)}
+.data-table{width:100%;border-collapse:collapse;font-size:15px;background:var(--surface)}
+.data-table th,.data-table td{padding:10px 12px;text-align:left;border-bottom:1px solid var(--border)}
+.data-table th{font-family:var(--font-mono);font-size:12px;text-transform:uppercase;letter-spacing:.04em;background:var(--surface-2);color:var(--ink-dim)}
+.data-table td.num{font-family:var(--font-mono);font-weight:600;font-size:17px}
+.data-table tr:last-child td{border-bottom:0}
+.data-table td.hl{background:var(--accent-soft);box-shadow:inset 0 0 0 2px var(--accent);border-radius:4px}
+.data-table tr.hlrow td:first-child{font-weight:700}
+.big-num{font-family:var(--font-display);font-weight:800;font-size:clamp(28px,4vw,44px);color:var(--accent);line-height:1}
+
+/* ── bars ── */
+.stack{display:flex;height:54px;border-radius:12px;overflow:hidden;border:1px solid var(--border)}
+.stack>div{display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:#14162a;line-height:1.15;transition:opacity .3s,transform .3s;text-align:center;padding:0 2px;overflow:hidden}
+.stack .b1{background:#facc15}.stack .b2{background:#4ade80}.stack .b3{background:#60a5fa}.stack .b4{background:#f87171}
+.stack.focus>div:not(.hot){opacity:.35}
+.stack .hot{box-shadow:inset 0 0 0 3px var(--ink)}
+.bar-row{display:grid;grid-template-columns:150px 1fr 90px;gap:10px;align-items:center;margin:8px 0;font-size:14.5px}
+.bar-track{position:relative;height:26px;background:var(--surface-3);border-radius:8px;overflow:hidden}
+.bar-fill{position:absolute;left:0;top:0;bottom:0;background:var(--accent);border-radius:8px;transition:width .6s cubic-bezier(.2,.8,.2,1)}
+.bar-fill.alt{background:var(--s)}
+.bar-band{position:absolute;top:0;bottom:0;background:repeating-linear-gradient(45deg,transparent 0 6px,rgba(22,163,74,.28) 6px 12px);border-left:2px solid var(--s);border-right:2px solid var(--s)}
+.bar-val{font-family:var(--font-mono);font-weight:600;text-align:right}
+
+/* ── slide-specific ── */
+.dotplot{position:relative;height:96px;margin:6px 8px 0;border-bottom:3px solid var(--border)}
+.dotplot .dot{position:absolute;bottom:-9px;width:18px;height:18px;border-radius:50%;background:var(--ink-faint);opacity:.85;transform:translateX(-50%);transition:left .4s}
+.dotplot .dot.mine{background:var(--accent);width:24px;height:24px;bottom:-12px;opacity:1;box-shadow:0 0 0 4px var(--accent-soft);z-index:2}
+.dotplot-axis{display:flex;justify-content:space-between;font-family:var(--font-mono);font-size:11px;color:var(--ink-faint);margin:6px 8px 0}
+.stepper{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.step-dot{width:34px;height:34px;border-radius:50%;border:2px solid var(--border);background:var(--surface-2);color:var(--ink);font-family:var(--font-mono);font-weight:700;cursor:pointer}
+.step-dot[aria-current="step"]{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.step-panel{display:none;animation:fadeup .4s ease}
+.step-panel.on{display:block}
+@keyframes fadeup{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.quarters{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:10px 0}
+.quarters div{border:2px dashed var(--border);border-radius:14px;padding:14px 8px;text-align:center;font-family:var(--font-mono);font-weight:700;font-size:18px;background:var(--surface-2)}
+.quarters div.first{border-style:solid;border-color:var(--e);background:var(--e-soft)}
+.quarters div.filled{border-style:solid;border-color:var(--s);background:var(--s-soft)}
+.formula{font-family:var(--font-mono);font-size:clamp(20px,3vw,32px);font-weight:600;text-align:center;padding:14px;border-radius:14px;background:var(--surface-2);border:1px solid var(--border);overflow-wrap:anywhere}
+.formula b{color:var(--accent)}
+.formula .res{color:var(--s)}
+.factor{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center;padding:8px 0;border-bottom:1px solid var(--border)}
+.factor:last-child{border-bottom:0}
+.meter{position:relative;height:64px;margin:14px 0 4px}
+.meter-track{position:absolute;left:0;right:0;top:26px;height:12px;border-radius:99px;background:linear-gradient(90deg,var(--t),var(--s) 50%,var(--m))}
+.meter-mid{position:absolute;left:50%;top:14px;bottom:12px;border-left:3px dashed var(--ink)}
+.meter-pin{position:absolute;top:8px;width:28px;height:28px;margin-left:-14px;border-radius:50%;background:var(--e);border:3px solid var(--ink);transition:left .5s cubic-bezier(.2,.8,.2,1);display:grid;place-items:center;font-size:13px;color:#14162a}
+.meter-lbl{display:flex;justify-content:space-between;font-family:var(--font-mono);font-size:11px;color:var(--ink-dim)}
+.role{border:2px solid var(--border);border-radius:16px;padding:16px;background:var(--surface)}
+.role.active-role{border-color:var(--accent);box-shadow:var(--shadow-lg)}
+.role h3{display:flex;align-items:center;gap:8px}
+.q-box{font-family:var(--font-display);font-size:18px;line-height:1.35;background:var(--accent-soft);border-radius:14px;padding:14px;min-height:72px}
+.path{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:10px;align-items:stretch}
+.path .arrow{align-self:center;color:var(--ink-faint);font-size:22px}
+.path .card.now{border-color:var(--accent);box-shadow:var(--shadow-lg)}
+.path .num{font-family:var(--font-mono);font-size:12px;color:var(--ink-dim)}
+.tiles4{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.tile{border-radius:14px;padding:12px;text-align:center;color:#14162a;font-weight:600}
+.tile .v{font-family:var(--font-display);font-size:24px;font-weight:800;display:block}
+.tile .p{font-family:var(--font-mono);font-size:12px;opacity:.8}
+.tile.b1{background:#facc15}.tile.b2{background:#4ade80}.tile.b3{background:#60a5fa}.tile.b4{background:#f87171}
+.opt-list{display:grid;gap:10px}
+.opt{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;text-align:left;width:100%;padding:12px 14px;border-radius:14px;border:2px solid var(--border);background:var(--surface);color:var(--ink);cursor:pointer;font-size:15.5px}
+.opt:hover{border-color:var(--accent)}
+.opt .hand{font-size:20px}
+.opt .cnt{font-family:var(--font-mono);font-weight:700;background:var(--accent-soft);border-radius:99px;padding:2px 12px;min-width:38px;text-align:center}
+.chart-box{position:relative;height:280px}
+.fallback-bars .bar-row{grid-template-columns:minmax(90px,1.2fr) 2fr 40px}
+.meal{border:1px solid var(--border);border-radius:14px;padding:14px;background:var(--surface)}
+.meal h3{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.meal input{margin-bottom:8px}
+.meal.invalid-meal{border-color:var(--bad);animation:shake .35s}
+.meal .cnt-badge{margin-left:auto;font-family:var(--font-mono);font-size:12px;color:var(--ink-dim)}
+.check-list{list-style:none;margin:0;padding:0;display:grid;gap:6px;font-size:15px}
+.check-list li{display:flex;gap:10px;align-items:flex-start}
+.check-list li i{margin-top:4px;color:var(--ink-faint)}
+.check-list li.ok i{color:var(--ok)}
+.check-list li.ok{color:var(--ink)}
+.check-list li:not(.ok){color:var(--ink-dim)}
+details.ext{border:1px solid var(--border);border-radius:14px;padding:10px 14px;background:var(--surface-2)}
+details.ext summary{cursor:pointer;font-weight:600}
+.pulse{animation:pulse 1.6s ease-in-out infinite}
+@keyframes pulse{50%{transform:scale(1.04)}}
+
+/* ── PDF sheet (off-screen, never display:none) ── */
+#pdfSheet{position:fixed;left:-10000px;top:0;width:794px;padding:40px 44px;background:#ffffff !important;color:#14162a !important;font-family:'IBM Plex Sans',Arial,sans-serif;font-size:14px;line-height:1.5;z-index:-1}
+#pdfSheet *{color:#14162a !important;background-color:transparent !important;border-color:#cfd0e2 !important;box-sizing:border-box}
+#pdfSheet .p-title{font-size:22px;font-weight:700;color:#5b21b6 !important;margin:0 0 4px}
+#pdfSheet .p-sub{font-size:12px;color:#4a4d68 !important;margin-bottom:14px}
+#pdfSheet .p-id{display:flex;gap:16px;border:1px solid #cfd0e2 !important;padding:8px 10px;margin-bottom:16px;font-size:13px}
+#pdfSheet .p-id span{flex:1}
+#pdfSheet h4{font-size:15px;margin:16px 0 6px;color:#14162a !important;border-bottom:2px solid #7c3aed !important;padding-bottom:3px}
+#pdfSheet table{width:100%;border-collapse:collapse;font-size:13px}
+#pdfSheet td{border:1px solid #cfd0e2 !important;padding:5px 8px;vertical-align:top}
+#pdfSheet td.k{width:38%;background-color:#f0eefa !important;font-weight:600}
+#pdfSheet ul{margin:2px 0 0 18px;padding:0}
+#pdfSheet .note{font-size:11px;color:#4a4d68 !important;margin-top:14px}
+
+/* ── responsive ── */
+@media(max-width:900px){
+  .grid-2,.grid-2-1,.grid-3{grid-template-columns:1fr}
+  .obj{grid-template-columns:1fr 1fr}
+  .grid-4,.tiles4{grid-template-columns:1fr 1fr}
+  .path{grid-template-columns:1fr}
+  .path .arrow{transform:rotate(90deg);justify-self:center}
+  .kbd-hint{display:none}
+}
+@media(max-width:700px){
+  body{font-size:16px}
+  .brand-sub{display:none}
+  .bar-row{grid-template-columns:1fr 70px;grid-template-areas:"l v" "t t"}
+  .bar-row>:nth-child(1){grid-area:l}.bar-row>:nth-child(2){grid-area:t}.bar-row>:nth-child(3){grid-area:v}
+  .fallback-bars .bar-row{grid-template-columns:1fr 40px}
+  .quarters{grid-template-columns:1fr 1fr}
+}
+@media(max-width:640px){
+  .timer{width:100%}.timer-cap{flex:1 1 100%}
+  .obj{grid-template-columns:1fr}
+  .slide{padding:16px 16px 32px}
+  .nav-btn span{display:none}
+  .topbar,.bottombar{padding:0 12px}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+}
+
+
+/* ══════════ ДОДАТКОВІ СТИЛІ ПРОМІЖНОГО УРОКУ ══════════ */
+.menu-list .part-sep{font-family:var(--font-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);padding:10px 4px 2px}
+.part-badge{font-family:var(--font-mono);font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;background:var(--accent-soft);color:var(--accent);border:1px solid var(--accent);border-radius:99px;padding:2px 10px}
+.hint{font-size:14px;color:var(--ink-faint)}
+.kbd-note{font-family:var(--font-mono);font-size:12px;color:var(--ink-faint)}
+
+/* quiz */
+.qz-list{display:grid;gap:12px}
+.qz{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:14px 16px}
+.qz.done{border-color:var(--ok)}
+.qz .qt{font-weight:600;margin-bottom:10px;font-size:16px}
+.qz .qn{font-family:var(--font-mono);font-size:12px;color:var(--ink-faint);margin-right:6px}
+.qz .chip-btn.right{background:var(--s-soft);border-color:var(--s);color:var(--ink);font-weight:700}
+.qz .chip-btn.wrong{background:var(--m-soft);border-color:var(--m);text-decoration:line-through;opacity:.8}
+.qz .chip-btn:disabled{cursor:default}
+.qz .why{margin-top:10px;font-size:14.5px;color:var(--ink-dim);border-left:4px solid var(--s);padding-left:10px}
+.qz .why.hintline{border-left-color:var(--e)}
+.qz-score{font-family:var(--font-mono);font-size:13px;color:var(--ink-dim);display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.qz-score b{color:var(--accent);font-size:15px}
+
+/* map of questions */
+.qmap{display:grid;gap:8px}
+.qmap button{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;text-align:left;padding:10px 12px;border-radius:12px;border:1px solid var(--border);background:var(--surface-2);color:var(--ink);cursor:pointer;font-size:15px}
+.qmap button:hover{border-color:var(--accent);background:var(--accent-soft)}
+.qmap .n{font-family:var(--font-mono);font-weight:700;color:var(--accent)}
+.qmap .go{font-family:var(--font-mono);font-size:12px;color:var(--ink-faint)}
+
+/* converter */
+.conv{display:grid;grid-template-columns:1fr auto 1fr;gap:10px;align-items:end}
+.conv .eq{font-family:var(--font-display);font-size:22px;padding-bottom:8px;color:var(--accent)}
+.lift{font-size:15px;color:var(--ink-dim)}
+.lift b{color:var(--accent);font-family:var(--font-mono)}
+
+/* chain */
+.chain-pool{display:grid;gap:8px}
+.chain-pool button{text-align:left;display:flex;gap:10px;align-items:flex-start;padding:10px 12px;border-radius:12px;border:2px solid var(--border);background:var(--surface);color:var(--ink);cursor:pointer;font-size:15px}
+.chain-pool button:hover{border-color:var(--accent)}
+.chain-pool button.placed{background:var(--s-soft);border-color:var(--s);cursor:default}
+.chain-pool button .no{flex:none;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;font-family:var(--font-mono);font-weight:700;background:var(--surface-3);color:var(--ink-dim)}
+.chain-pool button.placed .no{background:var(--s);color:#14162a}
+.chain-pool button.bad{animation:shake .35s;border-color:var(--bad)}
+
+/* ladder */
+.ladder{display:grid;gap:6px}
+.ladder button{display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:12px;border:2px solid var(--border);background:var(--surface);color:var(--ink);cursor:pointer;font-weight:600;font-size:15px;text-align:left}
+.ladder button .lv{font-family:var(--font-mono);font-size:12px;color:var(--ink-faint);min-width:20px}
+.ladder button:nth-child(1){margin-right:56px}.ladder button:nth-child(2){margin-right:42px}.ladder button:nth-child(3){margin-right:28px}.ladder button:nth-child(4){margin-right:14px}
+.ladder button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.ladder button[aria-pressed="true"] .lv{color:var(--accent-ink)}
+.bigfact{display:flex;gap:14px;align-items:center}
+.bigfact .big-num{font-size:clamp(24px,3.4vw,36px);white-space:nowrap}
+
+/* tissues */
+.tissue{border-radius:16px;padding:14px;border:1px solid var(--border);background:var(--surface);box-shadow:var(--shadow)}
+.tissue .ico{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;font-size:20px;color:#14162a;margin-bottom:8px}
+.tissue .ico.b1{background:#facc15}.tissue .ico.b2{background:#4ade80}.tissue .ico.b3{background:#60a5fa}.tissue .ico.b4{background:#f87171}
+.tissue h3{margin-bottom:6px}
+.tissue p{font-size:14.5px;color:var(--ink-dim)}
+.tissue .eat{margin-top:8px;font-size:13.5px;border-top:1px dashed var(--border);padding-top:8px;color:var(--ink)}
+
+/* journey */
+.journey{display:grid;grid-template-columns:minmax(0,340px) 1fr;gap:18px;align-items:start}
+.stn-list{position:relative;display:grid;gap:8px;padding-left:34px}
+.stn-list::before{content:"";position:absolute;left:14px;top:18px;bottom:18px;width:4px;border-radius:4px;background:var(--surface-3)}
+.stn{position:relative;display:grid;grid-template-columns:1fr auto;gap:8px;align-items:center;text-align:left;padding:10px 12px;border-radius:12px;border:2px solid var(--border);background:var(--surface);color:var(--ink);cursor:pointer;font-weight:600;font-size:15px}
+.stn:hover{border-color:var(--accent)}
+.stn[aria-pressed="true"]{border-color:var(--accent);background:var(--accent-soft);box-shadow:var(--shadow)}
+.stn .st-n{position:absolute;left:-34px;top:50%;transform:translateY(-50%);width:28px;height:28px;border-radius:50%;display:grid;place-items:center;font-family:var(--font-mono);font-weight:700;font-size:13px;background:var(--surface-3);color:var(--ink-dim);border:2px solid var(--surface)}
+.stn.visited .st-n{background:var(--s);color:#14162a}
+.stn[aria-pressed="true"] .st-n{background:var(--accent);color:var(--accent-ink)}
+.dots{display:inline-flex;gap:4px}
+.dots i{width:12px;height:12px;border-radius:50%;border:2px solid var(--border);display:block}
+.dots i.c{--c:#facc15}.dots i.p{--c:#f87171}.dots i.f{--c:#60a5fa}
+.dots i.on{background:var(--c);border-color:var(--c)}
+.dots i.part{background:linear-gradient(90deg,var(--c) 50%,transparent 50%);border-color:var(--c)}
+.dots i.dim{opacity:.25}
+.stn-panel{display:grid;gap:12px}
+.stn-panel h2{font-size:clamp(20px,2.4vw,28px)}
+.kv{display:grid;grid-template-columns:150px 1fr;gap:6px 14px;font-size:15px}
+.kv dt{font-family:var(--font-mono);font-size:12px;text-transform:uppercase;letter-spacing:.04em;color:var(--ink-dim);padding-top:3px}
+.kv dd{margin:0}
+.nut-focus{border-radius:14px;padding:12px 14px;border:2px solid var(--accent);background:var(--accent-soft);font-size:15.5px}
+.nut-focus .lbl{color:var(--accent)}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:13px;color:var(--ink-dim);align-items:center}
+.legend span{display:inline-flex;gap:6px;align-items:center}
+.legend i{width:12px;height:12px;border-radius:50%;display:inline-block}
+
+/* budget */
+.org-row{display:grid;grid-template-columns:130px 1fr 60px;gap:10px;align-items:center;margin:7px 0;font-size:14.5px}
+.mass-note{font-size:13px;color:var(--ink-faint)}
+
+/* compare */
+.cmp{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.cmp-box{border:2px solid var(--border);border-radius:16px;padding:14px;background:var(--surface)}
+.cmp-box h3{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.cmp-box .big-num{font-size:clamp(24px,3vw,34px)}
+.cmp-in{display:none;margin-top:10px;gap:6px;font-size:14.5px}
+.cmp.open .cmp-in{display:grid}
+.cmp-in div{display:flex;gap:8px}
+.cmp-in .y{color:var(--ok)}.cmp-in .n{color:var(--ink-faint)}
+.data-table tr.dim{opacity:.28}
+
+/* immunity */
+.imm-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.imm-step{border:2px solid var(--border);border-radius:14px;padding:12px;background:var(--surface);opacity:.5;transition:opacity .3s,border-color .3s}
+.imm-step.on{opacity:1;border-color:var(--accent);box-shadow:var(--shadow)}
+.imm-step h3{font-size:14px;margin-bottom:6px;display:flex;gap:8px;align-items:center}
+.imm-step p{font-size:14px;color:var(--ink-dim)}
+.imm-step .num{font-family:var(--font-mono);font-size:12px;color:var(--accent)}
+
+/* disease cards */
+.d-card{border-radius:16px;padding:14px;border:2px solid var(--border);background:var(--surface)}
+.d-card.k1{border-color:var(--t)}.d-card.k2{border-color:var(--m)}.d-card.k3{border-color:var(--e)}.d-card.k4{border-color:var(--s)}
+.d-card h3{margin-bottom:6px}
+.d-card ul{margin:6px 0 0;padding-left:18px;font-size:14.5px;color:var(--ink-dim)}
+.d-card li{margin:3px 0}
+
+/* map sentences */
+.mapx{font-size:clamp(17px,1.7vw,20px);line-height:2.3}
+.mapx .sel{display:inline-block;width:auto;min-width:140px;max-width:100%;min-height:38px;padding:4px 10px;font-size:16px;border-radius:10px;border-width:2px;vertical-align:middle;margin:0 2px}
+.mapx .sel.ok{border-color:var(--ok);background:var(--s-soft)}
+.mapx .sel.no{border-color:var(--bad);background:var(--m-soft)}
+.mapx p{margin:0 0 6px}
+.mapx .st{font-family:var(--font-mono);font-size:12px;color:var(--accent);margin-right:6px}
+
+/* label row hw */
+.hw-row{display:grid;grid-template-columns:2fr 1fr 1fr 1.2fr;gap:8px;align-items:end;margin-bottom:10px}
+.hw-row .ck{font-family:var(--font-mono);font-weight:700;padding-bottom:12px}
+.hw-row .ck.ok{color:var(--ok)}.hw-row .ck.warn{color:var(--warn)}
+
+@media(max-width:900px){
+  .journey{grid-template-columns:1fr}
+  .cmp{grid-template-columns:1fr}
+  .imm-steps{grid-template-columns:1fr 1fr}
+  .conv{grid-template-columns:1fr}
+  .conv .eq{text-align:center;padding:0}
+  .hw-row{grid-template-columns:1fr 1fr}
+}
+@media(max-width:700px){
+  .kv{grid-template-columns:1fr}
+  .org-row{grid-template-columns:1fr 50px;grid-template-areas:"l v" "t t"}
+  .org-row>:nth-child(1){grid-area:l}.org-row>:nth-child(2){grid-area:t}.org-row>:nth-child(3){grid-area:v}
+  .ladder button{margin-right:0 !important}
+}
+@media(max-width:640px){
+  .imm-steps{grid-template-columns:1fr}
+  .mapx .sel{min-width:120px}
+}
+
+/* self-study additions */
+.opt[aria-pressed="true"]{border-color:var(--accent);background:var(--accent-soft)}
+
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="brand" aria-label="STEM"><span class="bs">S</span><span class="bt">T</span><span class="be">E</span><span class="bm">M</span><span class="brand-sub">7 · Проміжний урок</span></div>
+  <div class="progress" role="progressbar" aria-label="Прогрес"><i id="progressBar"></i></div>
+  <button type="button" class="icon-btn" id="menuBtn" aria-label="Меню слайдів"><i class="fa-solid fa-bars"></i></button>
+  <button type="button" class="icon-btn" id="themeBtn" aria-label="Перемкнути тему"><span id="themeIcon" aria-hidden="true">🌙</span></button>
+</header>
+<div class="menu-overlay" id="menuOverlay" aria-hidden="true">
+  <div class="menu-panel" role="dialog" aria-label="Слайди"><h3>Усі слайди · перехід</h3><ul class="menu-list" id="menuList"></ul></div>
+</div>
+<main class="deck">
+<!-- ═════════════ 1. ТИТУЛ ═════════════ -->
+<section class="slide active" data-part="Частина 1 · Енергія й будова тіла" data-title="Титул: мета й ключове питання">
+ <div class="slide-inner">
+  <div class="eyebrow"><span>STEM · 7 клас</span><span>Модуль 1 «Людина — людина»</span><span>Тема «Скуштуй життя на смак!»</span><span class="part-badge">Проміжний урок</span></div>
+  <div class="grid-2-1" style="align-items:center">
+   <div style="display:flex;flex-direction:column;gap:14px">
+    <h1>Паливо для живої машини: енергія, тіло, захист</h1>
+    <p class="lead">Ми вже вміємо рахувати БЖУ й калорії. Сьогодні з’ясуємо, що за цими цифрами стоїть: що таке енергія, куди їжа потрапляє в тілі та чому від харчування залежить здоров’я.</p>
+    <div class="tags"><span class="tag s"><i class="fa-solid fa-heart-pulse"></i> S — біологія й хімія тіла</span><span class="tag e"><i class="fa-solid fa-bolt"></i> E — енергія як ресурс</span><span class="tag m"><i class="fa-solid fa-square-root-variable"></i> M — одиниці й частки</span></div>
+    <div class="driving"><div class="label">Ключове проблемне питання</div><p>Що відбувається з бутербродом після того, як ми його з’їли — і чому від того, що ми їмо, залежать наша енергія, захист від хвороб і здоров’я?</p></div>
+   </div>
+   <figure class="figure hero-fig">
+    <svg viewBox="0 0 520 300" role="img" aria-label="Ланцюг: Сонце, рослина, хліб, людина, енергія" style="width:100%;height:auto">
+     <circle cx="62" cy="62" r="30" fill="#facc15"/>
+     <g stroke="#facc15" stroke-width="4" stroke-linecap="round"><line x1="62" y1="12" x2="62" y2="22"/><line x1="62" y1="102" x2="62" y2="112"/><line x1="12" y1="62" x2="22" y2="62"/><line x1="102" y1="62" x2="112" y2="62"/><line x1="27" y1="27" x2="34" y2="34"/><line x1="90" y1="90" x2="97" y2="97"/><line x1="97" y1="27" x2="90" y2="34"/><line x1="34" y1="90" x2="27" y2="97"/></g>
+     <path d="M118 70 C 150 80, 160 100, 178 118" stroke="var(--ink-faint)" stroke-width="3" fill="none" stroke-dasharray="6 6"/>
+     <g transform="translate(150,150)"><rect x="-4" y="10" width="8" height="70" rx="3" fill="#16a34a"/><ellipse cx="-24" cy="22" rx="26" ry="12" fill="#4ade80" transform="rotate(-25 -24 22)"/><ellipse cx="26" cy="8" rx="26" ry="12" fill="#4ade80" transform="rotate(25 26 8)"/><ellipse cx="0" cy="-12" rx="22" ry="10" fill="#16a34a" transform="rotate(-90 0 -12)"/></g>
+     <path d="M200 160 L 250 160" stroke="var(--ink-faint)" stroke-width="3" fill="none" stroke-dasharray="6 6"/>
+     <g transform="translate(262,130)"><path d="M0 40 Q0 0 38 0 Q76 0 76 40 L76 54 Q76 62 68 62 L8 62 Q0 62 0 54 Z" fill="#ca8a04"/><rect x="4" y="44" width="68" height="10" rx="4" fill="#fde68a"/></g>
+     <path d="M352 160 L 392 160" stroke="var(--ink-faint)" stroke-width="3" fill="none" stroke-dasharray="6 6"/>
+     <g transform="translate(446,150)"><circle cx="0" cy="-34" r="22" fill="#60a5fa"/><path d="M-30 70 Q-30 -4 0 -4 Q30 -4 30 70 Z" fill="#2563eb"/><path d="M6 22 l-9 14 h9 l-5 14 14 -19 h-9 l6 -9 z" fill="#facc15" stroke="#14162a" stroke-width="1"/></g>
+     <g font-family="IBM Plex Mono,monospace" font-size="12" fill="var(--ink-dim)" text-anchor="middle"><text x="62" y="140">світло</text><text x="150" y="262">глюкоза, крохмаль</text><text x="300" y="214">їжа</text><text x="446" y="262">АТФ + тепло</text></g>
+    </svg>
+    <figcaption>Шлях енергії: Сонце → рослина → їжа → клітини нашого тіла.</figcaption>
+   </figure>
+  </div>
+  <div>
+   <div class="lbl" style="margin-bottom:8px">Наприкінці я…</div>
+   <div class="obj">
+    <div class="card"><b>Знаю</b><span>що таке енергія, які бувають її види й в яких одиницях її міряють</span></div>
+    <div class="card"><b>Розрізняю</b><span>рівні організації тіла: клітина, тканина, орган, система органів</span></div>
+    <div class="card"><b>Простежую</b><span>шлях їжі від ротової порожнини до клітини й роль ферментів</span></div>
+    <div class="card"><b>Пояснюю</b><span>як працює імунітет і чому безпечна їжа важлива для здоров’я</span></div>
+    <div class="card"><b>Класифікую</b><span>хвороби, пов’язані з харчуванням, за причиною: нестача, надлишок, реакція, інфекція</span></div>
+   </div>
+  </div>
+  <div class="callout green"><b>Що ви створите:</b> заповнена «Карта подорожі їжі» — від енергії Сонця до АТФ у клітині — та 3 висновки про харчування й здоров’я.</div>
+ </div>
+</section>
+
+<!-- ═════════════ 2. МІСТ ═════════════ -->
+<section class="slide" data-part="Частина 1 · Енергія й будова тіла" data-title="Міст: що вже вміємо, що лишилось за кадром">
+ <div class="slide-inner">
+  <div class="eyebrow"><span>Повторення</span></div>
+  <h2>Що ми вже вміємо — і що лишилось за кадром</h2>
+  <div class="path">
+   <div class="card"><div class="num">Урок 6</div><h3>Хімія людського організму</h3><p class="hint">Крохмаль + йод, ферменти, амілаза: організм розщеплює їжу.</p></div>
+   <div class="arrow"><i class="fa-solid fa-arrow-right"></i></div>
+   <div class="card"><div class="num">Урок 7</div><h3>БЖУ й калорії страви</h3><p class="hint">Ккал на 1 г: 4 · 9 · 4. Порахували склад своєї страви.</p></div>
+   <div class="arrow"><i class="fa-solid fa-arrow-right"></i></div>
+   <div class="card now"><div class="num">Сьогодні</div><h3>Що за цифрами?</h3><p class="hint">Звідки береться енергія й що з нею робить тіло.</p></div>
+  </div>
+  <div class="grid-2">
+   <div style="display:grid;gap:12px;align-content:start">
+    <h3>Пригадай із уроків 6–7</h3>
+    <p class="hint">Відповіді можна знайти в картках зверху: уроки 6 і 7. Якщо помилитеся, підказка з’явиться одразу.</p>
+    <div id="quiz-recap" class="qz-list"></div>
+    <div class="qz-score" id="score-recap"></div>
+   </div>
+   <div style="display:grid;gap:12px;align-content:start">
+    <h3>П’ять запитань, які ми досі обходили</h3>
+    <p class="hint">Натисніть запитання — перейдете до слайда з відповіддю. Це карта сьогоднішнього уроку.</p>
+    <div class="qmap">
+     <button type="button" data-go="3"><span class="n">1</span><span>Що таке енергія і які бувають її види?</span><span class="go">слайди 3–5</span></button>
+     <button type="button" data-go="6"><span class="n">2</span><span>З чого складається тіло і хто в ньому «споживає» енергію?</span><span class="go">слайди 6–8, 11</span></button>
+     <button type="button" data-go="9"><span class="n">3</span><span>Як хімічна енергія їжі потрапляє в клітини?</span><span class="go">слайди 9–10</span></button>
+     <button type="button" data-go="13"><span class="n">4</span><span>Що робить імунітет і як він пов’язаний з їжею?</span><span class="go">слайди 13–14</span></button>
+     <button type="button" data-go="15"><span class="n">5</span><span>Які хвороби пов’язані з харчуванням?</span><span class="go">слайд 15</span></button>
+    </div>
+    <div class="callout warm"><b>Чому це важливо.</b> Калорії й БЖУ — це «етикетка». Сьогодні заглянемо всередину: без цього незрозуміло, чому норми різні для різного віку й навіщо день харчування треба збалансовувати.</div>
+   </div>
+  </div>
+ </div>
+</section>
+
+<!-- ═════════════ 3. ЕНЕРГІЯ ═════════════ -->
+<section class="slide" data-part="Частина 1 · Енергія й будова тіла" data-title="Що таке енергія й у чому її міряють">
+ <div class="slide-inner">
+  <div class="eyebrow"><span>S · фізика енергії</span><span>M · одиниці</span></div>
+  <h2>Що таке енергія і в чому її міряють</h2>
+  <div class="grid-2-1">
+   <div style="display:grid;gap:14px">
+    <div class="card">
+     <div class="card-title"><i class="fa-solid fa-bolt"></i><h3>Енергія</h3></div>
+     <p><b>Енергія</b> — це здатність виконувати роботу й спричиняти зміни: рухати тіла, нагрівати, світити, будувати й розкладати речовини. Ми не бачимо її напряму — лише те, що вона робить.</p>
+     <p style="margin-top:8px"><b>Закон збереження енергії:</b> енергія не виникає з нічого й не зникає безслідно — вона лише <b>перетворюється</b> з одного виду на інший.</p>
+    </div>
+    <div class="card">
+     <div class="card-title"><i class="fa-solid fa-scale-balanced"></i><h3>Одиниці енергії</h3></div>
+     <div class="formula">1 ккал = <b>4,184</b> кДж</div>
+     <p class="hint" style="margin-top:8px">Джоуль (Дж) — одиниця в системі СІ. На упаковках їжі пишуть і кДж, і ккал. У харчуванні «калорія» майже завжди означає <b>кілокалорію</b> (1 ккал = 1000 кал). Історично: 1 ккал нагріває 1 літр води приблизно на 1 °C.</p>
+    </div>
+   </div>
+   <div class="card" style="display:grid;gap:12px">
+    <div class="card-title"><i class="fa-solid fa-calculator"></i><h3>Конвертер ккал ↔ кДж</h3></div>
+    <div class="chips" id="cvPresets">
+     <button type="button" class="chip-btn" data-kcal="215">Омлет з уроку 7 · 215</button>
+     <button type="button" class="chip-btn" data-kcal="95">Яблуко · 95</button>
+     <button type="button" class="chip-btn" data-kcal="2400">Добова норма 11–13 р. · 2400</button>
+    </div>
+    <div class="conv">
+     <div class="field"><label for="cvKcal">Ккал</label><input type="number" id="cvKcal" inputmode="decimal" min="0" step="any" placeholder="215"></div>
+     <div class="eq">⇄</div>
+     <div class="field"><label for="cvKj">кДж</label><input type="number" id="cvKj" inputmode="decimal" min="0" step="any" placeholder="899"></div>
+    </div>
+    <div class="msg" id="cvMsg"></div>
+    <div class="lift" id="cvLift">Уведіть число — і побачите, що можна зробити з такою енергією.</div>
+   </div>
+  </div>
+ </div>
+</section>
+
+<!-- ═════════════ 4. ВИДИ ЕНЕРГІЇ ═════════════ -->
+<section class="slide" data-part="Частина 1 · Енергія й будова тіла" data-title="Види енергії: означення й перевірка">
+ <div class="slide-inner">
+  <div class="eyebrow"><span>S · види енергії</span></div>
+  <h2>Види енергії: означення й приклади</h2>
+  <p class="lead">Спершу прочитайте означення шести основних видів енергії та їхні приклади. Після цього перевірте себе у вправі нижче: у кожному прикладі потрібно визначити, яка енергія «прихована».</p>
+  <div class="grid-3">
+   <div class="card"><div class="card-title"><i class="fa-solid fa-person-running"></i><h3>Кінетична</h3></div>
+    <p><b>Означення:</b> енергія тіла, яке рухається. Що більші маса й швидкість, то більша кінетична енергія.</p>
+    <p class="hint" style="margin-top:6px"><b>Приклади:</b> біг, автомобіль на дорозі, течія річки, рух вашої руки.</p></div>
+   <div class="card"><div class="card-title"><i class="fa-solid fa-mountain"></i><h3>Потенціальна</h3></div>
+    <p><b>Означення:</b> енергія, «запасена» через положення тіла (наприклад, на висоті) або через пружну деформацію (стиснення, розтягнення). Може перейти в кінетичну.</p>
+    <p class="hint" style="margin-top:6px"><b>Приклади:</b> яблуко на гілці, стиснута пружина, натягнута тятива лука, вода за греблею.</p></div>
+   <div class="card"><div class="card-title"><i class="fa-solid fa-temperature-high"></i><h3>Теплова</h3></div>
+    <p><b>Означення:</b> енергія хаотичного руху частинок, з яких складається речовина. Що вища температура, то більша теплова енергія.</p>
+    <p class="hint" style="margin-top:6px"><b>Приклади:</b> гаряча чашка чаю, полум’я, тепло нашого тіла.</p></div>
+   <div class="card"><div class="card-title"><i class="fa-solid fa-flask"></i><h3>Хімічна</h3></div>
+    <p><b>Означення:</b> енергія, запасена в хімічних зв’язках між атомами в молекулах. Вивільняється під час хімічних реакцій.</p>
+    <p class="hint" style="margin-top:6px"><b>Приклади:</b> їжа, дрова, бензин, батарейка.</p></div>
+   <div class="card"><div class="card-title"><i class="fa-solid fa-sun"></i><h3>Світлова</h3></div>
+    <p><b>Означення:</b> енергія світла — електромагнітного випромінювання, яке ми бачимо. Поширюється променями, навіть крізь порожнечу.</p>
+    <p class="hint" style="margin-top:6px"><b>Приклади:</b> сонячне світло, світло лампи, полум’я свічки.</p></div>
+   <div class="card"><div class="card-title"><i class="fa-solid fa-plug"></i><h3>Електрична</h3></div>
+    <p><b>Означення:</b> енергія впорядкованого руху заряджених частинок (електричного струму) та електричного поля.</p>
+    <p class="hint" style="margin-top:6px"><b>Приклади:</b> струм у проводах, блискавка, зарядка телефону.</p></div>
+  </div>
+  <div class="grid-2">
+   <div class="card soft">
+    <h3>Як визначити вид енергії: питання-підказки</h3>
+    <ul class="check-list">
+     <li><i class="fa-solid fa-circle-question"></i><span>Щось <b>рухається</b>? → кінетична.</span></li>
+     <li><i class="fa-solid fa-circle-question"></i><span>Енергія «чекає» через <b>висоту</b> чи <b>пружину</b>? → потенціальна.</span></li>
+     <li><i class="fa-solid fa-circle-question"></i><span>Предмет <b>нагрітий</b>? → теплова.</span></li>
+     <li><i class="fa-solid fa-circle-question"></i><span>Енергія <b>запасена в речовині</b>, яка може вступити в реакцію (їжа, паливо, батарейка)? → хімічна.</span></li>
+     <li><i class="fa-solid fa-circle-question"></i><span>Це <b>світло</b>? → світлова. Це <b>струм</b> чи заряди? → електрична.</span></li>
+    </ul>
+   </div>
+   <div style="display:grid;gap:12px;align-content:start">
+    <div class="callout warm"><b>Головне відкриття.</b> Їжа — це не просто «калорії». Це <b>запас хімічної енергії</b>, який рослини накопичили зі світла, а ми дістаємо розщепленням молекул.</div>
+    <div class="callout"><b>Важливо.</b> В одному предметі може бути кілька видів енергії (гаряча чашка, що рухається). У вправі обираємо <b>головний</b> вид енергії для описаної ситуації. Енергія також перетворюється: у м’язах хімічна енергія бутерброда стає кінетичною енергією руху й теплом.</div>
+   </div>
+  </div>
+  <h3>Перевірте себе: яка енергія «прихована» в прикладі?</h3>
+  <div id="quiz-forms" class="qz-list"></div>
+  <div class="qz-score" id="score-forms"></div>
+ </div>
+</section>
+
+<!-- ═════════════ 5. ЛАНЦЮГ ПЕРЕТВОРЕНЬ ═════════════ -->
+<section class="slide" data-part="Частина 1 · Енергія й будова тіла" data-title="Від Сонця до клітини: ланцюг перетворень">
+ <div class="slide-inner">
+  <div class="eyebrow"><span>S · перетворення енергії</span></div>
+  <h2>Від Сонця до клітини: ланцюг перетворень енергії</h2>
+  <p class="lead">Спочатку прочитайте, як енергія Сонця доходить до наших клітин. Потім складіть цей шлях у правильному порядку.</p>
+  <div class="grid-2">
+   <div class="card">
+    <div class="card-title"><i class="fa-solid fa-seedling"></i><h3>1–2. Сонце → рослина → їжа</h3></div>
+    <p>Рослини під дією світла створюють із води й вуглекислого газу глюкозу (процес <b>фотосинтезу</b>). Так світлова енергія Сонця запасається як <b>хімічна</b> енергія в глюкозі, крохмалі та інших речовинах. Коли ми їмо хліб чи картоплю, ми отримуємо цей запас.</p>
+   </div>
+   <div class="card">
+    <div class="card-title"><i class="fa-solid fa-utensils"></i><h3>3–4. Травлення й кров</h3></div>
+    <p>Ферменти розщеплюють їжу до малих молекул, зокрема крохмаль — до <b>глюкози</b>. Глюкоза всмоктується в кров, яка розносить її до всіх клітин.</p>
+   </div>
+  </div>
+  <div class="card">
+   <div class="card-title"><i class="fa-solid fa-atom"></i><h3>5–6. Клітинне дихання й АТФ</h3></div>
+   <div class="formula">C₆H₁₂O₆ + 6 O₂ → 6 CO₂ + 6 H₂O + <b>енергія</b></div>
+   <p style="margin-top:10px">Це «повільне горіння» глюкози в <b>мітохондріях</b> — маленьких «електростанціях» клітини. Енергія спершу заряджає молекули <b>АТФ</b> — універсальну «енергетичну валюту» клітини: з неї оплачується рух м’язів, ріст, робота нервів. Приблизно 40% виділеної енергії запасається в АТФ, решта виділяється як <b>тепло</b> — саме тому наше тіло тепле.</p>
+  </div>
+  <div class="web-insert">
+   <span class="wi-badge"><i class="fa-solid fa-flask-vial"></i> Як міряють калорійність</span>
+   <p>Колись продукт спалювали в приладі-калориметрі й за нагріванням води вираховували виділену теплоту. Сучасні таблиці користуються усередненими коефіцієнтами Етвотера — 4, 9, 4 ккал/г, які ми вже застосовували на уроці 7.</p>
+  </div>
+  <h3>Перевірте себе: складіть ланцюг у правильному порядку</h3>
+  <p class="hint">Натискайте кроки в тому порядку, в якому енергія доходить від Сонця до роботи м’язів.</p>
+  <div class="chain-pool" id="chainPool"></div>
+  <div class="row"><button type="button" class="btn small" id="chainReset"><i class="fa-solid fa-rotate-left"></i> Спочатку</button><span class="msg" id="chainMsg"></span></div>
+  <div class="callout green" id="chainDone" hidden><b>Ланцюг зібрано!</b> Прочитайте його від першого до шостого кроку: світло → хімічна енергія в їжі → глюкоза в крові → мітохондрії → АТФ і тепло.</div>
+ </div>
+</section>
+
+<!-- ═════════════ 6. РІВНІ ОРГАНІЗАЦІЇ ═════════════ -->
+<section class="slide" data-part="Частина 1 · Енергія й будова тіла" data-title="Від клітини до організму">
+ <div class="slide-inner">
+  <div class="eyebrow"><span>S · будова тіла</span></div>
+  <h2>З чого складається людина: від клітини до організму</h2>
+  <p class="lead">Тіло побудоване за принципом «матрьошки»: клітини утворюють тканини, тканини — органи, органи — системи органів, а всі системи разом — цілий організм. Оберіть приклад і натискайте рівні сходинок, щоб прочитати пояснення.</p>
+  <div class="grid-2">
+   <div style="display:grid;gap:12px;align-content:start">
+    <div class="seg" id="exSeg" role="group" aria-label="Приклад"><button type="button" data-v="muscle" aria-pressed="true">Приклад: м’яз</button><button type="button" data-v="gut" aria-pressed="false">Приклад: кишечник</button></div>
+    <div class="ladder" id="ladder"></div>
+   </div>
+   <div style="display:grid;gap:12px;align-content:start">
+    <div class="card" id="ladPanel"></div>
+    <div class="web-insert">
+     <span class="wi-badge"><i class="fa-solid fa-globe"></i> З мережі · перевірено 05.10.2026</span>
+     <div class="bigfact"><span class="big-num">≈ 37 трлн</span><p>Така оцінка кількості клітин у тілі дорослої людини (≈ 3,72·10¹³). Приблизно 70% з них — еритроцити крові. Автори підкреслюють, що це наближена оцінка.</p></div>
+     <div class="src">Джерело: Bianconi та ін., Annals of Human Biology, 2013 · <a href="https://doi.org/10.3109/03014460.2013.807878" target="_blank" rel="noopener">doi:10.3109/03014460.2013.807878</a></div>
+    </div>
+   </div>
+  </div>
+ </div>
+</section>
+
+<!-- ═════════════ 7. ТКАНИНИ ═════════════ -->
+<section class="slide" data-part="Частина 1 · Енергія й будова тіла" data-title="Чотири типи тканин">
+ <div class="slide-inner">
+  <div class="eyebrow"><span>S · тканини</span></div>
+  <h2>Чотири типи тканин людського тіла</h2>
+  <div class="grid-4">
+   <div class="tissue"><div class="ico b1"><i class="fa-solid fa-layer-group"></i></div><h3>Епітеліальна</h3><p>Вкриває поверхні й вистилає порожнини: шкіра, стінка кишечника. Захищає, всмоктує, виділяє.</p><div class="eat"><b>З їжею:</b> вітаміни A і C, білки — для оновлення шкіри та слизових.</div></div>
+   <div class="tissue"><div class="ico b2"><i class="fa-solid fa-bone"></i></div><h3>Сполучна</h3><p>З’єднує й підтримує: кістки, хрящі, кров, жирова тканина. Тут і найбільший запас енергії — жир.</p><div class="eat"><b>З їжею:</b> кальцій, вітамін D, білки, залізо (для крові).</div></div>
+   <div class="tissue"><div class="ico b3"><i class="fa-solid fa-dumbbell"></i></div><h3>М’язова</h3><p>Скорочується й створює рух: скелетні м’язи, серце, гладкі м’язи стінок органів.</p><div class="eat"><b>З їжею:</b> білки для будівництва, вуглеводи й жири як паливо.</div></div>
+   <div class="tissue"><div class="ico b4"><i class="fa-solid fa-brain"></i></div><h3>Нервова</h3><p>Передає сигнали електричними імпульсами: мозок, нерви. Дуже «енергоємна».</p><div class="eat"><b>З їжею:</b> глюкоза як основне паливо мозку; вітаміни групи B.</div></div>
+  </div>
+  <div style="display:grid;gap:10px">
+   <h3>Перевірте себе: яка це тканина?</h3>
+   <div id="quiz-tissue" class="qz-list"></div>
+   <div class="qz-score" id="score-tissue"></div>
+  </div>
+ </div>
+</section>
+
+<!-- ═════════════ 8. СИСТЕМИ ОРГАНІВ ═════════════ -->
+<section class="slide" data-part="Частина 1 · Енергія й будова тіла" data-title="Системи органів і підсумок частини 1">
+ <div class="slide-inner">
+  <div class="eyebrow"><span>S · системи органів</span></div>
+  <h2>Системи органів: команда, що працює на їжу</h2>
+  <div class="table-wrap"><table class="data-table"><thead><tr><th>Система</th><th>Головна робота</th><th>Роль у харчуванні</th></tr></thead><tbody>
+   <tr><td><b>Травна</b></td><td>Розщеплює їжу, всмоктує речовини</td><td>Перетворює їжу на малі молекули</td></tr>
+   <tr><td><b>Кровоносна</b></td><td>Розносить кисень і поживні речовини</td><td>Доставляє глюкозу та амінокислоти до клітин</td></tr>
+   <tr><td><b>Дихальна</b></td><td>Забирає O₂, віддає CO₂</td><td>Дає кисень для «згоряння» глюкози</td></tr>
+   <tr><td><b>Видільна</b></td><td>Виводить відходи обміну речовин і зайву воду (головні органи — нирки)</td><td>Очищає кров від відходів обміну</td></tr>
+   <tr><td><b>Нервова та ендокринна</b></td><td>Керують: імпульси та гормони</td><td>Регулюють апетит, рівень цукру в крові</td></tr>
+   <tr><td><b>Імунна</b></td><td>Захищає від чужорідного: виробляє антитіла, знищує мікробів</td><td>Бореться з мікробами з їжі та повітря</td></tr>
+   <tr><td><b>Опорно-рухова</b></td><td>Опора й рух</td><td>Найбільший споживач енергії під час руху</td></tr>
+  </tbody></table></div>
+  <div style="display:grid;gap:10px">
+   <h3>Перевірте себе: яка система виконує цю роботу?</h3>
+   <div id="quiz-sys" class="qz-list"></div>
+   <div class="qz-score" id="score-sys"></div>
+  </div>
+  <div class="card" style="border-color:var(--accent)">
+   <div class="card-title"><i class="fa-solid fa-flag-checkered"></i><h3>Підсумок частини 1</h3></div>
+   <ul class="check-list">
+    <li class="ok"><i class="fa-solid fa-circle-check"></i><span>Енергія не зникає, а перетворюється; в їжі вона запасена як <b>хімічна</b>.</span></li>
+    <li class="ok"><i class="fa-solid fa-circle-check"></i><span>Тіло складається з клітин → тканин → органів → систем органів.</span></li>
+    <li class="ok"><i class="fa-solid fa-circle-check"></i><span>Усі системи працюють разом: щоб енергія з їжі дійшла до клітини, потрібні <b>травна, кровоносна й дихальна</b> системи.</span></li>
+   </ul>
+   <p class="hint" style="margin-top:8px">Далі — частина 2: подорож їжі, енергетичний бюджет тіла, імунітет і хвороби харчування. Тут зручно зробити перерву.</p>
+  </div>
+ </div>
+</section>
+
+<!-- ═════════════ 9. ПОДОРОЖ ЇЖІ ═════════════ -->
+<section class="slide" data-part="Частина 2 · Їжа в тілі, захист, здоров’я" data-title="Подорож шматка бутерброда">
+ <div class="slide-inner">
+  <div class="eyebrow"><span>S · травлення</span><span class="part-badge">Головний інтерактив</span></div>
+  <h2>Подорож шматка бутерброда: від рота до клітини</h2>
+  <p class="lead">Обирайте поживну речовину й проходьте станції. Кружечки показують, де вона перероблюється: <b>повний</b> — основна робота, <b>половинка</b> — часткова, <b>порожній</b> — тут із нею нічого хімічного не відбувається.</p>
+  <div class="row" style="align-items:center">
+   <div class="seg" id="nutSeg" role="group" aria-label="Поживна речовина">
+    <button type="button" data-v="all" aria-pressed="true">Усе разом</button>
+    <button type="button" data-v="c" aria-pressed="false">Вуглеводи (хліб)</button>
+    <button type="button" data-v="p" aria-pressed="false">Білки (сир, ковбаса)</button>
+    <button type="button" data-v="f" aria-pressed="false">Жири (масло)</button>
+   </div>
+  </div>
+  <div class="legend"><span><i style="background:#facc15"></i> вуглеводи</span><span><i style="background:#f87171"></i> білки</span><span><i style="background:#60a5fa"></i> жири</span><span id="stnVisited" class="kbd-note"></span></div>
+  <div class="journey">
+   <div class="stn-list" id="stnList"></div>
+   <div class="stn-panel card" id="stnPanel"></div>
+  </div>
+  <div class="row"><button type="button" class="btn" id="stnPrev"><i class="fa-solid fa-arrow-left"></i> Попередня станція</button><button type="button" class="btn primary" id="stnNext">Наступна станція <i class="fa-solid fa-arrow-right"></i></button></div>
+ </div>
+</section>
+
+<!-- ═════════════ 10. ФЕРМЕНТИ ═════════════ -->
+<section class="slide" data-part="Частина 2 · Їжа в тілі, захист, здоров’я" data-title="Ферменти: хто що розщеплює">
+ <div class="slide-inner">
+  <div class="eyebrow"><span>S · ферменти</span></div>
+  <h2>Хто що розщеплює? Ферменти й не тільки</h2>
+  <p class="lead">Спочатку прочитайте пояснення й таблицю, а тоді відповідайте на запитання нижче.</p>
+  <div class="grid-2">
+   <div class="card">
+    <div class="card-title"><i class="fa-solid fa-scissors"></i><h3>Що таке фермент</h3></div>
+    <p><b>Фермент</b> — білок, який прискорює певну хімічну реакцію. Кожен фермент «підходить» лише до певної речовини, як ключ до замка. Тому амілаза розщеплює крохмаль, а пепсин — білки.</p>
+    <p style="margin-top:8px">Наші ферменти не вміють розрізати <b>целюлозу</b> — з неї складаються деревина й олівець. Тому ми не можемо їх перетравити. Клітковина рослин теж не розщеплюється нашими ферментами: вона йде далі й стає їжею для корисних бактерій товстої кишки.</p>
+   </div>
+   <div class="card">
+    <div class="card-title"><i class="fa-solid fa-droplet"></i><h3>Помічники ферментів</h3></div>
+    <p><b>Жовч</b> утворюється в печінці й <b>не є ферментом</b>: вона лише розбиває великі краплі жиру на дрібні, щоб ліпазі було легше працювати.</p>
+    <p style="margin-top:8px"><b>Соляна кислота</b> шлункового соку створює кисле середовище, вбиває багатьох мікробів і допомагає пепсину.</p>
+   </div>
+  </div>
+  <div class="table-wrap"><table class="data-table"><thead><tr><th>Де</th><th>Хто працює</th><th>Що розщеплюється</th><th>Результат</th></tr></thead><tbody>
+   <tr><td><b>Ротова порожнина</b></td><td>амілаза слини</td><td>крохмаль (вуглевод)</td><td>коротші ланцюги, мальтоза</td></tr>
+   <tr><td><b>Шлунок</b></td><td>пепсин + соляна кислота</td><td>білки</td><td>коротші ланцюжки білків</td></tr>
+   <tr><td><b>Тонка кишка</b></td><td>ферменти підшлункового соку й стінки кишки (амілаза, протеази, ліпаза) + жовч</td><td>крохмаль, білки, жири</td><td>глюкоза, амінокислоти, жирні кислоти й гліцерол. Тут вони <b>всмоктуються в кров</b></td></tr>
+   <tr><td><b>Товста кишка</b></td><td>корисні бактерії</td><td>клітковина, залишки</td><td>всмоктується вода; відходи виводяться</td></tr>
+  </tbody></table></div>
+  <h3>Перевірте себе</h3>
+  <div id="quiz-enz" class="qz-list"></div>
+  <div class="qz-score" id="score-enz"></div>
+ </div>
+</section>
+
+<!-- ═════════════ 11. БЮДЖЕТ ЕНЕРГІЇ ═════════════ -->
+<section class="slide" data-part="Частина 2 · Їжа в тілі, захист, здоров’я" data-title="Енергетичний бюджет тіла">
+ <div class="slide-inner">
+  <div class="eyebrow"><span>S · обмін енергії</span><span>M · частки</span></div>
+  <h2>Енергетичний бюджет тіла: куди йде енергія їжі</h2>
+  <p class="lead">Енергія їжі, яку ми отримуємо за добу, витрачається трьома шляхами. Прочитайте їх, а потім змінюйте норму й тип дня, щоб побачити, як змінюються цифри.</p>
+  <div class="grid-3">
+   <div class="card"><div class="card-title"><i class="fa-solid fa-heart-pulse"></i><h3>Базовий обмін</h3></div><p>Енергія, яку тіло витрачає навіть у спокої: робота серця, мозку, дихання, підтримка температури тіла. Це найбільша частка добових витрат (≈ 55–70%).</p></div>
+   <div class="card"><div class="card-title"><i class="fa-solid fa-utensils"></i><h3>Травлення їжі</h3></div><p>Перетравити, всмоктати й переробити їжу теж «коштує» енергії — приблизно 10% від добової витрати.</p></div>
+   <div class="card"><div class="card-title"><i class="fa-solid fa-person-running"></i><h3>Рух і активність</h3></div><p>Енергія на роботу м’язів: ходьба, уроки фізкультури, ігри. Чим активніший день, тим більша ця частка (≈ 20–35%). Підліткам потрібна ще й енергія на ріст.</p></div>
+  </div>
+  <div class="grid-2">
+   <div style="display:grid;gap:12px;align-content:start">
+    <div class="row">
+     <div class="field"><label for="budNorm">Добова норма (з уроку 8)</label>
+      <select id="budNorm"><option value="2100">7–10 років · 2100 ккал</option><option value="2300">11–13 років, дівчата · 2300 ккал</option><option value="2400" selected>11–13 років, хлопці · 2400 ккал</option><option value="2700">14–17 років, юнаки · 2700 ккал</option></select></div>
+     <div class="field"><label>Який у вас день?</label>
+      <div class="seg" id="actSeg" role="group" aria-label="Активність"><button type="button" data-v="low" aria-pressed="false">Спокійний</button><button type="button" data-v="mid" aria-pressed="true">Звичайний</button><button type="button" data-v="high" aria-pressed="false">Дуже активний</button></div></div>
+    </div>
+    <div class="tiles4" style="grid-template-columns:repeat(3,1fr)" id="budTiles"></div>
+    <div class="chart-box"><canvas id="budChart" aria-label="Діаграма розподілу енергії за добу"></canvas></div>
+    <div class="fallback-bars" id="budFallback" hidden></div>
+    <p class="mass-note">Частки ілюстративні: у реальних людей вони різняться залежно від віку, росту, статури й рухливості. Підліткам потрібна ще й енергія на ріст.</p>
+   </div>
+   <div style="display:grid;gap:12px;align-content:start">
+    <div class="card">
+     <div class="card-title"><i class="fa-solid fa-brain"></i><h3>Хто витрачає енергію навіть у спокої?</h3></div>
+     <div id="orgBars"></div>
+     <p class="mass-note">Приблизні частки спокійного обміну дорослого. Мозок становить ≈ 2% маси тіла, але споживає близько п’ятої частини енергії.</p>
+    </div>
+    <div class="card">
+     <h3>Баланс: що буде з «різницею»?</h3>
+     <div class="seg" id="balSeg" role="group" aria-label="Баланс"><button type="button" data-v="less" aria-pressed="false">Надходить менше, ніж потрібно</button><button type="button" data-v="eq" aria-pressed="true">Приблизно стільки ж</button><button type="button" data-v="more" aria-pressed="false">Надходить більше</button></div>
+     <p id="balText" style="margin-top:10px"></p>
+    </div>
+   </div>
+  </div>
+ </div>
+</section>
+
+<!-- ═════════════ 12. НЕ ЛИШЕ КАЛОРІЇ ═════════════ -->
+<section class="slide" data-part="Частина 2 · Їжа в тілі, захист, здоров’я" data-title="Не лише калорії: вітаміни, мінерали, вода">
+ <div class="slide-inner">
+  <div class="eyebrow"><span>S · склад їжі</span></div>
+  <h2>Не лише калорії: що ще в їжі</h2>
+  <p class="lead">Калорії показують, скільки енергії в продукті, але не кажуть, чи є в ньому вітаміни, мінерали й клітковина. Порівняйте два продукти з однаковою калорійністю та прочитайте таблицю «мікро-інструментів» тіла.</p>
+  <div class="card">
+   <div class="row" style="align-items:center;margin-bottom:10px"><h3>Однакові 200 ккал — однакова користь?</h3><button type="button" class="btn small primary" id="cmpBtn"><i class="fa-solid fa-magnifying-glass"></i> Що всередині?</button></div>
+   <div class="cmp" id="cmp">
+    <div class="cmp-box"><h3><i class="fa-solid fa-cube-sugar"></i> 50 г цукру <span class="hint">(≈ 12 чайних ложок)</span></h3><span class="big-num">≈ 200 ккал</span>
+     <div class="cmp-in"><div class="y"><i class="fa-solid fa-check"></i> швидка енергія</div><div class="n"><i class="fa-solid fa-xmark"></i> клітковина</div><div class="n"><i class="fa-solid fa-xmark"></i> вітаміни, мінерали</div><div class="n"><i class="fa-solid fa-xmark"></i> почуття ситості надовго</div></div></div>
+    <div class="cmp-box"><h3><i class="fa-solid fa-apple-whole"></i> 2 середні яблука</h3><span class="big-num">≈ 190 ккал</span>
+     <div class="cmp-in"><div class="y"><i class="fa-solid fa-check"></i> енергія, що вивільняється повільніше</div><div class="y"><i class="fa-solid fa-check"></i> клітковина</div><div class="y"><i class="fa-solid fa-check"></i> вітамін C, калій, вода</div><div class="y"><i class="fa-solid fa-check"></i> ситніше</div></div></div>
+   </div>
+   <p class="hint" style="margin-top:8px">Значення орієнтовні, округлені для навчання. Висновок: <b>калорії — це кількість палива, а склад їжі — його якість</b>.</p>
+  </div>
+  <div class="card">
+   <div class="row" style="align-items:center;margin-bottom:10px"><h3>Мікро-«інструменти» тіла</h3>
+    <div class="chips" id="filtChips"><button type="button" class="chip-btn" data-f="all" aria-pressed="true">Усе</button><button type="button" class="chip-btn" data-f="bone" aria-pressed="false">Кістки</button><button type="button" class="chip-btn" data-f="blood" aria-pressed="false">Кров</button><button type="button" class="chip-btn" data-f="eye" aria-pressed="false">Зір і шкіра</button><button type="button" class="chip-btn" data-f="imm" aria-pressed="false">Захист</button><button type="button" class="chip-btn" data-f="nerv" aria-pressed="false">Нерви й енергія</button></div></div>
+   <div class="table-wrap"><table class="data-table" id="micTable"><thead><tr><th>Речовина</th><th>Навіщо</th><th>Де шукати</th></tr></thead><tbody>
+    <tr data-t="eye imm"><td><b>Вітамін A</b></td><td>зір, шкіра, слизові оболонки</td><td>морква, гарбуз, яйця, печінка</td></tr>
+    <tr data-t="imm blood"><td><b>Вітамін C</b></td><td>сполучна тканина, захист, засвоєння заліза</td><td>цитрусові, перець, капуста, шипшина</td></tr>
+    <tr data-t="bone imm"><td><b>Вітамін D</b></td><td>допомагає засвоювати кальцій</td><td>жирна риба, яйця; утворюється в шкірі на сонці</td></tr>
+    <tr data-t="nerv blood"><td><b>Вітаміни групи B</b></td><td>обмін енергії, нервова система</td><td>крупи, м’ясо, бобові, яйця</td></tr>
+    <tr data-t="bone"><td><b>Кальцій</b></td><td>кістки, зуби, робота м’язів</td><td>молочні продукти, бобові, зелені овочі</td></tr>
+    <tr data-t="blood"><td><b>Залізо</b></td><td>гемоглобін несе кисень</td><td>м’ясо, бобові, гречка</td></tr>
+    <tr data-t="nerv"><td><b>Йод</b></td><td>гормони щитоподібної залози</td><td>йодована сіль, морська риба</td></tr>
+    <tr data-t="nerv"><td><b>Клітковина</b></td><td>травлення, їжа для корисних бактерій</td><td>овочі, цільні крупи, бобові</td></tr>
+    <tr data-t="all"><td><b>Вода</b></td><td>≈ 60% маси тіла; середовище для всіх реакцій</td><td>вода, супи, фрукти й овочі</td></tr>
+   </tbody></table></div>
+  </div>
+  <div class="web-insert">
+   <span class="wi-badge"><i class="fa-solid fa-globe"></i> З мережі · перевірено 05.10.2026</span>
+   <p>ВООЗ радить щодня щонайменше 400 г овочів і фруктів, а вільні цукри обмежувати до менш як 10% добової енергії. Ці орієнтири ми вже бачили на «Здоровій тарілці».</p>
+   <div class="src">Джерело: <a href="https://who.int/europe/news-room/fact-sheets/item/nutrition---maintaining-a-healthy-lifestyle" target="_blank" rel="noopener">ВООЗ/Європа — Nutrition: maintaining a healthy lifestyle</a></div>
+  </div>
+ </div>
+</section>
+
+<!-- ═════════════ 13. ІМУНІТЕТ ═════════════ -->
+<section class="slide" data-part="Частина 2 · Їжа в тілі, захист, здоров’я" data-title="Імунітет: лінії захисту">
+ <div class="slide-inner">
+  <div class="eyebrow"><span>S · імунітет</span></div>
+  <h2>Імунітет: три лінії захисту</h2>
+  <div class="grid-2">
+   <div class="card">
+    <div class="card-title"><i class="fa-solid fa-shield-virus"></i><h3>Що таке імунітет</h3></div>
+    <p><b>Імунітет</b> — здатність організму розпізнавати й знешкоджувати чужорідне: бактерії, віруси, токсини. Його забезпечує <b>імунна система</b>: шкіра й слизові оболонки, клітини крові (<b>фагоцити</b> та <b>лімфоцити</b>) і органи, як-от лімфовузли, тимус, селезінка, червоний кістковий мозок.</p>
+   </div>
+   <div class="card">
+    <div class="card-title"><i class="fa-solid fa-layer-group"></i><h3>Вроджений і набутий</h3></div>
+    <p><b>Вроджений</b> імунітет діє одразу й однаково на будь-якого чужинця. <b>Набутий</b> формується під час зустрічі з конкретним збудником: лімфоцити виробляють <b>антитіла</b> й запам’ятовують ворога. На цьому працює <b>вакцинація</b> — вона «тренує» пам’ять без самої хвороби.</p>
+   </div>
+  </div>
+  <p class="lead">Нижче — схема захисту. Оберіть, як «ворог» потрапив у тіло, і натискайте «Далі», щоб побачити кожну наступну лінію.</p>
+  <div class="field"><label>Звідки «ворог»?</label>
+   <div class="seg" id="immSeg" role="group" aria-label="Шлях проникнення"><button type="button" data-v="cut" aria-pressed="true">Подряпина на коліні</button><button type="button" data-v="food" aria-pressed="false">Мікроб у їжі</button><button type="button" data-v="air" aria-pressed="false">Вірус у повітрі</button></div></div>
+  <div class="imm-steps" id="immSteps"></div>
+  <div class="row"><button type="button" class="btn" id="immPrev"><i class="fa-solid fa-arrow-left"></i> Назад</button><button type="button" class="btn primary" id="immNext">Далі: наступна лінія <i class="fa-solid fa-arrow-right"></i></button><button type="button" class="btn small" id="immReset"><i class="fa-solid fa-rotate-left"></i> Спочатку</button></div>
+  <div class="callout red"><b>Увага.</b> Це навчальна схема. Висока температура, гнійна рана чи погане самопочуття — привід звернутися до дорослих і лікаря, а не лікуватися самостійно.</div>
+ </div>
+</section>
+
+<!-- ═════════════ 14. ХАРЧУВАННЯ Й ІМУНІТЕТ + БЕЗПЕЧНА ЇЖА ═════════════ -->
+<section class="slide" data-part="Частина 2 · Їжа в тілі, захист, здоров’я" data-title="Харчування, імунітет і безпечна їжа">
+ <div class="slide-inner">
+  <div class="eyebrow"><span>S · харчування й захист</span></div>
+  <h2>Що їжа дає імунітету — і як їжа не стане джерелом хвороби</h2>
+  <p class="lead">Спочатку прочитайте, що потрібно імунній системі та які правила безпечної їжі радить ВООЗ. Потім перевірте себе у вправі.</p>
+  <div class="grid-2">
+   <div style="display:grid;gap:12px;align-content:start">
+    <div class="card">
+     <div class="card-title"><i class="fa-solid fa-shield-heart"></i><h3>Їжа для захисту</h3></div>
+     <ul class="check-list">
+      <li class="ok"><i class="fa-solid fa-circle-check"></i><span><b>Білки</b> — з них будуються антитіла та імунні клітини.</span></li>
+      <li class="ok"><i class="fa-solid fa-circle-check"></i><span><b>Вітаміни A, C, D</b>, залізо, цинк — потрібні для бар’єрів і імунних клітин.</span></li>
+      <li class="ok"><i class="fa-solid fa-circle-check"></i><span><b>Клітковина</b> живить корисні бактерії кишечника, які «навчають» імунну систему.</span></li>
+     </ul>
+    </div>
+    <div class="callout warm"><b>Без міфів.</b> Жодна окрема їжа чи добавка не «піднімає імунітет» за день. Працюють різноманітний раціон, достатній сон, рух і вакцинація.</div>
+   </div>
+   <div class="web-insert">
+    <span class="wi-badge"><i class="fa-solid fa-globe"></i> З мережі · перевірено 05.10.2026</span>
+    <h3>П’ять ключів безпечної їжі (ВООЗ)</h3>
+    <ul class="check-list">
+     <li><i class="fa-solid fa-1"></i><span><b>Тримайте чистоту:</b> мийте руки з милом перед готуванням і під час нього, мийте поверхні й обладнання.</span></li>
+     <li><i class="fa-solid fa-2"></i><span><b>Розділяйте сире й готове:</b> сире м’ясо, птицю й рибу зберігайте й ріжте окремо від готової їжі.</span></li>
+     <li><i class="fa-solid fa-3"></i><span><b>Ретельно готуйте:</b> особливо м’ясо, птицю, яйця, рибу (в м’ясі не має лишатися рожевих соків); готову їжу добре розігрівайте.</span></li>
+     <li><i class="fa-solid fa-4"></i><span><b>Безпечні температури:</b> не лишайте готову їжу при кімнатній температурі довше 2 годин; зберігайте в холодильнику (нижче 5 °C); гарячу їжу тримайте вище 60 °C; не розморожуйте при кімнатній температурі.</span></li>
+     <li><i class="fa-solid fa-5"></i><span><b>Безпечна вода й продукти:</b> чиста вода, свіжі продукти, перевірка терміну придатності.</span></li>
+    </ul>
+    <div class="src">Джерело: <a href="https://www.who.int/publications/i/item/9789241594639" target="_blank" rel="noopener">ВООЗ — Five keys to safer food manual</a></div>
+   </div>
+  </div>
+  <h3>Перевірте себе: безпечно чи ризиковано?</h3>
+  <div id="quiz-safe" class="qz-list"></div>
+  <div class="qz-score" id="score-safe"></div>
+ </div>
+</section>
+
+<!-- ═════════════ 15. ХВОРОБИ ═════════════ -->
+<section class="slide" data-part="Частина 2 · Їжа в тілі, захист, здоров’я" data-title="Хвороби, пов’язані з харчуванням">
+ <div class="slide-inner">
+  <div class="eyebrow"><span>S · здоров’я</span></div>
+  <h2>Харчування й здоров’я: чотири шляхи, якими щось іде не так</h2>
+  <p class="lead">Проблеми, пов’язані з їжею, можна впорядкувати за причиною. Прочитайте чотири картки, а потім визначте тип у кожному випадку.</p>
+  <div class="grid-4">
+   <div class="d-card k1"><h3>Нестача</h3><p class="hint">Бракує енергії або речовин.</p><ul><li>недоїдання</li><li>залізодефіцитна анемія — залізо</li><li>рахіт — вітамін D</li><li>цинга — вітамін C</li><li>зоб — йод</li></ul></div>
+   <div class="d-card k2"><h3>Надлишок і дисбаланс</h3><p class="hint">Забагато чогось або перекіс раціону.</p><ul><li>ожиріння</li><li>діабет 2 типу</li><li>високий тиск (багато солі)</li><li>карієс (вільні цукри)</li></ul></div>
+   <div class="d-card k3"><h3>Реакція організму</h3><p class="hint">Їжа «не підходить» саме цій людині.</p><ul><li>харчова алергія (імунна реакція на білок їжі)</li><li>непереносимість лактози (мало ферменту лактази)</li></ul></div>
+   <div class="d-card k4"><h3>Інфекція через їжу</h3><p class="hint">Мікроби потрапили з їжею.</p><ul><li>харчові отруєння (наприклад, сальмонельоз)</li><li>кишкові інфекції</li></ul></div>
+  </div>
+  <div class="grid-2">
+   <div class="web-insert">
+    <span class="wi-badge"><i class="fa-solid fa-globe"></i> З мережі · перевірено 05.10.2026</span>
+    <p>Непереносимість лактози виникає, коли тонкий кишечник виробляє замало ферменту <b>лактази</b>, потрібного, щоб розщепити молочний цукор. Це зв’язок з уроком 6: немає фермента — немає розщеплення.</p>
+    <div class="src">Джерело: <a href="https://medlineplus.gov/ency/article/000276.htm" target="_blank" rel="noopener">MedlinePlus — Lactose intolerance</a></div>
+   </div>
+   <div class="callout red"><b>Важливо.</b> Ми вчимося класифікувати, а не ставити діагнози: діагноз визначає лише лікар. Харчування — це не про «ідеальну фігуру». Якщо їжа чи вага вас турбують, поговоріть із дорослим, лікарем або шкільним психологом.</div>
+  </div>
+  <h3>Перевірте себе: до якого шляху належить випадок?</h3>
+  <div id="quiz-dis" class="qz-list"></div>
+  <div class="qz-score" id="score-dis"></div>
+ </div>
+</section>
+
+<!-- ═════════════ 16. КАРТА ПОДОРОЖІ ═════════════ -->
+<section class="slide" data-part="Частина 2 · Їжа в тілі, захист, здоров’я" data-title="Кінцевий продукт: Карта подорожі їжі">
+ <div class="slide-inner">
+  <div class="eyebrow"><span>Кінцевий продукт</span></div>
+  <h2>Карта подорожі їжі: збираємо все разом</h2>
+  <p class="lead">Заповніть пропуски — це ваш конспект «від Сонця до клітини». Якщо не впевнені, поверніться до слайдів 3–10: у них є всі відповіді. Після перевірки правильні пропуски стануть зеленими, а помилки — червоними.</p>
+  <div class="card mapx" id="mapBox"></div>
+  <div class="row"><button type="button" class="btn primary" id="mapCheck"><i class="fa-solid fa-circle-check"></i> Перевірити карту</button><button type="button" class="btn small" id="mapReset"><i class="fa-solid fa-rotate-left"></i> Очистити</button><span class="msg" id="mapMsg"></span></div>
+  <div class="card">
+   <div class="field"><label for="conclText">Один мій висновок про харчування й здоров’я (1–2 речення)</label><textarea id="conclText" placeholder="Наприклад: ..."></textarea></div>
+   <div class="msg" id="conclMsg"></div>
+  </div>
+ </div>
+</section>
+
+<!-- ═════════════ 17. РЕФЛЕКСІЯ ═════════════ -->
+<section class="slide" data-part="Частина 2 · Їжа в тілі, захист, здоров’я" data-title="Рефлексія й міст до наступних уроків">
+ <div class="slide-inner">
+  <div class="eyebrow"><span>Рефлексія</span></div>
+  <h2>Що змінилося в моїх уявленнях про їжу?</h2>
+  <p class="lead">Оберіть варіанти, які найбільше підходять саме вам, і чесно відзначте, що ви вже можете пояснити.</p>
+  <div class="grid-2">
+   <div style="display:grid;gap:12px;align-content:start" id="pollBox"></div>
+   <div class="card" style="align-self:start">
+    <h3>Тепер можу пояснити (відмічайте чесно)</h3>
+    <ul class="check-list" id="clearList"></ul>
+    <p class="hint" style="margin-top:8px">Якщо щось не відмічено — поверніться до слайда з відповідним запитанням (карта на слайді 2).</p>
+   </div>
+  </div>
+  <div class="path">
+   <div class="card"><div class="num">Далі</div><h3>Норми калорій</h3><p class="hint">Тепер зрозуміло, чому норма залежить від віку: ріст, тканини, рух.</p></div>
+   <div class="arrow"><i class="fa-solid fa-arrow-right"></i></div>
+   <div class="card"><div class="num">Далі</div><h3>Збалансований день</h3><p class="hint">Калорії + якість: білки, жири, вуглеводи, вітаміни, різноманітність.</p></div>
+   <div class="arrow"><i class="fa-solid fa-arrow-right"></i></div>
+   <div class="card"><div class="num">Далі</div><h3>Харчування родини</h3><p class="hint">Збираємо реальні дані та вчимося бачити в них закономірності.</p></div>
+  </div>
+ </div>
+</section>
+
+<!-- ═════════════ 18. ДОМАШНЄ ЗАВДАННЯ ═════════════ -->
+<section class="slide" data-part="Частина 2 · Їжа в тілі, захист, здоров’я" data-title="Домашнє завдання + PDF">
+ <div class="slide-inner">
+  <div class="eyebrow"><span>Домашнє завдання</span></div>
+  <h2>Етикетка-детектив і мої терміни</h2>
+  <p class="lead">Знайдіть удома 2 упаковки їжі з таблицею харчової цінності. Інтернет і витрати не потрібні.</p>
+  <div class="card">
+   <div class="row">
+    <div class="field"><label for="hwName">Ім’я та прізвище *</label><input type="text" id="hwName" autocomplete="name"></div>
+    <div class="field"><label for="hwClass">Клас *</label><input type="text" id="hwClass" placeholder="7-А"></div>
+    <div class="field"><label for="hwDate">Дата</label><input type="date" id="hwDate"></div>
+   </div>
+  </div>
+  <div class="card">
+   <h3 style="margin-bottom:6px">A. Етикетка-детектив: чи збігаються кДж і ккал?</h3>
+   <p class="hint" style="margin-bottom:10px">Спишіть значення «на 100 г». Перевірка: кДж ÷ 4,184 має дати ккал (з невеликим округленням).</p>
+   <div id="labelRows"></div>
+  </div>
+  <div class="card">
+   <h3 style="margin-bottom:8px">B. Три терміни своїми словами</h3>
+   <div style="display:grid;gap:10px">
+    <div class="field"><label for="t1">Енергія — це…</label><textarea id="t1"></textarea></div>
+    <div class="field"><label for="t2">Фермент — це…</label><textarea id="t2"></textarea></div>
+    <div class="field"><label for="t3">Імунітет — це…</label><textarea id="t3"></textarea></div>
+   </div>
+  </div>
+  <div class="card">
+   <h3 style="margin-bottom:8px">C. Одне запитання до лікаря або дорослого про харчування</h3>
+   <div class="field"><label for="hwQ">Моє запитання</label><textarea id="hwQ"></textarea></div>
+  </div>
+  <div class="callout green"><b>Що здати.</b> Збережіть PDF (назва формується автоматично: STEM7_Проміжний_Ім’я_Клас.pdf) і надішліть його вчителю. Якщо PDF не зберігається — зробіть фото заповнених сторінок зошита або скриншот цього слайда. Інтернет і витрати не потрібні.</div>
+  <div class="row"><button type="button" class="btn primary" id="pdfBtn"><i class="fa-solid fa-file-pdf"></i> Зберегти в PDF</button><span class="msg" id="pdfMsg"></span></div>
+ </div>
+</section>
+
+</main>
+<footer class="bottombar">
+  <button type="button" class="nav-btn" id="prevBtn" aria-label="Назад"><i class="fa-solid fa-arrow-left"></i><span>Назад</span></button>
+  <span class="counter" id="counter">1 / 18</span>
+  <span class="kbd-hint">← → · Home · End · Esc</span>
+  <button type="button" class="nav-btn primary" id="nextBtn" aria-label="Далі"><span>Далі</span><i class="fa-solid fa-arrow-right"></i></button>
+</footer>
+<div id="pdfSheet" aria-hidden="true"></div>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script>
+(function(){
+'use strict';
+
+/* ───────── утиліти й сховище (усі ключі з префіксом stem7lbridge-) ───────── */
+var KEY = 'stem7lbridge-';
+function lsGet(k){ try{ return localStorage.getItem(KEY+k); }catch(e){ return null; } }
+function lsSet(k,v){ try{ localStorage.setItem(KEY+k,v); }catch(e){} }
+function $(s,r){ return (r||document).querySelector(s); }
+function $$(s,r){ return Array.prototype.slice.call((r||document).querySelectorAll(s)); }
+function esc(s){ return String(s==null?'':s).replace(/[&<>"']/g,function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
+function num(v){ if(v==null) return NaN; var x=parseFloat(String(v).replace(/\s/g,'').replace(',','.')); return isFinite(x)?x:NaN; }
+function fmt(n){ return Math.round(n).toLocaleString('uk-UA'); }
+function fmt1(n){ return (Math.round(n*10)/10).toLocaleString('uk-UA',{maximumFractionDigits:1}); }
+function setMsg(id,text,cls){ var el=typeof id==='string'?$('#'+id):id; if(!el) return; el.textContent=text||''; el.className='msg'+(cls?' '+cls:''); }
+function shake(el){ if(!el) return; el.classList.remove('invalid'); void el.offsetWidth; el.classList.add('invalid'); try{ el.focus(); }catch(e){} setTimeout(function(){ el.classList.remove('invalid'); },1600); }
+function setVal(id,v){ var el=typeof id==='string'?$('#'+id):id; if(el && document.activeElement!==el) el.value=(v==null?'':v); }
+function pressSeg(seg,val){ $$('button',seg).forEach(function(b){ b.setAttribute('aria-pressed', String(b.getAttribute('data-v')===String(val))); }); }
+function cleanName(s){ return String(s||'').trim().replace(/[\\\/:*?"<>|]+/g,'').replace(/\s+/g,'_')||'—'; }
+
+/* ───────── дані ───────── */
+var RECAP = [
+ {q:"Яка речовина дає синьо-чорне забарвлення з йодом?",o:["Білок","Крохмаль","Жир"],a:1,why:"Крохмаль — складний вуглевод: йод «застрягає» в спіралі його молекули (урок 6)."},
+ {q:"Який фермент слини починає розщеплювати крохмаль?",o:["Амілаза","Пепсин","Ліпаза"],a:0,why:"Саме тому хліб при довгому жуванні стає солодкуватим."},
+ {q:"Скільки ккал дає 1 г жирів?",o:["4","9","2"],a:1,why:"Жири — найщедріше «паливо»: 9 ккал/г. Білки й вуглеводи — по 4 ккал/г (урок 7)."},
+ {q:"Що показує калорійність страви?",o:["Скільки енергії організм може отримати з неї","Скільки вона важить","Наскільки вона смачна"],a:0,why:"Калорійність — це міра енергії, запасеної в їжі."}
+];
+var FORMS = ["Кінетична","Потенціальна","Теплова","Хімічна","Світлова","Електрична"];
+var FORMS_Q = [
+ {q:"Собака біжить парком",o:FORMS,a:0,why:"Рух — це кінетична енергія."},
+ {q:"Яблуко на високій гілці",o:FORMS,a:1,why:"Енергія запасена через положення над землею — потенціальна."},
+ {q:"Натягнута тятива лука",o:FORMS,a:1,why:"Пружна деформація запасає потенціальну енергію."},
+ {q:"Гаряча чашка чаю",o:FORMS,a:2,why:"Чим швидше рухаються частинки, тим більша теплова енергія."},
+ {q:"Бутерброд",o:FORMS,a:3,why:"Енергія запасена в зв’язках між атомами молекул — це хімічна енергія. Їжа = «паливо»."},
+ {q:"Батарейка в пульті",o:FORMS,a:3,why:"Батарейка запасає хімічну енергію й перетворює її на електричну."},
+ {q:"Світло від лампи",o:FORMS,a:4,why:"Світло — енергія випромінювання."},
+ {q:"Блискавка",o:FORMS,a:5,why:"Рух заряджених частинок — електрична енергія."}
+];
+var TISSUE_O = ["Епітеліальна","Сполучна","М’язова","Нервова"];
+var TISSUE_Q = [
+ {q:"Зовнішній шар шкіри",o:TISSUE_O,a:0,why:"Вкриває поверхню й захищає — епітелій."},
+ {q:"Внутрішня поверхня тонкого кишечника",o:TISSUE_O,a:0,why:"Вистилка порожнин і всмоктування — теж епітелій."},
+ {q:"Кров",o:TISSUE_O,a:1,why:"Кров — рідка сполучна тканина."},
+ {q:"Жирова тканина під шкірою",o:TISSUE_O,a:1,why:"Жирова тканина — різновид сполучної; саме тут найбільший запас енергії."},
+ {q:"Біцепс на руці",o:TISSUE_O,a:2,why:"Скелетна м’язова тканина скорочується й рухає кістки."},
+ {q:"Серце",o:TISSUE_O,a:2,why:"Серцева м’язова тканина — особливий вид, що скорочується без нашої волі."},
+ {q:"Нерв, що передає імпульс від пальця до мозку",o:TISSUE_O,a:3,why:"Нервова тканина передає електричні сигнали."}
+];
+var SYS_O = ["Травна","Кровоносна","Дихальна","Видільна","Імунна","Опорно-рухова"];
+var SYS_Q = [
+ {q:"Розщеплює хліб до глюкози",o:SYS_O,a:0,why:"Травна система перетворює їжу на малі молекули."},
+ {q:"Несе глюкозу до клітин усього тіла",o:SYS_O,a:1,why:"Кров — «транспорт» тіла."},
+ {q:"Постачає кисень для «згоряння» глюкози",o:SYS_O,a:2,why:"Без кисню клітинне дихання неможливе."},
+ {q:"Виводить відходи обміну речовин через нирки",o:SYS_O,a:3,why:"Видільна система очищає кров."},
+ {q:"Виробляє антитіла",o:SYS_O,a:4,why:"Антитіла — зброя імунної системи."},
+ {q:"Рухає тіло й витрачає багато енергії під час руху",o:SYS_O,a:5,why:"М’язи — один із найбільших споживачів енергії."}
+];
+var ENZ_Q = [
+ {q:"Який фермент є у слині?",o:["Амілаза","Пепсин","Ліпаза","Жовч"],a:0,why:"Амілаза слини розщеплює крохмаль."},
+ {q:"Що розщеплює пепсин у шлунку?",o:["Вуглеводи","Білки","Жири","Клітковину"],a:1,why:"Пепсин працює в кислому середовищі шлунка й розрізає білки на коротші ланцюжки."},
+ {q:"Що розбиває краплі жиру на дрібні, але не є ферментом?",o:["Соляна кислота","Жовч","Слина","Пепсин"],a:1,why:"Жовч утворюється в печінці й лише емульгує жир. Розщеплює його фермент ліпаза."},
+ {q:"Де відбувається основне всмоктування поживних речовин?",o:["Шлунок","Стравохід","Тонка кишка","Ротова порожнина"],a:2,why:"Стінка тонкої кишки має ворсинки — величезну площу всмоктування."},
+ {q:"У що перетворюється крохмаль перед всмоктуванням у кров?",o:["Амінокислоти","Глюкозу","Жирні кислоти","Клітковину"],a:1,why:"Крохмаль — це ланцюги глюкози; їх розрізають до окремих молекул."},
+ {q:"Що відбувається з клітковиною в травленні?",o:["Її розщеплює амілаза","Наші ферменти її не розщеплюють; нею живляться бактерії","Вона перетворюється на жир","Вона всмоктується в кров"],a:1,why:"Клітковина корисна для травлення й мікробіоти, хоча калорій дає мало."},
+ {q:"Чому ми не можемо перетравити олівець (питання з уроку 6)?",o:["Бо він твердий","У нас немає ферментів, що розрізають целюлозу деревини","Бо він не пахне","Бо слина його не змочує"],a:1,why:"Фермент розрізає лише певні зв’язки. Целюлозу наші ферменти не розрізають."}
+];
+var SAFE_Q = [
+ {q:"Приготовану курку лишили на столі на 5 годин",o:["Безпечно","Ризиковано"],a:1,why:"Готову їжу не слід лишати при кімнатній температурі довше 2 годин: мікроби швидко розмножуються."},
+ {q:"Сире м’ясо й хліб різали однією дошкою без миття",o:["Безпечно","Ризиковано"],a:1,why:"Ключ 2: розділяйте сире й готове. Мікроби з м’яса потрапляють на хліб."},
+ {q:"Суп швидко охолодили й прибрали в холодильник (нижче 5 °C)",o:["Безпечно","Ризиковано"],a:0,why:"Швидке охолодження стримує розмноження мікробів."},
+ {q:"Курку пропекли так, що всередині немає рожевого",o:["Безпечно","Ризиковано"],a:0,why:"Ретельне приготування знищує більшість збудників."},
+ {q:"Фарш розморожували всю ніч на кухонному столі",o:["Безпечно","Ризиковано"],a:1,why:"Розморожувати при кімнатній температурі не рекомендовано: поверхня довго «тепла»."},
+ {q:"Перед готуванням помили руки з милом",o:["Безпечно","Ризиковано"],a:0,why:"Ключ 1: тримайте чистоту."}
+];
+var DIS_O = ["Нестача","Надлишок / дисбаланс","Реакція організму","Інфекція через їжу"];
+var DIS_Q = [
+ {q:"У дитини м’які кістки через брак вітаміну D",o:DIS_O,a:0,why:"Нестача речовини (рахіт)."},
+ {q:"Щодня багато солодощів і солодких напоїв; з’явився карієс",o:DIS_O,a:1,why:"Забагато вільних цукрів — перекіс раціону."},
+ {q:"Від склянки молока болить живіт: у кишечнику мало ферменту лактази",o:DIS_O,a:2,why:"Реакція організму: бракує ферменту, тож молочний цукор не розщеплюється."},
+ {q:"Після салату, що стояв у спеку, з’явилися блювання й температура",o:DIS_O,a:3,why:"Мікроби з їжі: це харчове отруєння."},
+ {q:"Після арахісу — набряк і висип (імунна реакція на білок)",o:DIS_O,a:2,why:"Харчова алергія — реакція імунної системи. Такі випадки вимагають негайної допомоги лікаря."},
+ {q:"Слабкість і блідість через брак заліза",o:DIS_O,a:0,why:"Нестача заліза → менше гемоглобіну в крові."},
+ {q:"Дуже солоні страви щодня; є ризик підвищеного тиску",o:DIS_O,a:1,why:"Надлишок солі — один із відомих чинників ризику."},
+ {q:"У місцевості з бідним на йод ґрунтом збільшилася щитоподібна залоза",o:DIS_O,a:0,why:"Нестача йоду (зоб)."}
+];
+
+var LEVELS = ["Клітина","Тканина","Орган","Система органів","Організм"];
+var LEVEL_TXT = [
+ "Найменша «жива цеглинка» тіла: має мембрану, ядро, мітохондрії.",
+ "Група однакових клітин, що виконують спільну роботу.",
+ "Кілька тканин, об’єднаних спільною функцією.",
+ "Органи, які працюють разом заради однієї мети.",
+ "Усі системи разом. Жодна не працює сама."
+];
+var EXAMPLES = {
+ muscle:{names:["М’язова клітина (волокно)","Скелетна м’язова тканина","Біцепс","Опорно-рухова система","Людина"],
+  food:["Мітохондрії м’язової клітини «спалюють» глюкозу й жирні кислоти.","Тканина будується з білків, які ми отримуємо з їжі.","Біцепс витрачає багато енергії під час руху.","Опорно-рухова система потребує кальцію, білків і енергії.","Енергію з їжі до м’язів доставляють травна, кровоносна й дихальна системи."]},
+ gut:{names:["Клітина епітелію кишки (з ворсинками)","Епітеліальна тканина (вистилка)","Тонка кишка","Травна система","Людина"],
+  food:["Ворсинки збільшують площу, якою всмоктується їжа.","Вистилка всмоктує глюкозу й амінокислоти в кров.","Тут відбувається основне перетравлення й всмоктування.","Травна система перетворює їжу на малі молекули.","Все, що ми їмо, проходить цей шлях, перш ніж стати частиною нас."]}
+};
+
+var CHAIN = [
+ "Сонячне світло падає на листя (світлова енергія)",
+ "Фотосинтез: рослина запасає енергію в глюкозі й крохмалі (хімічна енергія)",
+ "Ми з’їдаємо хліб чи картоплю — це запас хімічної енергії",
+ "Травлення розщеплює крохмаль до глюкози (амілаза та інші ферменти)",
+ "Кров розносить глюкозу до клітин, де вона реагує з киснем у мітохондріях",
+ "Енергія заряджає АТФ і йде на рух, ріст, роботу нервів; частина виділяється як тепло"
+];
+var CHAIN_SHUF = [3,0,5,2,4,1];
+
+var STATIONS = [
+ {n:"Ротова порожнина",icon:"fa-tooth",flags:{c:1,p:0,f:0},time:"до 1 хв",add:"слина: фермент амілаза, слиз",what:"Зуби подрібнюють їжу, слина зволожує. Амілаза починає розщеплювати крохмаль до мальтози (двоцукру) — тому хліб при жуванні стає солодкуватим (урок 6).",out:"подрібнена зволожена грудка; крохмаль почав розщеплюватись",
+  nc:"Амілаза слини розрізає довгі ланцюги крохмалю на коротші.",np:"Лише механічне подрібнення зубами.",nf:"Лише механічне подрібнення зубами."},
+ {n:"Стравохід",icon:"fa-arrow-down",flags:{c:0,p:0,f:0},time:"≈ 5–10 с",add:"слиз (змащує)",what:"М’язові стінки хвилеподібно скорочуються й проштовхують грудку до шлунка. Ферментів тут майже немає.",out:"грудка потрапляє до шлунка",
+  nc:"Нічого хімічного — лише транспорт.",np:"Нічого хімічного — лише транспорт.",nf:"Нічого хімічного — лише транспорт."},
+ {n:"Шлунок",icon:"fa-circle",flags:{c:0,p:2,f:0},time:"≈ 2–4 год",add:"шлунковий сік: соляна кислота (HCl) і фермент пепсин",what:"Стінки перемішують їжу. Соляна кислота створює дуже кисле середовище: вбиває багато мікробів і «розпушує» білки. Пепсин розрізає білки на коротші ланцюжки.",out:"рідка кашка — хімус; білки частково розщеплені",
+  nc:"У кислоті амілаза слини втрачає активність, тож розщеплення вуглеводів майже зупиняється.",np:"Тут починається головне розщеплення білків — працює пепсин.",nf:"Жири переважно лише перемішуються; основне розщеплення ще попереду."},
+ {n:"Тонка кишка",icon:"fa-wave-square",flags:{c:2,p:2,f:2},time:"≈ 3–6 год",add:"жовч (з печінки), сік підшлункової залози (амілаза, протеази, ліпаза), ферменти стінки кишки",what:"Головний етап. Жовч подрібнює краплі жиру, ліпаза його розщеплює; протеази доводять білки до амінокислот; амілаза й інші ферменти — вуглеводи до глюкози. Ворсинки стінки всмоктують малі молекули.",out:"глюкоза, амінокислоти, жирні кислоти та гліцерол, вітаміни, мінерали, вода — всмоктуються",
+  nc:"Крохмаль → глюкоза. Глюкоза всмоктується в кров.",np:"Білки → амінокислоти. Всмоктуються в кров.",nf:"Жири → жирні кислоти + гліцерол. Значна частина іде через лімфу, потім у кров."},
+ {n:"Товста кишка",icon:"fa-bacterium",flags:{c:1,p:0,f:0},time:"≈ 12–48 год",add:"слиз; корисні бактерії мікробіоти",what:"Всмоктуються вода й частина мінеральних солей. Невсмоктане, зокрема клітковину, частково переробляють бактерії. Формуються відходи, які виводяться.",out:"вода повертається в організм; неперетравлене виводиться",
+  nc:"Клітковина не розщеплюється ферментами людини; нею живляться корисні бактерії.",np:"Лише невеликі залишки.",nf:"Практично нічого."},
+ {n:"Кров і клітини",icon:"fa-heart-pulse",flags:{c:2,p:2,f:2},time:"далі — щосекунди",add:"кисень (з дихальної системи)",what:"Кров несе глюкозу, амінокислоти, жирні кислоти до клітин. У мітохондріях глюкоза реагує з киснем — виділяється енергія й заряджається АТФ. З амінокислот клітини збирають власні білки: ферменти, антитіла, м’язові волокна.",out:"енергія (АТФ) + тепло; будівельний матеріал для тканин",
+  nc:"Глюкоза — основне «паливо»: у мітохондріях вона дає енергію.",np:"Амінокислоти йдуть на будівництво білків тіла; у крайньому разі — як паливо.",nf:"Жирні кислоти — щільне паливо та запас енергії; частина йде на побудову клітинних мембран."}
+];
+var NUT_LBL = {c:"вуглеводів",p:"білків",f:"жирів"};
+
+var ACT = {low:{b:70,t:10,a:20},mid:{b:65,t:10,a:25},high:{b:55,t:10,a:35}};
+var BUD_LBL = ["Базовий обмін","Травлення їжі","Рух і активність"];
+var BUD_DESC = ["серце, мозок, дихання, підтримка тепла","≈ 10% — «ціна» переробки їжі","залежить від вашого дня"];
+var ORGANS = [["Мозок",20],["Печінка",20],["М’язи (у спокої)",20],["Нирки",8],["Серце",8],["Решта",24]];
+var BAL = {
+ less:"Організм починає користуватися запасами: спочатку глікогеном, потім жиром. Якщо так триває довго, енергії не вистачає на ріст, навчання й захист. Для підлітків жорсткі обмеження їжі без лікаря небезпечні.",
+ eq:"Енергетичний баланс: скільки надійшло, стільки й витрачено. Енергії вистачає на ріст, навчання й рух.",
+ more:"Зайве організм запасає: у печінці й м’язах — як глікоген, а надлишок — як жир. Іноді це нормально, але щодня — зсув балансу. Важлива не лише кількість їжі, а й її якість."
+};
+
+var IMM = {
+ cut:[{h:"Бар’єри",t:"Шкіра — перший бар’єр. Поріз його порушує, тож мікроби можуть потрапити всередину. Кров згортається й закриває рану."},
+      {h:"Вроджений імунітет",t:"Фагоцити «поїдають» мікробів. Місце стає червоним, теплим і набряклим — це запалення: до рани прибувають захисники."},
+      {h:"Набутий імунітет",t:"Якщо мікробів багато, вмикаються лімфоцити: B-клітини виробляють антитіла, T-клітини знищують заражені клітини."},
+      {h:"Пам’ять",t:"Частина лімфоцитів запам’ятовує збудника. Наступного разу відповідь буде швидшою — на цьому й побудована вакцинація."}],
+ food:[{h:"Бар’єри",t:"Слина містить речовини, що вбивають мікробів; соляна кислота шлункового соку знищує багато з них. Але не всі — тому важлива безпечна їжа."},
+      {h:"Вроджений імунітет",t:"У стінці кишечника є імунні клітини-«охоронці»; фагоцити знищують мікробів, що прорвалися. Блювання й пронос — спосіб позбутися ворога."},
+      {h:"Набутий імунітет",t:"Лімфоцити розпізнають конкретного збудника й виробляють проти нього антитіла."},
+      {h:"Пам’ять",t:"Організм «запам’ятовує» збудника, тож повторна зустріч зазвичай проходить легше."}],
+ air:[{h:"Бар’єри",t:"Слиз і війки в носі та дихальних шляхах затримують частинки. Кашель і чхання виштовхують їх."},
+      {h:"Вроджений імунітет",t:"Фагоцити й сигнальні речовини запускають запалення. Підвищена температура — частина відповіді організму."},
+      {h:"Набутий імунітет",t:"Лімфоцити розпізнають вірус: антитіла блокують його, T-клітини знищують заражені клітини."},
+      {h:"Пам’ять",t:"Імунна пам’ять допомагає захиститися, а вакцини дають її без самої хвороби."}]
+};
+
+var CLEAR = [
+ "Що таке енергія і які бувають її види",
+ "З чого складається тіло і хто споживає енергію",
+ "Як хімічна енергія їжі потрапляє в клітини",
+ "Що робить імунітет і як він пов’язаний з їжею",
+ "Які хвороби пов’язані з харчуванням"
+];
+var POLL = {
+ q1:{q:"Що з сьогоднішнього найбільше вас здивувало?",
+     opts:["Мозок споживає ≈ п’яту частину енергії навіть у спокої","Їжа — це запас хімічної енергії Сонця","Скільки клітин у нашому тілі","Що жовч — не фермент"],
+     short:["Мозок і спокій","Їжа = енергія Сонця","Кількість клітин","Жовч — не фермент"]},
+ q2:{q:"Що ви хочете дізнатися далі?",
+     opts:["Скільки енергії потрібно саме мені","Як скласти збалансований день","Як працюють вакцини","Чому в когось виникає алергія"],
+     short:["Моя норма","Збалансований день","Вакцини","Алергії"]}
+};
+
+var MAP = [
+ "Хліб містить {b1} енергію, яку рослина запасла завдяки {b2}.",
+ "У роті фермент {b3} слини починає розщеплювати {b4}.",
+ "У шлунку пепсин розщеплює {b5}, а соляна кислота знищує багато {b6}.",
+ "Основне розщеплення та всмоктування відбувається в {b7}.",
+ "Кров несе глюкозу до клітин, де в {b8} вона реагує з {b9} і заряджає {b10}.",
+ "Частина енергії виділяється як {b11}, і саме тому наше тіло тепле."
+];
+var BL = {
+ b1:{o:["теплову","хімічну","електричну","звукову"],a:"хімічну"},
+ b2:{o:["фотосинтезу","травлення","дихання","випаровування"],a:"фотосинтезу"},
+ b3:{o:["пепсин","жовч","амілаза","ліпаза"],a:"амілаза"},
+ b4:{o:["білки","жири","воду","крохмаль"],a:"крохмаль"},
+ b5:{o:["вуглеводи","білки","клітковину","воду"],a:"білки"},
+ b6:{o:["вітамінів","ферментів","мікробів","клітин"],a:"мікробів"},
+ b7:{o:["стравоході","тонкій кишці","товстій кишці","ротовій порожнині"],a:"тонкій кишці"},
+ b8:{o:["ядрі","мембрані","мітохондріях","лізосомах"],a:"мітохондріях"},
+ b9:{o:["азотом","йодом","киснем","крохмалем"],a:"киснем"},
+ b10:{o:["ДНК","АТФ","жовч","гемоглобін"],a:"АТФ"},
+ b11:{o:["світла","звуку","тепла","електрики"],a:"тепла"}
+};
+
+/* ───────── стан ───────── */
+var S = {
+ quiz:{recap:{},forms:{},tissue:{},sys:{},enz:{},safe:{},dis:{}},
+ cvKcal:'215',
+ chain:{done:0},
+ ex:'muscle', lvl:0,
+ stn:0, visited:[0], nut:'all',
+ norm:'2400', act:'mid', bal:'eq',
+ cmpOpen:false, filt:'all',
+ imm:{route:'cut',step:0},
+ map:{sel:{},checked:false}, concl:'',
+ pick:{q1:-1,q2:-1}, clear:{},
+ hw:{name:'',cls:'',date:'',lab:[{n:'',kj:'',kc:''},{n:'',kj:'',kc:''}],t1:'',t2:'',t3:'',q:''}
+};
+function merge(t,s){ for(var k in s){ if(!Object.prototype.hasOwnProperty.call(s,k)) continue;
+ if(s[k] && typeof s[k]==='object' && !Array.isArray(s[k]) && t[k] && typeof t[k]==='object' && !Array.isArray(t[k])) merge(t[k],s[k]); else t[k]=s[k]; } }
+try{ var raw=lsGet('state'); if(raw) merge(S, JSON.parse(raw)); }catch(e){}
+var saveT=null;
+function flush(){ clearTimeout(saveT); lsSet('state', JSON.stringify(S)); }
+function save(){ clearTimeout(saveT); saveT=setTimeout(flush,150); }
+window.addEventListener('pagehide',flush); document.addEventListener('visibilitychange',function(){ if(document.hidden) flush(); });
+function todayISO(){ var d=new Date(); var m=('0'+(d.getMonth()+1)).slice(-2), dd=('0'+d.getDate()).slice(-2); return d.getFullYear()+'-'+m+'-'+dd; }
+if(!S.hw.date) S.hw.date=todayISO();
+
+/* ───────── навігація ───────── */
+var slides=$$('.slide'), cur=0;
+var menuOverlay=$('#menuOverlay'), menuList=$('#menuList');
+function buildMenu(){
+ menuList.innerHTML=''; var lastPart='';
+ slides.forEach(function(s,i){
+  var part=s.getAttribute('data-part')||'';
+  if(part && part!==lastPart){ var sep=document.createElement('li'); sep.className='part-sep'; sep.textContent=part; menuList.appendChild(sep); lastPart=part; }
+  var li=document.createElement('li'); var b=document.createElement('button'); b.type='button';
+  b.innerHTML='<span class="n">'+(i+1)+'</span><span>'+esc(s.getAttribute('data-title')||('Слайд '+(i+1)))+'</span>';
+  b.addEventListener('click',function(){ go(i); closeMenu(); });
+  li.appendChild(b); menuList.appendChild(li);
+ });
+}
+function menuBtns(){ return $$('button',menuList); }
+function openMenu(){ menuOverlay.classList.add('open'); menuOverlay.setAttribute('aria-hidden','false'); var c=$('.current',menuList); if(c) c.focus(); }
+function closeMenu(){ menuOverlay.classList.remove('open'); menuOverlay.setAttribute('aria-hidden','true'); }
+function go(i){
+ i=Math.max(0,Math.min(slides.length-1,i)); cur=i;
+ slides.forEach(function(s,k){ s.classList.toggle('active',k===i); s.setAttribute('aria-hidden',String(k!==i)); });
+ $('#progressBar').style.width=((i+1)/slides.length*100)+'%';
+ $('#counter').textContent=(i+1)+' / '+slides.length;
+ $('#prevBtn').disabled=(i===0); $('#nextBtn').disabled=(i===slides.length-1);
+ menuBtns().forEach(function(b,k){ b.classList.toggle('current',k===i); });
+ slides[i].scrollTop=0; lsSet('slide',String(i));
+ renderAll();
+}
+$('#prevBtn').addEventListener('click',function(){ go(cur-1); });
+$('#nextBtn').addEventListener('click',function(){ go(cur+1); });
+$('#menuBtn').addEventListener('click',function(){ menuOverlay.classList.contains('open')?closeMenu():openMenu(); });
+menuOverlay.addEventListener('click',function(e){ if(e.target===menuOverlay) closeMenu(); });
+document.addEventListener('keydown',function(e){
+ var tag=(e.target&&e.target.tagName)||''; if(tag==='INPUT'||tag==='TEXTAREA'||tag==='SELECT') return;
+ if(e.key==='Escape'){ closeMenu(); return; }
+ if(menuOverlay.classList.contains('open')) return;
+ if(e.key==='ArrowRight'||e.key==='PageDown'){ go(cur+1); }
+ else if(e.key==='ArrowLeft'||e.key==='PageUp'){ go(cur-1); }
+ else if(e.key==='Home'){ go(0); }
+ else if(e.key==='End'){ go(slides.length-1); }
+});
+document.addEventListener('click',function(e){
+ var g=e.target.closest&&e.target.closest('[data-go]'); if(g){ go(parseInt(g.getAttribute('data-go'),10)-1); }
+});
+
+/* ───────── тема ───────── */
+var root=document.documentElement;
+function effectiveTheme(){ var t=root.getAttribute('data-theme'); if(t) return t; return (window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light'; }
+function paintThemeBtn(){ var ic=$('#themeIcon'); if(ic) ic.textContent=effectiveTheme()==='dark'?'☀️':'🌙'; }
+var savedTheme=lsGet('theme'); if(savedTheme==='dark'||savedTheme==='light') root.setAttribute('data-theme',savedTheme);
+$('#themeBtn').addEventListener('click',function(){
+ var n=effectiveTheme()==='dark'?'light':'dark'; root.setAttribute('data-theme',n); lsSet('theme',n);
+ setTimeout(function(){ paintThemeBtn(); buildBudChart(); },30);
+});
+
+/* ───────── універсальна вікторина ───────── */
+var QZ = {};
+function buildQuiz(key,items){
+ var box=$('#quiz-'+key); if(!box) return; QZ[key]=items; box.innerHTML='';
+ items.forEach(function(it,qi){
+  var d=document.createElement('div'); d.className='qz'; d.id='qz-'+key+'-'+qi;
+  var h='<div class="qt"><span class="qn">'+(qi+1)+'.</span>'+esc(it.q)+'</div><div class="chips">';
+  it.o.forEach(function(o,oi){ h+='<button type="button" class="chip-btn" data-k="'+key+'" data-q="'+qi+'" data-o="'+oi+'">'+esc(o)+'</button>'; });
+  h+='</div><div class="why" hidden></div>';
+  d.innerHTML=h; box.appendChild(d);
+ });
+ box.addEventListener('click',function(e){
+  var b=e.target.closest('button[data-q]'); if(!b) return;
+  var qi=parseInt(b.getAttribute('data-q'),10), oi=parseInt(b.getAttribute('data-o'),10);
+  var st=S.quiz[key][qi]; if(!st) st=S.quiz[key][qi]={ok:false,wrong:[]};
+  if(st.ok || st.wrong.indexOf(oi)>=0) return;
+  if(oi===items[qi].a){ st.ok=true; } else { st.wrong.push(oi); }
+  save(); renderQuiz(key);
+ });
+}
+function quizStats(key){
+ var items=QZ[key]||[], first=0, done=0;
+ items.forEach(function(it,qi){ var st=S.quiz[key][qi]; if(st && st.ok){ done++; if(st.wrong.length===0) first++; } });
+ return {n:items.length,done:done,first:first};
+}
+function renderQuiz(key){
+ var items=QZ[key]; if(!items) return;
+ items.forEach(function(it,qi){
+  var st=S.quiz[key][qi]||{ok:false,wrong:[]}, d=$('#qz-'+key+'-'+qi); if(!d) return;
+  d.classList.toggle('done',!!st.ok);
+  $$('button[data-q]',d).forEach(function(b){
+   var oi=parseInt(b.getAttribute('data-o'),10);
+   b.classList.remove('right','wrong'); b.disabled=false;
+   if(st.ok && oi===it.a){ b.classList.add('right'); }
+   if(st.wrong.indexOf(oi)>=0){ b.classList.add('wrong'); b.disabled=true; }
+   if(st.ok){ b.disabled=true; }
+  });
+  var w=$('.why',d);
+  if(st.ok){ w.hidden=false; w.className='why'; w.textContent='✔ '+it.why; }
+  else if(st.wrong.length){ w.hidden=false; w.className='why hintline'; w.textContent='Ще раз: обраний варіант не підходить. Подумайте й спробуйте інший.'; }
+  else { w.hidden=true; }
+ });
+ var sc=$('#score-'+key), s=quizStats(key);
+ if(sc) sc.innerHTML='Виконано: <b>'+s.done+' / '+s.n+'</b> · з першої спроби: <b>'+s.first+'</b>';
+}
+
+/* ───────── слайд 3: конвертер ───────── */
+function renderConv(){
+ var k=num(S.cvKcal), msg=$('#cvMsg'), lift=$('#cvLift');
+ if(!(k>=0)){ lift.textContent='Уведіть число — і побачите, що можна зробити з такою енергією.'; return; }
+ var kj=k*4.184;
+ setVal('cvKcal',S.cvKcal); setVal('cvKj',k===0?'0':String(Math.round(kj*10)/10));
+ var h=kj/9.81, fl=h/3;
+ lift.innerHTML='В ідеальному випадку (без втрат) цієї енергії вистачило б, щоб підняти <b>1 тонну</b> на <b>≈ '+fmt(h)+' м</b> — це приблизно <b>'+fmt(fl)+' поверхів</b>. Тіло працює з ефективністю менше ніж 30%, тож реально — набагато менше.';
+}
+$$('#cvPresets button').forEach(function(b){ b.addEventListener('click',function(){ S.cvKcal=b.getAttribute('data-kcal'); setMsg('cvMsg',''); save(); renderConv(); }); });
+$('#cvKcal').addEventListener('input',function(){
+ var v=num(this.value);
+ if(this.value.trim()===''){ setMsg('cvMsg',''); return; }
+ if(isNaN(v)||v<0){ setMsg('cvMsg','Введіть невід’ємне число.','bad'); shake(this); return; }
+ setMsg('cvMsg',''); S.cvKcal=String(v); save();
+ var kj=v*4.184; setVal('cvKj',String(Math.round(kj*10)/10)); renderConvLift();
+});
+$('#cvKj').addEventListener('input',function(){
+ var v=num(this.value);
+ if(this.value.trim()===''){ setMsg('cvMsg',''); return; }
+ if(isNaN(v)||v<0){ setMsg('cvMsg','Введіть невід’ємне число.','bad'); shake(this); return; }
+ setMsg('cvMsg',''); var kc=v/4.184; S.cvKcal=String(Math.round(kc*10)/10); save();
+ setVal('cvKcal',S.cvKcal); renderConvLift();
+});
+function renderConvLift(){
+ var k=num(S.cvKcal); if(!(k>=0)) return; var kj=k*4.184, h=kj/9.81, fl=h/3;
+ $('#cvLift').innerHTML='В ідеальному випадку (без втрат) цієї енергії вистачило б, щоб підняти <b>1 тонну</b> на <b>≈ '+fmt(h)+' м</b> — це приблизно <b>'+fmt(fl)+' поверхів</b>. Тіло працює з ефективністю менше ніж 30%, тож реально — набагато менше.';
+}
+
+/* ───────── слайд 5: ланцюг ───────── */
+function buildChain(){
+ var pool=$('#chainPool'); pool.innerHTML='';
+ CHAIN_SHUF.forEach(function(idx){
+  var b=document.createElement('button'); b.type='button'; b.setAttribute('data-i',String(idx));
+  b.innerHTML='<span class="no">?</span><span>'+esc(CHAIN[idx])+'</span>';
+  b.addEventListener('click',function(){
+   if(b.classList.contains('placed')) return;
+   if(idx===S.chain.done){ S.chain.done++; save(); renderChain(); setMsg('chainMsg','✔ Правильно!','ok'); }
+   else { b.classList.remove('bad'); void b.offsetWidth; b.classList.add('bad'); setMsg('chainMsg','Ще не цей крок. Що відбувається першим — зверніть увагу на джерело енергії.','warn'); setTimeout(function(){ b.classList.remove('bad'); },600); }
+  });
+  pool.appendChild(b);
+ });
+}
+function renderChain(){
+ $$('#chainPool button').forEach(function(b){
+  var idx=parseInt(b.getAttribute('data-i'),10), placed=idx<S.chain.done;
+  b.classList.toggle('placed',placed); $('.no',b).textContent=placed?String(idx+1):'?';
+ });
+ var full=S.chain.done>=CHAIN.length;
+ $('#chainDone').hidden=!full;
+ if(full) setMsg('chainMsg','✔ Усі кроки на місці.','ok');
+}
+$('#chainReset').addEventListener('click',function(){ S.chain.done=0; save(); setMsg('chainMsg',''); renderChain(); });
+
+/* ───────── слайд 6: рівні ───────── */
+function renderLadder(){
+ var lad=$('#ladder'); lad.innerHTML='';
+ for(var i=LEVELS.length-1;i>=0;i--){ (function(i){
+  var b=document.createElement('button'); b.type='button'; b.setAttribute('aria-pressed',String(S.lvl===i));
+  b.innerHTML='<span class="lv">'+(i+1)+'</span><span>'+esc(LEVELS[i])+'</span>';
+  b.addEventListener('click',function(){ S.lvl=i; save(); renderLadder(); });
+  lad.appendChild(b);
+ })(i); }
+ var ex=EXAMPLES[S.ex], i2=S.lvl;
+ $('#ladPanel').innerHTML='<div class="card-title"><i class="fa-solid fa-layer-group"></i><h3>Рівень '+(i2+1)+' · '+esc(LEVELS[i2])+'</h3></div><p class="big-num" style="font-size:clamp(20px,2.4vw,28px);margin-bottom:8px">'+esc(ex.names[i2])+'</p><p>'+esc(LEVEL_TXT[i2])+'</p><p style="margin-top:10px"><b>Зв’язок з їжею:</b> '+esc(ex.food[i2])+'</p>';
+ pressSeg($('#exSeg'),S.ex);
+}
+$('#exSeg').addEventListener('click',function(e){ var b=e.target.closest('button[data-v]'); if(!b) return; S.ex=b.getAttribute('data-v'); save(); renderLadder(); });
+
+/* ───────── слайд 9: подорож ───────── */
+function dotsHtml(fl){
+ var h='<span class="dots" aria-hidden="true">';
+ [['c','Вуглеводи'],['p','Білки'],['f','Жири']].forEach(function(k){
+  var v=fl[k[0]], cls=k[0]+(v===2?' on':(v===1?' part':''))+((S.nut!=='all' && S.nut!==k[0])?' dim':'');
+  h+='<i class="'+cls+'" title="'+k[1]+'"></i>';
+ });
+ return h+'</span>';
+}
+function renderJourney(){
+ var list=$('#stnList'); list.innerHTML='';
+ STATIONS.forEach(function(st,i){
+  var b=document.createElement('button'); b.type='button'; b.className='stn'+(S.visited.indexOf(i)>=0?' visited':''); b.setAttribute('aria-pressed',String(S.stn===i));
+  b.innerHTML='<span class="st-n">'+(i+1)+'</span><span><i class="fa-solid '+st.icon+'" style="margin-right:8px;color:var(--accent)"></i>'+esc(st.n)+'</span>'+dotsHtml(st.flags);
+  b.addEventListener('click',function(){ gotoStn(i); });
+  list.appendChild(b);
+ });
+ var st=STATIONS[S.stn];
+ var h='<h2>Станція '+(S.stn+1)+' · '+esc(st.n)+'</h2><div class="tags"><span class="tag e"><i class="fa-regular fa-clock"></i> '+esc(st.time)+'</span></div>';
+ h+='<dl class="kv"><dt>Що додається</dt><dd>'+esc(st.add)+'</dd><dt>Що відбувається</dt><dd>'+esc(st.what)+'</dd><dt>Результат</dt><dd>'+esc(st.out)+'</dd></dl>';
+ if(S.nut!=='all'){ h+='<div class="nut-focus"><div class="lbl">Для '+NUT_LBL[S.nut]+'</div>'+esc(st['n'+S.nut])+'</div>'; }
+ $('#stnPanel').innerHTML=h;
+ $('#stnPrev').disabled=(S.stn===0); $('#stnNext').disabled=(S.stn===STATIONS.length-1);
+ $('#stnVisited').textContent='Станцій відвідано: '+S.visited.length+' / '+STATIONS.length;
+ pressSeg($('#nutSeg'),S.nut);
+}
+function gotoStn(i){
+ S.stn=Math.max(0,Math.min(STATIONS.length-1,i));
+ if(S.visited.indexOf(S.stn)<0) S.visited.push(S.stn);
+ save(); renderJourney();
+}
+$('#stnPrev').addEventListener('click',function(){ gotoStn(S.stn-1); });
+$('#stnNext').addEventListener('click',function(){ gotoStn(S.stn+1); });
+$('#nutSeg').addEventListener('click',function(e){ var b=e.target.closest('button[data-v]'); if(!b) return; S.nut=b.getAttribute('data-v'); save(); renderJourney(); });
+
+/* ───────── слайд 11: бюджет енергії ───────── */
+var budChart=null;
+function budValues(){
+ var norm=num(S.norm)||2400, a=ACT[S.act]||ACT.mid;
+ return [Math.round(norm*a.b/100),Math.round(norm*a.t/100),Math.round(norm*a.a/100)];
+}
+function renderBudget(){
+ var vals=budValues(), a=ACT[S.act]||ACT.mid, pc=[a.b,a.t,a.a];
+ $('#budTiles').innerHTML=vals.map(function(v,i){ return '<div class="tile b'+(i+1)+'"><span class="v">'+fmt(v)+'</span><span class="p">ккал · '+pc[i]+'%</span><span style="font-size:12px;display:block;margin-top:4px">'+esc(BUD_LBL[i])+'</span></div>'; }).join('');
+ setVal('budNorm',S.norm); pressSeg($('#actSeg'),S.act); pressSeg($('#balSeg'),S.bal);
+ $('#balText').textContent=BAL[S.bal]||'';
+ $('#orgBars').innerHTML=ORGANS.map(function(o){ return '<div class="org-row"><span>'+esc(o[0])+'</span><span class="bar-track"><span class="bar-fill" style="width:'+Math.round(o[1]/30*100)+'%"></span></span><span class="bar-val">≈ '+o[1]+'%</span></div>'; }).join('');
+ buildBudChart();
+}
+function chartColors(){
+ var cs=getComputedStyle(document.documentElement);
+ return {ink:cs.getPropertyValue('--ink-dim').trim()||'#4a4d68',grid:cs.getPropertyValue('--border').trim()||'#ddd8ee',accent:cs.getPropertyValue('--accent').trim()||'#7c3aed'};
+}
+function fallbackBars(boxId,labels,data,unit){
+ var box=$('#'+boxId); if(!box) return; var max=Math.max.apply(null,data.concat([1]));
+ box.hidden=false; box.innerHTML=labels.map(function(l,i){ return '<div class="bar-row"><span>'+esc(l)+'</span><span class="bar-track"><span class="bar-fill" style="width:'+Math.round(data[i]/max*100)+'%"></span></span><span class="bar-val">'+fmt(data[i])+(unit||'')+'</span></div>'; }).join('');
+}
+function buildBudChart(){
+ var cv=$('#budChart'), fb=$('#budFallback'); if(!cv) return;
+ var vals=budValues();
+ try{
+  if(typeof Chart==='undefined') throw new Error('no chart');
+  if(budChart){ budChart.destroy(); budChart=null; }
+  var c=chartColors();
+  budChart=new Chart(cv.getContext('2d'),{type:'bar',data:{labels:BUD_LBL,datasets:[{data:vals,backgroundColor:['#facc15','#4ade80','#60a5fa'],borderRadius:8}]},
+   options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:function(x){return fmt(x.parsed.x)+' ккал';}}}},scales:{x:{beginAtZero:true,ticks:{color:c.ink},grid:{color:c.grid},title:{display:true,text:'ккал за добу',color:c.ink}},y:{ticks:{color:c.ink},grid:{display:false}}}}});
+  fb.hidden=true; cv.parentNode.hidden=false;
+ }catch(err){ cv.parentNode.hidden=true; fallbackBars('budFallback',BUD_LBL,vals,' ккал'); }
+}
+$('#budNorm').addEventListener('change',function(){ S.norm=this.value; save(); renderBudget(); });
+$('#actSeg').addEventListener('click',function(e){ var b=e.target.closest('button[data-v]'); if(!b) return; S.act=b.getAttribute('data-v'); save(); renderBudget(); });
+$('#balSeg').addEventListener('click',function(e){ var b=e.target.closest('button[data-v]'); if(!b) return; S.bal=b.getAttribute('data-v'); save(); renderBudget(); });
+
+/* ───────── слайд 12 ───────── */
+function renderSlide12(){
+ $('#cmp').classList.toggle('open',!!S.cmpOpen);
+ $('#cmpBtn').innerHTML=S.cmpOpen?'<i class="fa-solid fa-eye-slash"></i> Сховати':'<i class="fa-solid fa-magnifying-glass"></i> Що всередині?';
+ $$('#filtChips button').forEach(function(b){ b.setAttribute('aria-pressed',String(b.getAttribute('data-f')===S.filt)); });
+ $$('#micTable tbody tr').forEach(function(tr){
+  var tags=(tr.getAttribute('data-t')||'').split(' ');
+  tr.classList.toggle('dim', !(S.filt==='all' || tags.indexOf('all')>=0 || tags.indexOf(S.filt)>=0));
+ });
+}
+$('#cmpBtn').addEventListener('click',function(){ S.cmpOpen=!S.cmpOpen; save(); renderSlide12(); });
+$('#filtChips').addEventListener('click',function(e){ var b=e.target.closest('button[data-f]'); if(!b) return; S.filt=b.getAttribute('data-f'); save(); renderSlide12(); });
+
+/* ───────── слайд 13: імунітет ───────── */
+function renderImm(){
+ var steps=IMM[S.imm.route]||IMM.cut, box=$('#immSteps');
+ box.innerHTML=steps.map(function(s,i){ return '<div class="imm-step'+(i<=S.imm.step?' on':'')+'"><div class="num">'+(i<3?'Лінія '+(i+1):'Після хвороби')+'</div><h3>'+esc(s.h)+'</h3><p>'+esc(s.t)+'</p></div>'; }).join('');
+ $('#immPrev').disabled=(S.imm.step===0); $('#immNext').disabled=(S.imm.step>=steps.length-1);
+ pressSeg($('#immSeg'),S.imm.route);
+}
+$('#immSeg').addEventListener('click',function(e){ var b=e.target.closest('button[data-v]'); if(!b) return; S.imm.route=b.getAttribute('data-v'); S.imm.step=0; save(); renderImm(); });
+$('#immPrev').addEventListener('click',function(){ S.imm.step=Math.max(0,S.imm.step-1); save(); renderImm(); });
+$('#immNext').addEventListener('click',function(){ S.imm.step=Math.min(3,S.imm.step+1); save(); renderImm(); });
+$('#immReset').addEventListener('click',function(){ S.imm.step=0; save(); renderImm(); });
+
+/* ───────── слайд 16: карта ───────── */
+function buildMap(){
+ var box=$('#mapBox'), h='';
+ MAP.forEach(function(line,i){
+  var t=line.replace(/\{(b\d+)\}/g,function(m,id){
+   var o='<option value="">— оберіть —</option>'+BL[id].o.map(function(x){ return '<option value="'+esc(x)+'">'+esc(x)+'</option>'; }).join('');
+   return '<select class="sel" data-b="'+id+'" aria-label="Пропуск '+id.slice(1)+'">'+o+'</select>';
+  });
+  h+='<p><span class="st">'+(i+1)+'</span>'+t+'</p>';
+ });
+ box.innerHTML=h;
+ $$('select[data-b]',box).forEach(function(sel){
+  sel.addEventListener('change',function(){ S.map.sel[sel.getAttribute('data-b')]=sel.value; S.map.checked=false; sel.classList.remove('ok','no'); setMsg('mapMsg',''); save(); });
+ });
+}
+function renderMap(){
+ $$('#mapBox select[data-b]').forEach(function(sel){
+  var id=sel.getAttribute('data-b'); var v=S.map.sel[id]||''; if(sel.value!==v) sel.value=v;
+  sel.classList.remove('ok','no');
+  if(S.map.checked && v){ sel.classList.add(v===BL[id].a?'ok':'no'); }
+ });
+ if(document.activeElement!==$('#conclText')) $('#conclText').value=S.concl||'';
+ if(S.map.checked){ var r=mapScore(); setMsg('mapMsg', r.ok===r.n ? '✔ Карта повністю правильна: '+r.ok+' / '+r.n+'!' : 'Правильно: '+r.ok+' / '+r.n+'. Червоні пропуски — виправте.', r.ok===r.n?'ok':'warn'); }
+}
+function mapScore(){ var ids=Object.keys(BL), ok=0; ids.forEach(function(id){ if(S.map.sel[id]===BL[id].a) ok++; }); return {ok:ok,n:ids.length}; }
+$('#mapCheck').addEventListener('click',function(){
+ var ids=Object.keys(BL), firstEmpty=null;
+ ids.forEach(function(id){ var sel=$('#mapBox select[data-b="'+id+'"]'); if(!S.map.sel[id]){ if(!firstEmpty) firstEmpty=sel; sel.classList.remove('invalid'); void sel.offsetWidth; sel.classList.add('invalid'); } else sel.classList.remove('invalid'); });
+ if(firstEmpty){ setMsg('mapMsg','Заповніть усі пропуски, а потім перевіряйте.','bad'); try{ firstEmpty.focus(); }catch(e){} return; }
+ S.map.checked=true; save(); renderMap();
+});
+$('#mapReset').addEventListener('click',function(){ S.map={sel:{},checked:false}; save(); setMsg('mapMsg',''); renderMap(); });
+$('#conclText').addEventListener('input',function(){ S.concl=this.value; save(); });
+
+/* ───────── слайд 17: рефлексія ───────── */
+function renderPoll(){
+ var box=$('#pollBox'); if(!box) return; box.innerHTML='';
+ ['q1','q2'].forEach(function(k){
+  var p=POLL[k], d=document.createElement('div'); d.className='card'; d.style.display='grid'; d.style.gap='10px';
+  d.innerHTML='<h3>'+esc(p.q)+'</h3><div class="opt-list"></div>';
+  var list=$('.opt-list',d);
+  p.opts.forEach(function(o,i){
+   var on=(S.pick[k]===i), b=document.createElement('button'); b.type='button'; b.className='opt'; b.setAttribute('aria-pressed',String(on));
+   b.innerHTML='<span class="hand">'+(on?'✅':'⚪')+'</span><span>'+esc(o)+'</span><span></span>';
+   b.addEventListener('click',function(){ S.pick[k]=i; save(); renderPoll(); });
+   list.appendChild(b);
+  });
+  box.appendChild(d);
+ });
+ var ul=$('#clearList'); ul.innerHTML='';
+ CLEAR.forEach(function(t,i){
+  var li=document.createElement('li'); li.className=S.clear[i]?'ok':'';
+  li.innerHTML='<i class="fa-solid '+(S.clear[i]?'fa-square-check':'fa-square')+'"></i><label style="cursor:pointer"><input type="checkbox" '+(S.clear[i]?'checked':'')+' style="margin-right:8px">'+esc(t)+'</label>';
+  $('input',li).addEventListener('change',function(){ S.clear[i]=this.checked; save(); renderPoll(); });
+  ul.appendChild(li);
+ });
+}
+
+/* ───────── слайд 18: домашнє ───────── */
+function buildLabels(){
+ var box=$('#labelRows'); box.innerHTML='';
+ S.hw.lab.forEach(function(r,i){
+  var d=document.createElement('div'); d.className='hw-row';
+  d.innerHTML='<div class="field"><label for="lbN'+i+'">Продукт '+(i+1)+'</label><input type="text" id="lbN'+i+'" placeholder="наприклад, печиво"></div><div class="field"><label for="lbJ'+i+'">кДж / 100 г</label><input type="number" id="lbJ'+i+'" inputmode="decimal" min="0" step="any"></div><div class="field"><label for="lbC'+i+'">ккал / 100 г</label><input type="number" id="lbC'+i+'" inputmode="decimal" min="0" step="any"></div><div class="ck" id="lbK'+i+'"></div>';
+  box.appendChild(d);
+  var n=$('#lbN'+i), j=$('#lbJ'+i), c=$('#lbC'+i);
+  n.addEventListener('input',function(){ S.hw.lab[i].n=n.value; save(); });
+  j.addEventListener('input',function(){ S.hw.lab[i].kj=j.value; save(); renderLabelCheck(i); });
+  c.addEventListener('input',function(){ S.hw.lab[i].kc=c.value; save(); renderLabelCheck(i); });
+ });
+}
+function labelState(i){
+ var r=S.hw.lab[i], kj=num(r.kj), kc=num(r.kc);
+ if(!(kj>0) || !(kc>0)) return null;
+ var calc=kj/4.184, diff=Math.abs(calc-kc)/kc;
+ return {calc:calc,ok:diff<=0.05};
+}
+function renderLabelCheck(i){
+ var st=labelState(i), el=$('#lbK'+i); if(!el) return;
+ if(!st){ el.className='ck'; el.textContent=''; return; }
+ el.className='ck '+(st.ok?'ok':'warn');
+ el.textContent = st.ok ? '✔ збігається ('+fmt(st.calc)+')' : '≈ '+fmt(st.calc)+' ккал: перевірте числа';
+}
+function renderHw(){
+ setVal('hwName',S.hw.name); setVal('hwClass',S.hw.cls); setVal('hwDate',S.hw.date);
+ ['t1','t2','t3'].forEach(function(k){ setVal(k,S.hw[k]); }); setVal('hwQ',S.hw.q);
+ S.hw.lab.forEach(function(r,i){ setVal('lbN'+i,r.n); setVal('lbJ'+i,r.kj); setVal('lbC'+i,r.kc); renderLabelCheck(i); });
+}
+[['hwName','name'],['hwClass','cls'],['hwDate','date'],['t1','t1'],['t2','t2'],['t3','t3'],['hwQ','q']].forEach(function(p){
+ $('#'+p[0]).addEventListener('input',function(){ S.hw[p[1]]=this.value; this.classList.remove('invalid'); save(); });
+});
+
+/* ───────── PDF ───────── */
+function totalQuiz(){ var f=0,n=0; Object.keys(QZ).forEach(function(k){ var s=quizStats(k); f+=s.first; n+=s.n; }); return {f:f,n:n}; }
+function buildSheet(){
+ var el=$('#pdfSheet'); var q=totalQuiz(), m=mapScore();
+ var labRows=S.hw.lab.map(function(r,i){ var st=labelState(i); return '<tr><td class="k">'+esc(r.n||'—')+'</td><td>'+esc(r.kj||'—')+' кДж · '+esc(r.kc||'—')+' ккал'+(st?(' · розрахунок: '+fmt(st.calc)+' ккал ('+(st.ok?'збігається':'потрібна перевірка')+')'):'')+'</td></tr>'; }).join('');
+ var mapRows=MAP.map(function(line,i){ var t=line.replace(/\{(b\d+)\}/g,function(mm,id){ return '['+esc(S.map.sel[id]||'___')+']'; }); return '<li>'+t+'</li>'; }).join('');
+ var d=S.hw.date||''; var dd=d?d.split('-').reverse().join('.'):'';
+ el.innerHTML='<div class="p-title">STEM 7 · Проміжний урок: енергія, тіло, захист</div><div class="p-sub">Модуль 1 «Людина — людина» · «Скуштуй життя на смак!»</div>'+
+  '<div class="p-id"><span><b>Ім’я:</b> '+esc(S.hw.name)+'</span><span><b>Клас:</b> '+esc(S.hw.cls)+'</span><span><b>Дата:</b> '+esc(dd)+'</span></div>'+
+  '<h4>A. Етикетка-детектив</h4><table>'+labRows+'</table>'+
+  '<h4>B. Мої терміни</h4><table><tr><td class="k">Енергія — це…</td><td>'+esc(S.hw.t1)+'</td></tr><tr><td class="k">Фермент — це…</td><td>'+esc(S.hw.t2)+'</td></tr><tr><td class="k">Імунітет — це…</td><td>'+esc(S.hw.t3)+'</td></tr></table>'+
+  '<h4>C. Запитання до лікаря або дорослого</h4><table><tr><td>'+esc(S.hw.q||'—')+'</td></tr></table>'+
+  '<h4>Карта подорожі їжі</h4><ul>'+mapRows+'</ul><p><b>Правильних пропусків:</b> '+m.ok+' / '+m.n+'</p>'+
+  '<h4>Мій висновок</h4><table><tr><td>'+esc(S.concl||'—')+'</td></tr></table>'+
+  '<div class="note">Правильних відповідей з першої спроби в усіх вправах: '+q.f+' / '+q.n+'. Сформовано автоматично.</div>';
+}
+function forceSheetColors(doc){
+ var el=doc.querySelector('#pdfSheet'); if(!el) return;
+ ['position:absolute','left:0px','top:0px'].forEach(function(p){ var kv=p.split(':'); el.style.setProperty(kv[0],kv[1],'important'); });
+ el.style.setProperty('background-color','#ffffff','important'); el.style.setProperty('color','#14162a','important');
+ Array.prototype.forEach.call(el.querySelectorAll('*'),function(n){
+  n.style.setProperty('color', n.classList.contains('p-title')?'#5b21b6':(n.classList.contains('p-sub')||n.classList.contains('note')?'#4a4d68':'#14162a'),'important');
+  n.style.setProperty('background-color', n.classList.contains('k')?'#f0eefa':'transparent','important');
+  n.style.setProperty('border-color','#cfd0e2','important');
+ });
+}
+function withTimeout(p,ms){ return new Promise(function(res,rej){ var t=setTimeout(function(){ rej(new Error('timeout')); },ms); Promise.resolve(p).then(function(v){ clearTimeout(t); res(v); },function(e){ clearTimeout(t); rej(e); }); }); }
+function savePdfBlob(blob,filename){
+ return (async function(){
+  try{
+   if(window.claude && typeof window.claude.use==='function'){
+    var dl=await withTimeout(window.claude.use('downloads'),4000);
+    if(dl && typeof dl.save==='function'){
+     try{ var r=await dl.save({filename:filename,data:blob}); return {ok:true,via:'downloads',status:r&&r.status}; }
+     catch(err){ if(err && err.code==='declined') return {ok:false,declined:true}; }
+    }
+   }
+  }catch(e){}
+  try{
+   var url=URL.createObjectURL(blob), a=document.createElement('a'); a.href=url; a.download=filename; a.style.display='none';
+   document.body.appendChild(a); a.click(); setTimeout(function(){ a.remove(); URL.revokeObjectURL(url); },4000);
+   return {ok:true,via:'link'};
+  }catch(e2){}
+  return {ok:false,error:true};
+ })();
+}
+var pdfBusy=false;
+async function makePdf(){
+ if(pdfBusy) return;
+ var bad=false, first=null;
+ ['hwName','hwClass','t1','t2','t3'].forEach(function(id){ var el=$('#'+id); if(!el.value.trim()){ bad=true; if(!first) first=el; el.classList.remove('invalid'); void el.offsetWidth; el.classList.add('invalid'); } else el.classList.remove('invalid'); });
+ var labDone=0; S.hw.lab.forEach(function(r,i){ if(labelState(i)) labDone++; });
+ if(labDone<1){ bad=true; var li=$('#lbJ0'); if(!first) first=li; li.classList.remove('invalid'); void li.offsetWidth; li.classList.add('invalid'); }
+ if(bad){ setMsg('pdfMsg','Заповніть ім’я, клас, три терміни та хоча б одну етикетку (кДж і ккал) — і спробуйте ще раз.','bad'); if(first) first.focus(); return; }
+ if(typeof html2canvas==='undefined' || !(window.jspdf && window.jspdf.jsPDF)){ setMsg('pdfMsg','Бібліотеки для PDF не завантажилися (потрібен інтернет). Зробіть фото сторінок зошита або скриншот цього слайда.','bad'); return; }
+ pdfBusy=true; $('#pdfBtn').disabled=true; setMsg('pdfMsg','Готуємо PDF…');
+ try{
+  buildSheet();
+  var el=$('#pdfSheet');
+  var canvas=await html2canvas(el,{scale:2,backgroundColor:'#ffffff',useCORS:true,logging:false,onclone:function(doc){ forceSheetColors(doc); }});
+  var pdf=new window.jspdf.jsPDF({unit:'mm',format:'a4',orientation:'portrait'});
+  var W=210, H=297, imgH=canvas.height*W/canvas.width, pages=Math.max(1,Math.ceil(imgH/H-0.001));
+  var data=canvas.toDataURL('image/jpeg',0.92);
+  for(var p=0;p<pages;p++){ if(p>0) pdf.addPage(); pdf.addImage(data,'JPEG',0,-p*H,W,imgH); }
+  var blob=pdf.output('blob');
+  var fname='STEM7_Проміжний_'+cleanName(S.hw.name)+'_'+cleanName(S.hw.cls)+'.pdf';
+  var res=await savePdfBlob(blob,fname);
+  if(res.ok) setMsg('pdfMsg','✔ PDF готовий: '+fname+(res.via==='link'?' (перевірте папку «Завантаження»).':'.'),'ok');
+  else if(res.declined) setMsg('pdfMsg','Збереження скасовано. Натисніть кнопку ще раз, коли будете готові.','warn');
+  else setMsg('pdfMsg','Не вдалося зберегти PDF у цьому середовищі. Зробіть скриншот слайда або фото сторінок зошита й надішліть його вчителю.','bad');
+ }catch(err){
+  setMsg('pdfMsg','Помилка під час створення PDF: '+(err&&err.message?err.message:'невідома')+'. Скористайтеся скриншотом або фото зошита.','bad');
+ }finally{ pdfBusy=false; $('#pdfBtn').disabled=false; }
+}
+$('#pdfBtn').addEventListener('click',makePdf);
+
+/* ───────── загальний рендер ───────── */
+function renderAll(){
+ renderConv(); renderChain(); renderLadder(); renderJourney(); renderBudget(); renderSlide12(); renderImm(); renderMap(); renderPoll(); renderHw();
+ Object.keys(QZ).forEach(renderQuiz);
+}
+
+/* ───────── старт ───────── */
+buildQuiz('recap',RECAP); buildQuiz('forms',FORMS_Q); buildQuiz('tissue',TISSUE_Q); buildQuiz('sys',SYS_Q); buildQuiz('enz',ENZ_Q); buildQuiz('safe',SAFE_Q); buildQuiz('dis',DIS_Q);
+buildChain(); buildMap(); buildLabels(); buildMenu(); paintThemeBtn();
+var startAt=parseInt(lsGet('slide'),10); if(!(startAt>=0 && startAt<slides.length)) startAt=0;
+go(startAt);
+window.__stem7lbridge={go:go,state:S};
+})();
+
+</script>
+</body>
+</html>
