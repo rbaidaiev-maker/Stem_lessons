@@ -1,0 +1,1104 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="STEM, 7 клас. Урок 12. Витрати енергії та фітнес-застосунки">
+<title>STEM 7 · Урок 12</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js"></script>
+<style>
+/* Layout: fixed top/bottom bars, one absolutely-positioned slide at a time, content column max 1180px */
+:root{
+  --bg:#f6f5fb;--surface:#ffffff;--surface-2:#f0eef8;--surface-3:#e5e1f2;--border:#dad5ea;
+  --ink:#14162a;--ink-dim:#474a66;--ink-faint:#7d809a;
+  --accent:#7c3aed;--accent-ink:#ffffff;--accent-soft:#ede5ff;
+  --s:#16a34a;--s-soft:#dcfce7;--t:#2563eb;--t-soft:#dbeafe;--e:#ca8a04;--e-soft:#fef3c7;--m:#dc2626;--m-soft:#fee2e2;
+  --shadow:0 1px 2px rgba(30,20,70,.06),0 4px 14px rgba(30,20,70,.06);
+  --shadow-lg:0 10px 40px rgba(30,20,70,.16);
+  --font-display:'Unbounded',system-ui,sans-serif;
+  --font-body:'IBM Plex Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --font-mono:'IBM Plex Mono',ui-monospace,Consolas,monospace;
+  --top-h:54px;--bot-h:58px;
+}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0f1020;--surface:#181a2e;--surface-2:#20233b;--surface-3:#2b2f4c;--border:#343a5c;
+  --ink:#eceafb;--ink-dim:#b6b8d2;--ink-faint:#8589a6;
+  --accent:#a78bfa;--accent-ink:#17122b;--accent-soft:#2b2350;
+  --s:#4ade80;--s-soft:#12301f;--t:#60a5fa;--t-soft:#14274a;--e:#facc15;--e-soft:#3a2f0b;--m:#f87171;--m-soft:#3d1a1c;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 4px 14px rgba(0,0,0,.3);--shadow-lg:0 10px 40px rgba(0,0,0,.6);
+  color-scheme:dark;
+}}
+:root[data-theme="dark"]{
+  --bg:#0f1020;--surface:#181a2e;--surface-2:#20233b;--surface-3:#2b2f4c;--border:#343a5c;
+  --ink:#eceafb;--ink-dim:#b6b8d2;--ink-faint:#8589a6;
+  --accent:#a78bfa;--accent-ink:#17122b;--accent-soft:#2b2350;
+  --s:#4ade80;--s-soft:#12301f;--t:#60a5fa;--t-soft:#14274a;--e:#facc15;--e-soft:#3a2f0b;--m:#f87171;--m-soft:#3d1a1c;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 4px 14px rgba(0,0,0,.3);--shadow-lg:0 10px 40px rgba(0,0,0,.6);
+  color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{height:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font-body);font-size:17px;line-height:1.5;overflow:hidden}
+h1,h2,h3{font-family:var(--font-display);margin:0;text-wrap:balance;line-height:1.2}
+h1{font-size:clamp(1.5rem,3.6vw,2.6rem);font-weight:700}
+h2{font-size:clamp(1.2rem,2.4vw,1.75rem);font-weight:600}
+h3{font-size:1rem;font-weight:600}
+p{margin:0}
+ul,ol{margin:0;padding-left:1.2em}
+li+li{margin-top:.3em}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+/* chrome */
+.topbar,.bottombar{position:fixed;left:0;right:0;z-index:20;background:var(--surface);display:flex;align-items:center;gap:12px;padding-inline:16px}
+.topbar{top:0;height:calc(var(--top-h) + env(safe-area-inset-top,0px));padding-top:env(safe-area-inset-top,0px);border-bottom:1px solid var(--border)}
+.bottombar{bottom:0;height:calc(var(--bot-h) + env(safe-area-inset-bottom,0px));padding-bottom:env(safe-area-inset-bottom,0px);border-top:1px solid var(--border);justify-content:space-between}
+.brand{display:flex;align-items:baseline;gap:10px;font-family:var(--font-display);font-weight:800;font-size:1.05rem;white-space:nowrap}
+.brand b.s{color:var(--s)}.brand b.t{color:var(--t)}.brand b.e{color:var(--e)}.brand b.m{color:var(--m)}
+.brand-sub{font-family:var(--font-mono);font-weight:500;font-size:.72rem;color:var(--ink-faint);letter-spacing:.04em;text-transform:uppercase}
+.progress{flex:1;height:6px;border-radius:99px;background:var(--surface-3);overflow:hidden;min-width:40px}
+.progress>i{display:block;height:100%;width:0;background:var(--accent);border-radius:99px;transition:width .4s ease}
+.icon-btn{width:38px;height:38px;border-radius:10px;border:1px solid var(--border);background:var(--surface-2);cursor:pointer;display:grid;place-items:center;flex:none}
+.icon-btn:hover{background:var(--surface-3)}
+.counter{font-family:var(--font-mono);font-size:.85rem;color:var(--ink-dim);font-variant-numeric:tabular-nums}
+.kbd-hint{font-family:var(--font-mono);font-size:.72rem;color:var(--ink-faint)}
+.nav{display:flex;gap:8px;align-items:center}
+
+.stage{position:fixed;left:0;right:0;top:calc(var(--top-h) + env(safe-area-inset-top,0px));bottom:calc(var(--bot-h) + env(safe-area-inset-bottom,0px))}
+.slide{position:absolute;inset:0;opacity:0;pointer-events:none;transition:opacity .5s ease, transform .5s ease;transform:translateY(8px);overflow-y:auto;display:flex;flex-direction:column;justify-content:flex-start;padding:26px 24px}
+.slide.active{opacity:1;pointer-events:auto;transform:none}
+.slide-inner{width:100%;max-width:1180px;margin-left:auto;margin-right:auto;margin-top:auto;margin-bottom:auto;display:flex;flex-direction:column;gap:18px;min-width:0}
+.slide-head{display:flex;flex-direction:column;gap:8px}
+.head-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between}
+.step-tag{font-family:var(--font-mono);font-size:.74rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);background:var(--accent-soft);padding:4px 10px;border-radius:99px;white-space:nowrap}
+.lead{font-size:1.08rem;color:var(--ink-dim);max-width:70ch}
+
+/* menu overlay */
+.menu{position:fixed;inset:0;z-index:40;background:rgba(10,8,30,.55);display:flex;justify-content:flex-end}
+.menu-panel{width:min(420px,100%);height:100%;background:var(--surface);box-shadow:var(--shadow-lg);padding:20px;overflow-y:auto;display:flex;flex-direction:column;gap:6px}
+.menu-panel h3{margin-bottom:8px}
+.menu-item{display:flex;gap:12px;align-items:baseline;text-align:left;padding:10px 12px;border-radius:10px;border:1px solid transparent;background:none;cursor:pointer;width:100%}
+.menu-item:hover{background:var(--surface-2)}
+.menu-item.current{background:var(--accent-soft);border-color:var(--accent)}
+.menu-item span:first-child{font-family:var(--font-mono);font-size:.78rem;color:var(--ink-faint);min-width:1.6em}
+
+/* building blocks */
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.grid-2>*,.grid-3>*,.grid-4>*{min-width:0}
+.split{display:grid;grid-template-columns:1.25fr 1fr;gap:18px}
+.split>*{min-width:0}
+.stack{display:flex;flex-direction:column;gap:12px;min-width:0}
+.row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:18px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:10px;min-width:0}
+.card.flat{box-shadow:none;background:var(--surface-2)}
+.label{font-family:var(--font-mono);font-size:.72rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-faint)}
+.big{font-family:var(--font-display);font-weight:700;font-size:clamp(1.6rem,3.4vw,2.4rem);font-variant-numeric:tabular-nums;line-height:1.1}
+.dim{color:var(--ink-dim)}.small{font-size:.9rem}
+.mono{font-family:var(--font-mono)}
+.tag{display:inline-flex;align-items:center;gap:6px;font-family:var(--font-mono);font-size:.76rem;font-weight:600;padding:3px 10px;border-radius:99px;background:var(--surface-3);color:var(--ink-dim)}
+.tag.s{background:var(--s-soft);color:var(--s)}.tag.t{background:var(--t-soft);color:var(--t)}.tag.e{background:var(--e-soft);color:var(--e)}.tag.m{background:var(--m-soft);color:var(--m)}
+.letter{font-family:var(--font-display);font-weight:800;font-size:1.5rem;width:44px;height:44px;border-radius:12px;display:grid;place-items:center;flex:none}
+.letter.s{background:var(--s-soft);color:var(--s)}.letter.t{background:var(--t-soft);color:var(--t)}.letter.e{background:var(--e-soft);color:var(--e)}.letter.m{background:var(--m-soft);color:var(--m)}
+.question{border-left:5px solid var(--accent);background:var(--accent-soft);border-radius:0 16px 16px 0;padding:16px 20px;font-size:1.12rem;font-weight:500}
+.say{display:flex;gap:12px;align-items:flex-start;background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:14px 16px}
+.say>.who{font-family:var(--font-mono);font-size:.7rem;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--accent);flex:none;padding-top:4px;min-width:64px}
+.online-note{display:flex;gap:12px;align-items:flex-start;background:var(--t-soft);border:1px dashed var(--t);border-radius:14px;padding:12px 16px;font-size:.95rem}
+.online-note>.ico{color:var(--t);flex:none;padding-top:2px}
+.online-note b{color:var(--t)}
+.steps{counter-reset:st;list-style:none;padding:0;display:flex;flex-direction:column;gap:8px}
+.steps>li{counter-increment:st;display:flex;gap:12px;align-items:flex-start;margin:0}
+.steps>li::before{content:counter(st);font-family:var(--font-display);font-weight:700;font-size:.85rem;width:28px;height:28px;border-radius:50%;background:var(--accent);color:var(--accent-ink);display:grid;place-items:center;flex:none;margin-top:1px}
+
+.btn{display:inline-flex;align-items:center;gap:8px;padding:9px 16px;border-radius:10px;border:1px solid var(--border);background:var(--surface-2);cursor:pointer;font-weight:600;font-size:.95rem}
+.btn:hover{background:var(--surface-3)}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.btn-primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.btn-primary:hover{background:var(--accent);filter:brightness(1.08)}
+.btn-sm{padding:5px 10px;font-size:.82rem}
+.chip{padding:7px 14px;border-radius:99px;border:1px solid var(--border);background:var(--surface);cursor:pointer;font-weight:500;font-size:.95rem}
+.chip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+
+.field{display:flex;flex-direction:column;gap:4px;min-width:0}
+.field>span{font-family:var(--font-mono);font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-faint)}
+.input,textarea.input{width:100%;padding:9px 12px;border-radius:10px;border:1.5px solid var(--border);background:var(--surface);min-width:0}
+textarea.input{min-height:84px;resize:vertical}
+.input:focus{outline:none;border-color:var(--accent)}
+.invalid{border-color:var(--m)!important;background:var(--m-soft)!important}
+.shake{animation:shake .4s}
+@keyframes shake{20%,60%{transform:translateX(-6px)}40%,80%{transform:translateX(6px)}}
+
+
+.table-wrap{overflow-x:auto;border:1px solid var(--border);border-radius:12px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:.93rem}
+th,td{padding:8px 12px;text-align:left;border-bottom:1px solid var(--border);vertical-align:top}
+tr:last-child>td{border-bottom:none}
+thead th{font-family:var(--font-mono);font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-faint);background:var(--surface-2);white-space:nowrap}
+td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
+
+/* spreadsheet look */
+.sheet-box{max-height:46vh;overflow:auto;border:1px solid var(--border);border-radius:12px;background:var(--surface)}
+.sheet{font-family:var(--font-mono);font-size:.84rem}
+.sheet th,.sheet td{border:1px solid var(--border);padding:5px 9px;white-space:nowrap}
+.sheet thead th{position:sticky;top:0;text-align:center;z-index:1}
+.sheet .rn{background:var(--surface-2);color:var(--ink-faint);text-align:center;width:2.4em;font-size:.74rem}
+.sheet .hdr td{font-weight:600;background:var(--accent-soft)}
+.sheet tr.new td:not(.rn){background:var(--e-soft)}
+.sheet tr.miss td:not(.rn){background:var(--m-soft)}
+.sheet td.cell{padding:0}
+.sheet td.cell input{border:0;background:transparent;width:100%;min-width:7.5em;padding:6px 9px;font:inherit}
+.sheet td.cell input:focus{outline:2px solid var(--accent);outline-offset:-2px}
+.formula{display:grid;grid-template-columns:1fr auto;gap:4px 12px;align-items:center;font-family:var(--font-mono);font-size:.82rem}
+.formula code{color:var(--ink-dim);overflow-wrap:anywhere}
+.formula b{font-size:1.05rem;font-variant-numeric:tabular-nums;text-align:right;min-width:2ch}
+.status{font-weight:600;padding:8px 12px;border-radius:10px;background:var(--surface-2)}
+.status.ok{background:var(--s-soft);color:var(--s)}
+.status.bad{background:var(--m-soft);color:var(--m)}
+.status.warn{background:var(--e-soft);color:var(--e)}
+
+.chart-box{position:relative;height:260px;min-width:0}
+.chart-box canvas{max-width:100%}
+.fb-bars{display:flex;flex-direction:column;gap:8px}
+.fb-title{font-family:var(--font-display);font-size:.9rem;font-weight:600}
+.bar-row{display:grid;grid-template-columns:minmax(90px,34%) 1fr auto;gap:10px;align-items:center;font-size:.9rem}
+.bar-track{height:18px;border-radius:6px;background:var(--surface-3);overflow:hidden}
+.bar-track>i{display:block;height:100%;border-radius:6px;transition:width .3s}
+.bar-row>b{font-variant-numeric:tabular-nums;min-width:2.5ch;text-align:right}
+
+
+.check{display:flex;gap:12px;align-items:flex-start;padding:10px 12px;border-radius:10px;border:1px solid var(--border);background:var(--surface);cursor:pointer}
+.check input{width:20px;height:20px;margin-top:2px;accent-color:var(--accent);flex:none}
+.check:has(input:checked){background:var(--s-soft);border-color:var(--s)}
+
+.reveal{text-align:left;cursor:pointer;border:1px dashed var(--border);background:var(--surface-2);border-radius:12px;padding:12px 14px;width:100%;display:flex;flex-direction:column;gap:4px}
+.reveal .hid{display:none}
+.reveal.open{border-style:solid;background:var(--surface)}
+.reveal.open .hid{display:block}
+.reveal.open .cue{display:none}
+.reveal .cue{font-family:var(--font-mono);font-size:.76rem;color:var(--ink-faint)}
+
+.pdf-status{font-size:.9rem;color:var(--ink-dim)}
+.pdf-status.err{color:var(--m);font-weight:600}
+.pdf-status.ok{color:var(--s);font-weight:600}
+.pdf-sheet{position:fixed;left:-10000px;top:0;width:794px;padding:48px;background:#ffffff !important;color:#14162a !important;font-family:'IBM Plex Sans',Arial,sans-serif;font-size:16px;line-height:1.5}
+.pdf-sheet h1{font-family:'Unbounded',Arial,sans-serif;font-size:22px;color:#14162a !important;margin:0 0 4px}
+.pdf-sheet h2{font-family:'Unbounded',Arial,sans-serif;font-size:15px;color:#14162a !important;margin:22px 0 8px}
+.pdf-sheet .pdf-meta{color:#474a66 !important;font-size:13px}
+.pdf-sheet table{width:100%;border-collapse:collapse;font-size:15px}
+.pdf-sheet td,.pdf-sheet th{border:1px solid #c9c4dd !important;padding:8px 10px;color:#14162a !important;background:#ffffff !important;text-align:left}
+.pdf-sheet th{background:#f0eef8 !important;font-family:'IBM Plex Sans',Arial,sans-serif;font-size:13px;text-transform:none;letter-spacing:0}
+.pdf-sheet .pdf-box{border:1px solid #c9c4dd !important;border-radius:8px;padding:12px 14px;color:#14162a !important;background:#ffffff !important;white-space:pre-wrap;overflow-wrap:anywhere}
+.pdf-sheet .pdf-line{border-top:3px solid #7c3aed !important;margin:14px 0 18px}
+
+@media(max-width:900px){
+  .grid-4{grid-template-columns:1fr 1fr}
+  .split,.grid-3{grid-template-columns:1fr}
+}
+@media(max-width:700px){
+  body{font-size:16px}
+  .grid-2,.grid-4{grid-template-columns:1fr}
+  .slide{padding:18px 16px}
+  .kbd-hint,.brand-sub{display:none}
+  .sheet-box{max-height:none}
+}
+@media(max-width:640px){
+  .say{flex-direction:column;gap:4px}
+  .step-tag{white-space:normal}
+  .bar-row{grid-template-columns:minmax(72px,36%) 1fr auto}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+
+/* self-study blocks */
+.def{border-left:4px solid var(--accent);padding:2px 0 2px 14px}
+.def>b{font-family:var(--font-display);font-weight:600;font-size:.95rem}
+.syntax{font-family:var(--font-mono);font-size:clamp(.95rem,1.7vw,1.2rem);font-weight:600;padding:12px 14px;border-radius:12px;background:var(--surface-2);overflow-wrap:anywhere}
+.syntax .p1{color:var(--t)}.syntax .p2{color:var(--m)}.syntax .p3{color:var(--s)}
+.c-t{color:var(--t)}.c-m{color:var(--m)}.c-s{color:var(--s)}.c-e{color:var(--e)}.c-a{color:var(--accent)}
+.quiz{display:flex;flex-direction:column;gap:8px}
+.quiz>.q{font-weight:600}
+.opt{text-align:left;padding:10px 14px;border-radius:10px;border:1.5px solid var(--border);background:var(--surface);cursor:pointer;width:100%}
+.opt:hover:not(:disabled){border-color:var(--accent)}
+.opt:disabled{cursor:default}
+.opt.right{border-color:var(--s);background:var(--s-soft);font-weight:600}
+.opt.wrong{border-color:var(--m);background:var(--m-soft)}
+.why{font-size:.92rem;color:var(--ink-dim)}
+.quiz-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.quiz-grid>*{min-width:0}
+@media(max-width:900px){.quiz-grid{grid-template-columns:1fr}}
+
+/* Lesson 12 widgets */
+.watch{width:170px;height:200px;border-radius:44px;border:8px solid var(--ink);background:var(--surface-2);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px}
+.watch .big{color:var(--m)}
+.formula-big{font-family:var(--font-display);font-weight:600;font-size:clamp(1rem,2vw,1.3rem);line-height:1.6}
+.c-met{color:var(--accent)}.c-mass{color:var(--t)}.c-time{color:var(--s)}
+input[type=range]{width:100%;accent-color:var(--accent)}
+.blank td{vertical-align:middle}
+.blank .input{max-width:120px}
+.blank .f{font-family:var(--font-mono);font-size:.9rem;white-space:nowrap}
+.blank .mark{font-weight:700;white-space:nowrap}
+.blank .mark.ok{color:var(--s)}.blank .mark.bad{color:var(--m)}
+.blank tr.total td{background:var(--surface-2);font-weight:600}
+.log-line{font-family:var(--font-mono);font-size:.95rem;padding:8px 12px;border-radius:10px;background:var(--surface-2)}
+.log-line.sum{background:var(--accent-soft);font-weight:600}
+.log-line.ok{background:var(--s-soft);color:var(--s);font-weight:600}
+.scale{position:relative;height:150px;margin-top:8px;border-bottom:3px solid var(--ink-dim)}
+.scale-band{position:absolute;bottom:0;top:62px;background:var(--s-soft);border:1px dashed var(--s);border-bottom:none;border-radius:8px 8px 0 0}
+.scale-band>span,.scale-mark>span{position:absolute;bottom:100%;left:50%;transform:translateX(-50%);white-space:nowrap;text-align:center;font-family:var(--font-mono);font-size:.72rem;line-height:1.25;padding-bottom:4px}
+.scale-band>span{color:var(--s);font-weight:600}
+.scale-mark{position:absolute;bottom:0;width:3px;margin-left:-1.5px;height:34px;border-radius:2px}
+.scale-mark.ex{background:var(--ink-faint)}.scale-mark.ex>span{color:var(--ink-dim)}
+.scale-mark.me{background:var(--accent);height:120px}.scale-mark.me>span{color:var(--accent);font-weight:600}
+.scale-axis{display:flex;justify-content:space-between;font-family:var(--font-mono);font-size:.72rem;color:var(--ink-faint)}
+.meter{position:relative;height:30px;border-radius:99px;background:var(--surface-3);overflow:hidden}
+.meter>i{position:absolute;inset:0 auto 0 0;width:40%;background:var(--accent);border-radius:99px;transition:width .4s ease}
+.meter-gap{position:absolute;right:10px;top:50%;transform:translateY(-50%);font-family:var(--font-mono);font-size:.68rem;color:var(--ink-faint)}
+@media(max-width:640px){.scale-band>span,.scale-mark>span{font-size:.62rem}.scale-axis span:nth-child(even){display:none}}
+#shares .bar-row{grid-template-columns:minmax(90px,32%) 1fr;row-gap:2px}
+#shares .bar-row>b{grid-column:1/-1;text-align:left;font-size:.85rem}
+.scale-mark.ex{z-index:1}.scale-mark.ex>span{background:var(--surface);padding:0 5px 3px;border-radius:4px}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <span class="brand"><span><b class="s">S</b><b class="t">T</b><b class="e">E</b><b class="m">M</b></span><span class="brand-sub">7 клас · Урок 12</span></span>
+  <div class="progress" aria-hidden="true"><i id="progress"></i></div>
+  <button type="button" class="icon-btn" id="themeBtn" aria-label="Змінити тему" title="Світла / темна тема"><i class="fa-solid fa-circle-half-stroke"></i></button>
+  <button type="button" class="icon-btn" id="menuBtn" aria-label="Усі слайди" title="Усі слайди"><i class="fa-solid fa-bars"></i></button>
+</header>
+<div class="menu" id="menu" hidden><nav class="menu-panel" aria-label="Слайди"><h3>Урок 12 · слайди</h3><div id="menuList"></div></nav></div>
+<main class="stage">
+<!-- 1 -->
+<section class="slide" data-title="Тема уроку">
+  <div class="slide-inner">
+    <header class="slide-head">
+      <div class="row"><span class="step-tag">Урок 12</span><span class="tag s">S · фізіологія</span><span class="tag m">M · математика</span><span class="tag t">T · фітнес-трекери</span></div>
+      <h1>Витрати енергії: скільки калорій «спалює» рух і як це рахують фітнес-застосунки</h1>
+    </header>
+    <div class="question">Ми вже порахували, скільки енергії організм ОТРИМУЄ з їжею. А скільки він її ВИТРАЧАЄ протягом звичайного дня — і як це насправді обчислюють фітнес-годинники та застосунки?</div>
+    <div class="grid-4">
+      <div class="card"><span class="label">Знатимеш</span><p>що таке коефіцієнт MET і формулу оцінки витрат енергії</p></div>
+      <div class="card"><span class="label">Поясниш</span><p>чому різні види діяльності мають різний MET і що впливає на точність</p></div>
+      <div class="card"><span class="label">Розрахуєш</span><p>орієнтовні витрати енергії за власний день за 4 категоріями</p></div>
+      <div class="card"><span class="label">Проаналізуєш</span><p>як рахує фітнес-трекер і чому це оцінка, а не точний вимір</p></div>
+    </div>
+    <div class="grid-2">
+      <div class="card flat"><span class="label">Що знадобиться</span><ul><li>домашнє завдання уроку 11 — розпис дня за 4 категоріями активності;</li><li>калькулятор (можна в телефоні);</li><li>зошит для записів.</li></ul></div>
+      <div class="card flat"><span class="label">Як працювати з цією сторінкою</span><ul><li>гортай слайди кнопками внизу або стрілками ← →;</li><li>читай теорію, пробуй інтерактивні приклади, відповідай на запитання для самоперевірки;</li><li>усе, що ти вводиш, зберігається лише на твоєму пристрої.</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- 2 -->
+<section class="slide" data-title="Теорія: енергія й калорії">
+  <div class="slide-inner">
+    <header class="slide-head">
+      <div class="row"><span class="step-tag">Теорія · 1</span></div>
+      <h2>Організм витрачає енергію щосекунди — навіть уві сні</h2>
+      <p class="lead">Енергію їжі й енергію руху вимірюють в однакових одиницях — кілокалоріях. Тому їх можна порівнювати.</p>
+    </header>
+    <div class="grid-2">
+      <div class="card">
+        <div class="def"><b>Кілокалорія (ккал)</b><p>Одиниця енергії. 1 ккал — це енергія, потрібна, щоб нагріти 1 кг води на 1 °C. В іншій поширеній одиниці: 1 ккал ≈ 4,2 кілоджоуля (кДж). На упаковках продуктів зазвичай вказують обидві.</p></div>
+        <div class="def"><b>Енергетичний обмін</b><p>Організм отримує енергію з їжі й витрачає її на роботу всіх органів, підтримання температури тіла, ріст і рух.</p></div>
+        <div class="def"><b>Основний обмін</b><p>Енергія, яку організм витрачає в повному спокої: на дихання, роботу серця й мозку, тепло, оновлення клітин. У підлітків сюди додається ще й ріст.</p></div>
+      </div>
+      <div class="stack">
+        <div class="card">
+          <span class="label">На що йде енергія за добу (приблизно, у більшості людей)</span>
+          <div class="fb-bars">
+            <div class="bar-row"><span>Основний обмін</span><span class="bar-track"><i style="width:65%;background:var(--t)"></i></span><b>60–70 %</b></div>
+            <div class="bar-row"><span>Рух і фізична активність</span><span class="bar-track"><i style="width:25%;background:var(--m)"></i></span><b>15–30 %</b></div>
+            <div class="bar-row"><span>Перетравлення їжі</span><span class="bar-track"><i style="width:10%;background:var(--e)"></i></span><b>близько 10 %</b></div>
+          </div>
+          <p class="small dim">Найбільша частина — основний обмін. Але саме частку руху людина може помітно змінювати сама.</p>
+        </div>
+        <div class="card" style="align-items:center;text-align:center">
+          <span class="label">Екран фітнес-годинника (приклад)</span>
+          <div class="watch"><span class="label">сьогодні</span><span class="big">320</span><span class="mono small">ккал</span></div>
+        </div>
+        <button type="button" class="reveal"><span class="label">Як думаєш, звідки годинник бере це число? Він «зважує» твою енергію?</span><span class="cue">подумай, потім натисни</span><span class="hid">Ні, виміряти енергію напряму годинник не може. Він її обчислює за формулою з даних своїх датчиків. Спочатку ти навчишся робити такий розрахунок вручну, а потім дізнаєшся, що до нього додає пристрій.</span></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3 -->
+<section class="slide" data-title="Теорія: коефіцієнт MET">
+  <div class="slide-inner">
+    <header class="slide-head">
+      <div class="row"><span class="step-tag">Теорія · 2</span></div>
+      <h2>MET показує, у скільки разів діяльність витрачає більше енергії, ніж повний спокій</h2>
+    </header>
+    <div class="grid-2">
+      <div class="card">
+        <div class="def"><b>MET — метаболічний еквівалент</b><p>Коефіцієнт інтенсивності діяльності. MET = 1 відповідає повному спокою, тобто основному обміну. Біг має MET близько 7: за ту саму хвилину він витрачає приблизно в 7 разів більше енергії, ніж спокій.</p></div>
+        <div class="def"><b>Що означає 1 MET у числах</b><p>Приблизно 1 ккал на кожен кілограм маси тіла за одну годину. Саме тому у формулі далі з'являться маса й час.</p></div>
+        <span class="label">Три рівні інтенсивності</span>
+        <div class="table-wrap"><table>
+          <thead><tr><th>Рівень</th><th>MET</th><th>Як відчувається</th></tr></thead>
+          <tbody>
+            <tr><td><span class="tag t">Легка</span></td><td>менше 3</td><td>дихання спокійне, можна співати</td></tr>
+            <tr><td><span class="tag s">Помірна</span></td><td>від 3 до 6</td><td>дихання частішає, але розмовляти можна</td></tr>
+            <tr><td><span class="tag m">Висока</span></td><td>понад 6</td><td>важко сказати більше кількох слів без паузи</td></tr>
+          </tbody>
+        </table></div>
+      </div>
+      <div class="stack">
+        <div class="card">
+          <span class="label">Довідка · орієнтовні коефіцієнти MET для чотирьох категорій</span>
+          <div id="metBars" class="fb-bars"></div>
+          <p class="small dim">Це округлені орієнтовні значення для навчальної оцінки, а не для точного медичного розрахунку. У кожній категорії зібрано різні заняття, тому коефіцієнт усереднений.</p>
+        </div>
+        <div class="card flat"><span class="label">Чому коефіцієнти різні</span><p>Що більше м'язів працює і що швидше вони скорочуються, то більше їм потрібно кисню й поживних речовин. Серце б'ється частіше, дихання глибшає — витрата енергії зростає.</p></div>
+        <div class="card flat"><span class="label">Скільки рухатися</span><p>Всесвітня організація охорони здоров'я радить дітям і підліткам 5–17 років у середньому щонайменше 60 хвилин на день активності помірної або високої інтенсивності.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4 -->
+<section class="slide" data-title="Теорія: формула витрат енергії">
+  <div class="slide-inner">
+    <header class="slide-head">
+      <div class="row"><span class="step-tag">Теорія · 3</span></div>
+      <h2>Формула: три множники</h2>
+    </header>
+    <div class="grid-2">
+      <div class="card">
+        <p class="formula-big">Ккал ≈ <b class="c-met">MET</b> × <b class="c-mass">маса тіла, кг</b> × <b class="c-time">час, год</b></p>
+        <ul>
+          <li><b class="c-met">MET</b> — наскільки інтенсивна діяльність. Береться з довідкової таблиці.</li>
+          <li><b class="c-mass">Маса тіла</b> — що більша маса, то більше енергії потрібно, щоб її рухати й підтримувати.</li>
+          <li><b class="c-time">Час</b> — що довше триває діяльність, то більша витрата.</li>
+          <li>Знак «≈» означає «приблизно дорівнює»: формула дає оцінку, а не точне значення.</li>
+        </ul>
+        <div class="def"><b>Увага до одиниць</b><p>Час у формулі — в годинах. Хвилини треба перевести: 30 хв = 0,5 год, 15 хв = 0,25 год, 45 хв = 0,75 год, 1 год 30 хв = 1,5 год.</p></div>
+        <div class="def"><b>Перевірка «24 години»</b><p>Коли рахуєш цілий день, сума годин усіх категорій має дорівнювати 24. Інакше частину доби загублено або пораховано двічі.</p></div>
+      </div>
+      <div class="stack">
+        <div class="card">
+          <span class="label">Спробуй: умовна маса 45 кг</span>
+          <div class="row" id="calcActs"></div>
+          <label class="field"><span>Час: <b id="calcTimeOut"></b> год</span><input type="range" id="calcTime" min="0.5" max="10" step="0.5" value="1"></label>
+          <div class="status" id="calcOut"></div>
+          <p class="small dim">Зміни вид діяльності й час — подивись, який множник впливає на результат сильніше.</p>
+        </div>
+        <div class="quiz" data-quiz="formula" data-answer="1">
+          <p class="q">Учениця масою 50 кг бігала 30 хвилин (MET = 7,0). Скільки енергії вона орієнтовно витратила?</p>
+          <button type="button" class="opt">10 500 ккал</button>
+          <button type="button" class="opt">175 ккал</button>
+          <button type="button" class="opt">350 ккал</button>
+          <p class="why" hidden>30 хв = 0,5 год, тому 7,0 × 50 × 0,5 = 175 ккал. 10 500 виходить, якщо підставити хвилини замість годин, а 350 — якщо взяти цілу годину.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 5 -->
+<section class="slide" data-title="Приклад розрахунку">
+  <div class="slide-inner">
+    <header class="slide-head">
+      <div class="row"><span class="step-tag">Приклад</span></div>
+      <h2>День умовного учня масою 45 кг</h2>
+      <p class="lead">Перед кожним кроком порахуй добуток на калькуляторі сам(-а), потім натисни кнопку й звір результат.</p>
+    </header>
+    <div class="split">
+      <div class="stack">
+        <div class="table-wrap"><table>
+          <thead><tr><th>Категорія</th><th class="num">Час, год</th><th class="num">MET</th><th class="num">Маса, кг</th><th class="num">Ккал</th></tr></thead>
+          <tbody id="exBody"></tbody>
+        </table></div>
+        <div class="row">
+          <button type="button" class="btn btn-primary" id="exNext">Наступний крок</button>
+          <button type="button" class="btn" id="exReset">Спочатку</button>
+        </div>
+      </div>
+      <div class="card"><span class="label">Хід розрахунку</span><div id="exLog" class="stack"></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 6 -->
+<section class="slide" data-title="Практична робота: мої витрати енергії">
+  <div class="slide-inner">
+    <header class="slide-head">
+      <div class="row"><span class="step-tag">Практична робота</span></div>
+      <h2>Мої орієнтовні витрати енергії за день</h2>
+      <p class="lead">Впиши години з домашнього завдання, обери масу, порахуй кожен добуток на калькуляторі й запиши відповідь. Бланк перевірить арифметику.</p>
+    </header>
+    <div class="card flat"><span class="label">Про масу тіла</span><p>Маса тіла — особиста інформація. Можеш узяти власну масу або умовну 45 кг, як у прикладі: метод розрахунку від цього не змінюється, змінюється лише число. Мета — зрозуміти метод, а не отримати ідеально точну особисту цифру. Бланк зберігає дані лише на твоєму пристрої. Перед знімком екрана масу можна сховати кнопкою.</p></div>
+    <div class="row" data-flow>
+      <label class="field" style="max-width:150px"><span>Маса, кг</span><input class="input" id="mass" inputmode="decimal" autocomplete="off" placeholder="45"></label>
+      <button type="button" class="btn" id="mass45">Умовна 45 кг</button>
+      <button type="button" class="btn" id="massHide"><i class="fa-solid fa-eye-slash"></i> <span>Сховати масу</span></button>
+      <button type="button" class="btn" id="fromHw" hidden>Підставити години з ДЗ уроку 11</button>
+      <button type="button" class="btn" id="blankReset">Очистити бланк</button>
+    </div>
+    <div class="table-wrap" data-flow><table class="blank">
+      <thead><tr><th>Категорія</th><th>Час, год</th><th>Формула: MET × маса × час</th><th>Ккал — твоя відповідь</th><th></th></tr></thead>
+      <tbody id="blankBody"></tbody>
+    </table></div>
+    <div class="grid-2">
+      <div class="stack">
+        <div class="status" id="hoursCheck"></div>
+        <button type="button" class="reveal" id="shareReveal"><span class="tag m">Високий рівень</span><span class="label">Який відсоток денної витрати припадає на кожну категорію? Порахуй сам(-а), потім перевір</span><span class="cue">показати частки часу й витрати</span><span class="hid"><span id="shares" class="fb-bars" style="display:flex"></span></span></button>
+      </div>
+      <div class="stack">
+        <div class="card flat"><span class="label">Порядок дій</span><ol class="steps">
+          <li><div>Перевір, що сума годин дорівнює 24.</div></li>
+          <li><div>Для кожної категорії помнож MET × маса × час.</div></li>
+          <li><div>Додай чотири результати — це орієнтовна витрата за день.</div></li>
+        </ol></div>
+        <div class="online-note"><span class="ico"><i class="fa-solid fa-paperclip"></i></span><div><b>Що здати в Classroom.</b> Знімок екрана заповненого бланка (масу можна сховати) або фото розрахунку в зошиті.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 7 -->
+<section class="slide" data-title="Теорія: час і енергія — не одне й те саме">
+  <div class="slide-inner">
+    <header class="slide-head">
+      <div class="row"><span class="step-tag">Теорія · 4</span></div>
+      <h2>Найдовша діяльність не обов'язково найбільш енерговитратна</h2>
+      <p class="lead">Повернімося до прикладу: 45 кг, сон 9 год, сидіння 8 год, повільний рух 6 год, активний рух 1 год. Порівняй частку часу з часткою витраченої енергії.</p>
+    </header>
+    <div class="grid-2">
+      <div class="card">
+        <div class="table-wrap"><table>
+          <thead><tr><th>Категорія</th><th class="num">Год</th><th class="num">Частка часу</th><th class="num">Ккал</th><th class="num">Частка енергії</th></tr></thead>
+          <tbody>
+            <tr><td>Сон</td><td class="num">9</td><td class="num">38 %</td><td class="num">405</td><td class="num">20 %</td></tr>
+            <tr><td>Сидіння</td><td class="num">8</td><td class="num">33 %</td><td class="num">468</td><td class="num">23 %</td></tr>
+            <tr><td>Повільний рух</td><td class="num">6</td><td class="num">25 %</td><td class="num">810</td><td class="num"><b>41 %</b></td></tr>
+            <tr><td>Активний рух</td><td class="num">1</td><td class="num">4 %</td><td class="num">315</td><td class="num">16 %</td></tr>
+            <tr><td><b>Разом</b></td><td class="num"><b>24</b></td><td class="num"><b>100 %</b></td><td class="num"><b>1998</b></td><td class="num"><b>100 %</b></td></tr>
+          </tbody>
+        </table></div>
+        <p class="small dim">Частка енергії = ккал категорії : загальна сума × 100. Наприклад, сон: 405 : 1998 × 100 ≈ 20 %.</p>
+      </div>
+      <div class="stack">
+        <div class="card flat"><span class="label">Що видно з таблиці</span><ul>
+          <li>Сон займає найбільше часу (38 %), але дає лише п'яту частину витрати, бо його MET найнижчий.</li>
+          <li>Одна година активного руху (315 ккал) витрачає майже стільки ж, скільки дев'ять годин сну (405 ккал).</li>
+          <li>Найбільший внесок дає повільний рух: звичайна ходьба й хатні справи тривають довго і мають помірний MET.</li>
+        </ul></div>
+        <div class="quiz" data-quiz="share" data-answer="2">
+          <p class="q">Чому 1 година спорту «важить» майже як 9 годин сну?</p>
+          <button type="button" class="opt">Бо вночі організм узагалі не витрачає енергії</button>
+          <button type="button" class="opt">Бо під час спорту маса тіла більша</button>
+          <button type="button" class="opt">Бо MET спорту в 7 разів вищий, і це майже компенсує різницю в часі</button>
+          <p class="why" hidden>Маса однакова, тож порівнюємо MET × час: 7,0 × 1 = 7 проти 1,0 × 9 = 9. Уві сні організм енергію витрачає — це основний обмін.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 8 -->
+<section class="slide" data-title="Теорія: енергетичний баланс">
+  <div class="slide-inner">
+    <header class="slide-head">
+      <div class="row"><span class="step-tag">Теорія · 5</span></div>
+      <h2>Енергетичний баланс: отримане й витрачене</h2>
+    </header>
+    <div class="card">
+      <span class="label">Шкала енергії за добу, ккал</span>
+      <div class="scale" id="scale">
+        <div class="scale-band" id="scaleBand"><span>норма споживання<br>2300–2400</span></div>
+        <div class="scale-mark ex" id="markEx"><span>приклад уроку<br>1998</span></div>
+        <div class="scale-mark me" id="markMe" hidden><span>моя витрата<br><b id="markMeVal"></b></span></div>
+      </div>
+      <div class="scale-axis"><span>0</span><span>500</span><span>1000</span><span>1500</span><span>2000</span><span>2500</span><span>3000</span><span>3500</span></div>
+      <div class="row"><button type="button" class="btn" id="showMe">Показати мою позначку</button><span class="small dim" id="showMeNote"></span></div>
+    </div>
+    <div class="grid-2">
+      <div class="card">
+        <div class="def"><b>Енергетичний баланс</b><p>Співвідношення між енергією, отриманою з їжею, і енергією, яку організм витратив. Обидві величини вимірюють у кілокалоріях, тому їх можна порівнювати напряму.</p></div>
+        <div class="def"><b>Норма споживання</b><p>На уроці 8 ми визначили, що для вашого віку це 2300–2400 ккал на добу.</p></div>
+        <p>У здорового організму, що росте, споживання й витрати загалом урівноважуються протягом певного періоду. Різниця між ними йде на ріст, відновлення тканин і фізіологічні процеси.</p>
+      </div>
+      <div class="stack">
+        <div class="card flat"><span class="label">Як читати свій результат</span><ul>
+          <li>Точний збіг день у день — не мета й не норма. Дні бувають різні: тренування, поїздка, хвороба.</li>
+          <li>Твій розрахунок — груба оцінка за чотирма усередненими коефіцієнтами, тому різниця в кількасот кілокалорій нічого не означає.</li>
+          <li>У підлітковому віці частина енергії йде на ріст, тому обмежувати їжу заради «рівних чисел» не потрібно.</li>
+        </ul></div>
+        <div class="card flat"><span class="label">Подумай</span><p>Твоя витрата виявилась ближчою чи далекою від норми споживання? Відповідь знадобиться в домашньому завданні.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 9 -->
+<section class="slide" data-title="Теорія: як рахують фітнес-трекери">
+  <div class="slide-inner">
+    <header class="slide-head">
+      <div class="row"><span class="step-tag">Теорія · 6</span></div>
+      <h2>Трекер використовує ту саму ідею MET, але додає дані з датчиків</h2>
+      <p class="lead">Ти брав(-ла) один коефіцієнт на кілька годин. Пристрій щохвилини уточнює, наскільки інтенсивно ти рухаєшся.</p>
+    </header>
+    <div class="grid-4">
+      <div class="card"><span class="tag t"><i class="fa-solid fa-shoe-prints"></i> Акселерометр</span><p class="small">Вимірює прискорення руху тіла в трьох напрямках. Кроки пристрій розпізнає за характерними повторюваними поштовхами, а за їхньою силою й частотою оцінює інтенсивність.</p></div>
+      <div class="card"><span class="tag m"><i class="fa-solid fa-heart-pulse"></i> Оптичний датчик пульсу</span><p class="small">Світлодіоди на звороті годинника світять у шкіру, а датчик вловлює, як змінюється відбите світло з кожним ударом серця. Що вище навантаження, то частіший пульс — це непрямий показник інтенсивності.</p></div>
+      <div class="card"><span class="tag s"><i class="fa-solid fa-location-dot"></i> GPS</span><p class="small">Визначає пройдену відстань і швидкість надворі. Дає змогу відрізнити повільну прогулянку від бігу.</p></div>
+      <div class="card"><span class="tag e"><i class="fa-solid fa-user-pen"></i> Дані користувача</span><p class="small">Масу тіла, зріст, вік людина вводить сама. Без них пристрій підставляє середні значення, і оцінка стає грубішою.</p></div>
+    </div>
+    <div class="split">
+      <div class="card">
+        <span class="label">Вмикай по черзі, що знає пристрій</span>
+        <label class="check"><input type="checkbox" checked disabled id="sn0"><span><b>Таблиця MET і час</b> — те саме, що в ручному розрахунку</span></label>
+        <label class="check"><input type="checkbox" id="sn1" data-sensor><span><b>Кількість кроків</b></span></label>
+        <label class="check"><input type="checkbox" id="sn2" data-sensor><span><b>Акселерометр</b> — прискорення руху тіла</span></label>
+        <label class="check"><input type="checkbox" id="sn3" data-sensor><span><b>Пульс у реальному часі</b></span></label>
+        <label class="check"><input type="checkbox" id="sn4" data-sensor><span><b>Дані, введені вручну</b> — наприклад, маса тіла</span></label>
+      </div>
+      <div class="card">
+        <span class="label">Точність оцінки (умовна шкала)</span>
+        <div class="meter"><i id="meterFill"></i><span class="meter-gap">точний вимір</span></div>
+        <div class="status" id="meterText"></div>
+        <p class="small dim">Шкала лише ілюструє ідею: кожне джерело даних уточнює оцінку, але до точного виміру вона не доходить.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 10 -->
+<section class="slide" data-title="Теорія: оцінка чи вимір?">
+  <div class="slide-inner">
+    <header class="slide-head">
+      <div class="row"><span class="step-tag">Теорія · 7</span></div>
+      <h2>Число на екрані — це оцінка, а не точний вимір</h2>
+    </header>
+    <div class="card">
+      <div class="table-wrap"><table>
+        <thead><tr><th>Спосіб</th><th>Що використовує</th><th>Переваги</th><th>Обмеження</th></tr></thead>
+        <tbody>
+          <tr><td><b>Ручний розрахунок за MET</b></td><td>довідкова таблиця, маса, час</td><td>простий, показує сам принцип, не потребує пристроїв</td><td>один усереднений коефіцієнт на години; час записано з пам'яті</td></tr>
+          <tr><td><b>Фітнес-трекер</b></td><td>MET + кроки, акселерометр, пульс, дані користувача</td><td>рахує автоматично й безперервно, враховує реальну інтенсивність</td><td>не знає маси м'язів та особливостей обміну речовин; різні моделі рахують по-різному</td></tr>
+          <tr><td><b>Лабораторне вимірювання</b></td><td>маска й прилад, що вимірює спожитий кисень і видихнутий вуглекислий газ</td><td>найточніший спосіб</td><td>складне обладнання, лише в лабораторії, не на щодень</td></tr>
+        </tbody>
+      </table></div>
+    </div>
+    <div class="grid-2">
+      <div class="card">
+        <span class="label">Чому трекер усе одно помиляється</span>
+        <ul>
+          <li>Двоє людей однакової маси витрачають різну кількість енергії: у них різна частка м'язів, вік, тренованість.</li>
+          <li>Датчик на зап'ясті погано «бачить» рух, у якому рука нерухома, наприклад їзду на велосипеді.</li>
+          <li>Пульс зростає не лише від руху: також від хвилювання, спеки, хвороби.</li>
+          <li>Кожен виробник має власну формулу, тому два пристрої на одній людині часто показують дещо різні числа.</li>
+        </ul>
+        <p class="small dim">Пульс і кроки такі пристрої зазвичай визначають досить точно, а от витрачені калорії — помітно грубіше.</p>
+      </div>
+      <div class="stack">
+        <div class="card flat"><span class="label">Навіщо тоді ними користуватися</span><p>Не для ідеальної точності, а для порівняння: «сьогодні я рухався більше чи менше, ніж учора». Один і той самий пристрій помиляється приблизно однаково щодня, тому <b>тенденцію</b> він показує добре, навіть якщо кожне окреме число неточне.</p></div>
+        <div class="question">Критичне мислення щодо цифрових інструментів: щоразу питай себе, звідки взялося число, що пристрій виміряв, а що обчислив.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 11 -->
+<section class="slide" data-title="Перевір себе">
+  <div class="slide-inner">
+    <header class="slide-head">
+      <div class="head-row"><span class="step-tag">Перевір себе</span><button type="button" class="btn btn-sm" data-quiz-reset>Пройти ще раз</button></div>
+      <h2>П'ять запитань за матеріалом уроку</h2>
+    </header>
+    <div class="quiz-grid">
+      <div class="card quiz" data-quiz="f1" data-answer="1">
+        <p class="q">1. Що показує коефіцієнт MET?</p>
+        <button type="button" class="opt">Скільки калорій міститься в їжі</button>
+        <button type="button" class="opt">У скільки разів діяльність витрачає більше енергії, ніж повний спокій</button>
+        <button type="button" class="opt">Частоту пульсу за хвилину</button>
+        <p class="why" hidden>MET — метаболічний еквівалент. MET = 1 відповідає спокою, MET = 3 означає втричі більшу витрату за той самий час.</p>
+      </div>
+      <div class="card quiz" data-quiz="f2" data-answer="0">
+        <p class="q">2. Учень масою 40 кг гуляв 2 години (MET = 3,0). Яка орієнтовна витрата?</p>
+        <button type="button" class="opt">240 ккал</button>
+        <button type="button" class="opt">120 ккал</button>
+        <button type="button" class="opt">45 ккал</button>
+        <p class="why" hidden>3,0 × 40 × 2 = 240 ккал.</p>
+      </div>
+      <div class="card quiz" data-quiz="f3" data-answer="2">
+        <p class="q">3. У розписі дня вийшло: сон 9, сидіння 9, повільний рух 6, спорт 2. Що не так?</p>
+        <button type="button" class="opt">Забагато сну</button>
+        <button type="button" class="opt">Усе правильно</button>
+        <button type="button" class="opt">Сума годин 26, а в добі 24 — якийсь час пораховано двічі</button>
+        <p class="why" hidden>9 + 9 + 6 + 2 = 26. Доки сума не дорівнює 24, розрахунок за день буде некоректним.</p>
+      </div>
+      <div class="card quiz" data-quiz="f4" data-answer="1">
+        <p class="q">4. Який датчик дає трекеру непрямий показник інтенсивності навантаження?</p>
+        <button type="button" class="opt">Термометр</button>
+        <button type="button" class="opt">Датчик пульсу</button>
+        <button type="button" class="opt">Мікрофон</button>
+        <p class="why" hidden>Що інтенсивніше працюють м'язи, то частіше б'ється серце. Тому пульс допомагає оцінити, наскільки важким є навантаження.</p>
+      </div>
+      <div class="card quiz" data-quiz="f5" data-answer="2">
+        <p class="q">5. Годинник показав «412 ккал». Як правильно ставитися до цього числа?</p>
+        <button type="button" class="opt">Це точний вимір, як на вагах</button>
+        <button type="button" class="opt">Це випадкове число, йому не можна вірити взагалі</button>
+        <button type="button" class="opt">Це оцінка: корисна для порівняння днів між собою, але не точна до калорії</button>
+        <p class="why" hidden>Пристрій обчислює витрату за формулою з даних датчиків. Окреме число приблизне, а от зміни з дня в день він показує добре.</p>
+      </div>
+      <div class="stack">
+        <div class="status" data-quiz-score><span></span></div>
+        <div class="card flat"><span class="label">Критерії оцінювання практичної роботи</span>
+          <ul class="small">
+            <li><b>Початковий:</b> розрахунок виконано частково або з помилками; сума годин не дорівнює 24; підсумок не пораховано.</li>
+            <li><b>Достатній:</b> розрахунок правильний для всіх 4 категорій; сума годин 24; підсумкову витрату пораховано.</li>
+            <li><b>Високий:</b> усе з «Достатнього» + пораховано відсотковий внесок кожної категорії з поясненням.</li>
+          </ul>
+          <p class="small dim">Оцінюється правильність обчислень і розуміння методу. Самі числа маси й витрати ні з ким не порівнюють.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 12 -->
+<section class="slide" data-title="Домашнє завдання">
+  <div class="slide-inner">
+    <header class="slide-head">
+      <div class="row"><span class="step-tag">Домашнє завдання</span></div>
+      <h2>Одна професія, пов'язана з харчуванням, здоров'ям чи фізичною активністю</h2>
+      <p class="lead">Хімія їжі, розрахунки, норми, аналіз даних, цифрові пристрої — усе це навколо однієї теми. Обери професію, яка тебе зацікавила, і поясни одним реченням чому. На уроці 13 досліджуватимемо STEM-професії.</p>
+    </header>
+    <div class="split">
+      <div class="card" data-flow>
+        <div class="grid-2">
+          <label class="field"><span>Ім'я та прізвище</span><input class="input" id="hwName" data-save="hw-name" autocomplete="off"></label>
+          <label class="field"><span>Клас</span><input class="input" id="hwClass" data-save="hw-class" placeholder="7-А" autocomplete="off"></label>
+        </div>
+        <span class="label">Професія — обери або впиши свою</span>
+        <div class="row" id="profChips"></div>
+        <label class="field"><span>Моя професія</span><input class="input" id="hwProf" data-save="hw-prof" autocomplete="off" placeholder="наприклад, дієтолог"></label>
+        <label class="field"><span>Чому саме вона — одне речення</span><textarea class="input" id="hwWhy" data-save="hw-why"></textarea></label>
+        <label class="field"><span>Рефлексія: що нового ти дізнався(-лась) про фітнес-трекери? Твоя витрата ближча чи далека від норми споживання?</span><textarea class="input" id="hwReflect" data-save="hw-reflect"></textarea></label>
+        <div class="row"><button type="button" class="btn btn-primary" id="hwPdf" data-flow-end><i class="fa-solid fa-file-pdf"></i> Зберегти в PDF</button><span class="pdf-status" id="hwStatus"></span></div>
+      </div>
+      <div class="stack">
+        <div class="card flat"><span class="label">Хто працює з цією темою</span><ul class="small">
+          <li><b>Дієтолог</b> складає раціон відповідно до потреб людини.</li>
+          <li><b>Спортивний тренер</b> планує навантаження й відновлення.</li>
+          <li><b>Харчовий технолог</b> розробляє продукти та контролює їхню якість.</li>
+          <li><b>Агроном</b> вирощує те, з чого починається їжа.</li>
+          <li><b>Розробник фітнес-застосунків</b> пише програми, що рахують за даними датчиків.</li>
+        </ul></div>
+        <div class="online-note"><span class="ico"><i class="fa-solid fa-paperclip"></i></span><div><b>Що здати в Classroom.</b> Заповни поля, натисни «Зберегти в PDF» і прикріпи файл до завдання «Урок 12». Не виходить зберегти — напиши професію й речення просто у відповіді до завдання. У рефлексії числа писати не обов'язково, досить слів «ближча» чи «далека».</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="pdf-sheet" id="pdfSheet" aria-hidden="true">
+  <div class="pdf-meta">STEM · 7 клас · Урок 12 · Домашнє завдання</div>
+  <h1>Професія, яка мене зацікавила</h1>
+  <div class="pdf-line"></div>
+  <table><tr><th>Ім'я та прізвище</th><th>Клас</th><th>Дата</th></tr><tr><td id="pdfName"></td><td id="pdfClass"></td><td id="pdfDate"></td></tr></table>
+  <h2>Професія</h2>
+  <div class="pdf-box" id="pdfProf"></div>
+  <h2>Чому саме вона</h2>
+  <div class="pdf-box" id="pdfWhy"></div>
+  <h2>Рефлексія</h2>
+  <div class="pdf-box" id="pdfReflect"></div>
+</div>
+
+</main>
+<footer class="bottombar">
+  <span class="kbd-hint">← → гортати · Home / End · Esc</span>
+  <div class="nav">
+    <button type="button" class="btn" id="prevBtn">← Назад</button>
+    <span class="counter" id="counter"></span>
+    <button type="button" class="btn btn-primary" id="nextBtn">Далі →</button>
+  </div>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script>window.STEM_LESSON=12;</script>
+<script>
+/* STEM 7 deck core: storage, theme, slide nav, charts, quizzes, PDF. Lesson number comes from window.STEM_LESSON. */
+(function(){
+'use strict';
+var L=window.STEM_LESSON, P='stem7l'+L+'-';
+var root=document.documentElement;
+function $(s,c){return (c||document).querySelector(s);}
+function $$(s,c){return [].slice.call((c||document).querySelectorAll(s));}
+
+var store={
+  get:function(k,d){try{var v=localStorage.getItem(P+k);return v===null?d:JSON.parse(v);}catch(e){return d;}},
+  set:function(k,v){try{localStorage.setItem(P+k,JSON.stringify(v));}catch(e){}}
+};
+function cv(n){return getComputedStyle(root).getPropertyValue(n).trim();}
+function esc(s){return String(s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+function num(v){var s=String(v==null?'':v).trim().replace(/\s/g,'').replace(',','.');if(s==='')return NaN;return /^-?\d*\.?\d+$/.test(s)||/^-?\d+\.$/.test(s)?parseFloat(s):NaN;}
+function fmt(n,d){if(!isFinite(n))return '—';var p=Math.pow(10,d==null?1:d);return String(Math.round(n*p)/p).replace('.',',');}
+function shake(el){if(!el)return;el.classList.remove('shake');void el.offsetWidth;el.classList.add('shake','invalid');
+  var clear=function(){el.classList.remove('invalid');el.removeEventListener('input',clear);};el.addEventListener('input',clear);
+  setTimeout(function(){el.classList.remove('shake');},450);}
+
+/* theme */
+var savedTheme=store.get('theme',null);
+if(savedTheme==='light'||savedTheme==='dark')root.setAttribute('data-theme',savedTheme);
+function isDark(){var a=root.getAttribute('data-theme');if(a)return a==='dark';return !!(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches);}
+$('#themeBtn').addEventListener('click',function(){
+  var t=isDark()?'light':'dark';root.setAttribute('data-theme',t);store.set('theme',t);
+  document.dispatchEvent(new CustomEvent('themechange'));
+});
+
+/* slides */
+var slides=$$('.slide'),cur=0;
+var counter=$('#counter'),bar=$('#progress'),menu=$('#menu'),menuList=$('#menuList');
+slides.forEach(function(s,i){
+  var b=document.createElement('button');b.type='button';b.className='menu-item';
+  b.innerHTML='<span>'+(i+1)+'</span><span>'+esc(s.getAttribute('data-title')||('Слайд '+(i+1)))+'</span>';
+  b.addEventListener('click',function(){go(i);toggleMenu(false);});
+  menuList.appendChild(b);
+});
+function go(i){
+  i=Math.max(0,Math.min(slides.length-1,i));cur=i;
+  slides.forEach(function(s,k){s.classList.toggle('active',k===i);});
+  $$('.menu-item',menuList).forEach(function(b,k){b.classList.toggle('current',k===i);});
+  counter.textContent=(i+1)+' / '+slides.length;
+  bar.style.width=((i+1)/slides.length*100)+'%';
+  $('#prevBtn').disabled=i===0;$('#nextBtn').disabled=i===slides.length-1;
+  slides[i].scrollTop=0;store.set('slide',i);
+  document.dispatchEvent(new CustomEvent('slidechange',{detail:i}));
+}
+function toggleMenu(on){menu.hidden=on===undefined?!menu.hidden:!on;}
+$('#prevBtn').addEventListener('click',function(){go(cur-1);});
+$('#nextBtn').addEventListener('click',function(){go(cur+1);});
+$('#menuBtn').addEventListener('click',function(){toggleMenu();});
+menu.addEventListener('click',function(e){if(e.target===menu)toggleMenu(false);});
+document.addEventListener('keydown',function(e){
+  var tag=(e.target&&e.target.tagName)||'';
+  if(tag==='INPUT'||tag==='TEXTAREA'||tag==='SELECT')return;
+  if(e.key==='Escape'){toggleMenu(false);return;}
+  if(e.altKey||e.ctrlKey||e.metaKey)return;
+  if(e.key==='ArrowRight'||e.key==='PageDown'){go(cur+1);e.preventDefault();}
+  else if(e.key==='ArrowLeft'||e.key==='PageUp'){go(cur-1);e.preventDefault();}
+  else if(e.key==='Home'){go(0);e.preventDefault();}
+  else if(e.key==='End'){go(slides.length-1);e.preventDefault();}
+});
+
+/* Enter in a single-line field moves on to the next field of its form block */
+document.addEventListener('keydown',function(e){
+  if(e.key!=='Enter'||!e.target||e.target.tagName!=='INPUT')return;
+  var box=e.target.closest('[data-flow]');if(!box)return;
+  e.preventDefault();
+  var f=$$('input,textarea,select,button[data-flow-end]',box).filter(function(x){return !x.disabled&&x.offsetParent!==null;});
+  var n=f[f.indexOf(e.target)+1];
+  if(n)n.focus();else e.target.blur();
+});
+
+/* auto-persisted fields */
+$$('[data-save]').forEach(function(el){
+  var k='f-'+el.getAttribute('data-save');
+  var v=store.get(k,null);if(v!==null)el.value=v;
+  el.addEventListener('input',function(){store.set(k,el.value);});
+});
+
+/* reveal cards */
+$$('.reveal').forEach(function(b){b.addEventListener('click',function(){b.classList.toggle('open');});});
+
+/* charts: Chart.js when it loaded, plain CSS bars otherwise */
+var charts={};
+function renderFallbackBars(box,cfg){
+  var max=Math.max.apply(null,cfg.data.concat([1]));
+  var sum=cfg.data.reduce(function(a,b){return a+b;},0);
+  var h=cfg.title?'<div class="fb-title">'+esc(cfg.title)+'</div>':'';
+  cfg.labels.forEach(function(l,i){
+    var w=cfg.type==='pie'?(sum?cfg.data[i]/sum*100:0):cfg.data[i]/max*100;
+    h+='<div class="bar-row"><span>'+esc(l)+'</span><span class="bar-track"><i style="width:'+w+'%;background:'+cfg.colors[i%cfg.colors.length]+'"></i></span><b>'+
+      (cfg.type==='pie'&&sum?Math.round(cfg.data[i]/sum*100)+'%':fmt(cfg.data[i]))+'</b></div>';
+  });
+  if(cfg.x||cfg.y)h+='<div class="small dim">'+esc([cfg.y,cfg.x].filter(Boolean).join(' · '))+'</div>';
+  box.className='fb-bars';box.innerHTML=h;box.hidden=false;
+}
+function drawChart(key,canvas,fb,cfg){
+  var wrap=canvas.parentNode;
+  try{
+    if(!window.Chart)throw new Error('Chart.js unavailable');
+    if(charts[key]){charts[key].destroy();delete charts[key];}
+    var ink=cv('--ink'),dim=cv('--ink-dim'),grid=cv('--border'),pie=cfg.type==='pie';
+    wrap.hidden=false;fb.hidden=true;
+    charts[key]=new window.Chart(canvas,{type:pie?'pie':'bar',
+      data:{labels:cfg.labels,datasets:[{data:cfg.data,backgroundColor:cfg.colors,borderColor:cv('--surface'),borderWidth:pie?2:0,borderRadius:pie?0:6}]},
+      options:{responsive:true,maintainAspectRatio:false,animation:{duration:250},
+        plugins:{legend:{display:pie,position:'right',labels:{color:ink,font:{family:'IBM Plex Sans'}}},
+          title:{display:!!cfg.title,text:cfg.title||'',color:ink,font:{family:'Unbounded',size:13,weight:'600'}}},
+        scales:pie?{}:{x:{title:{display:!!cfg.x,text:cfg.x||'',color:dim},ticks:{color:dim},grid:{display:false}},
+          y:{beginAtZero:true,title:{display:!!cfg.y,text:cfg.y||'',color:dim},ticks:{color:dim,precision:0},grid:{color:grid}}}}});
+  }catch(e){
+    wrap.hidden=true;renderFallbackBars(fb,cfg);
+  }
+}
+
+/* quizzes: one try per question, the explanation opens after the answer; [data-quiz-score] sums up its slide */
+var quizState=store.get('quiz',{});
+function paintQuiz(q){
+  var id=q.getAttribute('data-quiz'),right=+q.getAttribute('data-answer'),ch=quizState[id];
+  var done=typeof ch==='number';
+  $$('.opt',q).forEach(function(b,i){
+    b.disabled=done;b.classList.toggle('right',done&&i===right);b.classList.toggle('wrong',done&&i===ch&&i!==right);
+  });
+  var why=$('.why',q);if(why)why.hidden=!done;
+}
+function paintScores(){
+  $$('[data-quiz-score]').forEach(function(box){
+    var qs=$$('[data-quiz]',box.closest('.slide')),done=0,ok=0;
+    qs.forEach(function(q){var ch=quizState[q.getAttribute('data-quiz')];if(typeof ch==='number'){done++;if(ch===+q.getAttribute('data-answer'))ok++;}});
+    $('span',box).textContent=done<qs.length?'Відповідей: '+done+' із '+qs.length:'Правильно: '+ok+' із '+qs.length+(ok===qs.length?'. Чудово!':'. Переглянь пояснення до помилок.');
+    box.className='status'+(done<qs.length?'':ok===qs.length?' ok':' warn');
+  });
+}
+$$('[data-quiz]').forEach(function(q){
+  $$('.opt',q).forEach(function(b,i){
+    b.addEventListener('click',function(){quizState[q.getAttribute('data-quiz')]=i;store.set('quiz',quizState);paintQuiz(q);paintScores();});
+  });
+  paintQuiz(q);
+});
+$$('[data-quiz-reset]').forEach(function(b){
+  b.addEventListener('click',function(){
+    $$('[data-quiz]',b.closest('.slide')).forEach(function(q){delete quizState[q.getAttribute('data-quiz')];paintQuiz(q);});
+    store.set('quiz',quizState);paintScores();
+  });
+});
+paintScores();
+
+/* PDF: html2canvas -> jsPDF (A4, multi-page) -> downloads capability, else <a download>, else explicit error */
+function linkSave(blob,name){
+  var url=URL.createObjectURL(blob),a=document.createElement('a');
+  a.href=url;a.download=name;a.style.display='none';document.body.appendChild(a);a.click();
+  setTimeout(function(){URL.revokeObjectURL(url);a.remove();},4000);
+  return 'saved';
+}
+function deliver(blob,name){
+  var p=(window.claude&&typeof window.claude.use==='function')
+    ?Promise.resolve().then(function(){return window.claude.use('downloads');}).catch(function(){return null;})
+    :Promise.resolve(null);
+  return p.then(function(dl){
+    if(dl&&typeof dl.save==='function'){
+      return dl.save({filename:name,data:blob}).then(function(){return 'saved';},function(err){
+        if(err&&err.code==='declined')return 'declined';
+        if(err&&err.code==='rate_limited')return 'busy';
+        return linkSave(blob,name);
+      });
+    }
+    return linkSave(blob,name);
+  });
+}
+function fileName(name,cls){
+  var clean=function(s){return String(s).replace(/[\u0000-\u001f\u007f]/g,'').trim().replace(/[\\\/:*?"<>|]+/g,'').replace(/\s+/g,'_');};
+  return 'STEM7_Урок'+L+'_'+clean(name)+'_'+clean(cls)+'.pdf';
+}
+function savePdf(o){
+  var st=o.status,btn=o.btn;
+  function msg(t,c){st.textContent=t;st.className='pdf-status '+(c||'');}
+  if(!window.html2canvas||!window.jspdf||!window.jspdf.jsPDF){msg('Не вдалося завантажити бібліотеки для PDF. Перевір інтернет і онови сторінку.','err');return;}
+  msg('Готую PDF…');btn.disabled=true;
+  var sheetId=o.sheet.id;
+  window.html2canvas(o.sheet,{scale:2,backgroundColor:'#ffffff',useCORS:true,logging:false,onclone:function(doc){
+    var s=doc.getElementById(sheetId);if(!s)return;
+    s.style.setProperty('color','#14162a','important');s.style.setProperty('background','#ffffff','important');
+    [].forEach.call(s.querySelectorAll('*'),function(n){n.style.setProperty('color','#14162a','important');});
+  }}).then(function(canvas){
+    var pdf=new window.jspdf.jsPDF({unit:'mm',format:'a4'}),pw=210,ph=297,ih=canvas.height*pw/canvas.width;
+    var img=canvas.toDataURL('image/jpeg',0.92),y=0,left=ih-ph;
+    pdf.addImage(img,'JPEG',0,0,pw,ih);
+    while(left>1){y-=ph;pdf.addPage();pdf.addImage(img,'JPEG',0,y,pw,ih);left-=ph;}
+    return deliver(pdf.output('blob'),o.filename);
+  }).then(function(r){
+    if(r==='declined')msg('Збереження скасовано. Натисни кнопку ще раз, якщо передумаєш.');
+    else if(r==='busy')msg('Вікно збереження вже відкрите. Заверши його й спробуй ще раз.','err');
+    else msg('Готово: файл «'+o.filename+'» збережено. Прикріпи його до завдання в Classroom.','ok');
+  }).catch(function(e){
+    msg('Не вдалося створити PDF ('+((e&&e.message)||'невідома помилка')+'). Зроби знімок екрана з відповідями й надішли його в Classroom.','err');
+  }).then(function(){btn.disabled=false;});
+}
+
+window.STEM={store:store,cv:cv,esc:esc,num:num,fmt:fmt,shake:shake,go:go,$:$,$$:$$,drawChart:drawChart,renderFallbackBars:renderFallbackBars,savePdf:savePdf,fileName:fileName,
+  today:function(){var d=new Date();return ('0'+d.getDate()).slice(-2)+'.'+('0'+(d.getMonth()+1)).slice(-2)+'.'+d.getFullYear();}};
+go(store.get('slide',0)||0);
+})();
+</script>
+<script>
+/* Lesson 12: MET mini-calculator, step-by-step worked example, self-checking energy blank, norm scale, tracker sensors, profession homework */
+(function(){
+'use strict';
+var S=window.STEM,store=S.store,$=S.$,$$=S.$$,esc=S.esc,num=S.num,fmt=S.fmt;
+var ACT=[{k:'sleep',name:'Сон',note:'базовий рівень, повний спокій',met:1.0,color:'--t'},
+         {k:'sit',name:'Сидіння',note:'уроки, екран, їжа за столом',met:1.3,color:'--accent'},
+         {k:'slow',name:'Повільний рух',note:'ходьба звичайним темпом, хатні справи',met:3.0,color:'--s'},
+         {k:'active',name:'Активний рух / спорт',note:'біг, футбол, велосипед, активні ігри',met:7.0,color:'--m'}];
+function met(a){return a.met.toFixed(1).replace('.',',');}
+
+/* ---------- MET bars + mini calculator ---------- */
+function paintMet(){
+  $('#metBars').innerHTML=ACT.map(function(a){
+    return '<div class="bar-row"><span><b>'+esc(a.name)+'</b><br><span class="small dim">'+esc(a.note)+'</span></span><span class="bar-track"><i style="width:'+(a.met/7*100)+'%;background:'+S.cv(a.color)+'"></i></span><b>'+met(a)+'</b></div>';
+  }).join('');
+}
+var calcAct=Math.min(3,store.get('calc-act',3)||0);
+$('#calcActs').innerHTML=ACT.map(function(a,i){return '<button type="button" class="chip" data-i="'+i+'">'+esc(a.name)+'</button>';}).join('');
+var calcTime=$('#calcTime');calcTime.value=store.get('calc-time',1);
+function paintCalc(){
+  var a=ACT[calcAct],t=+calcTime.value;
+  $$('#calcActs .chip').forEach(function(b,i){b.setAttribute('aria-pressed',String(i===calcAct));});
+  $('#calcTimeOut').textContent=fmt(t);
+  $('#calcOut').textContent=met(a)+' × 45 × '+fmt(t)+' = '+fmt(a.met*45*t)+' ккал';
+}
+$('#calcActs').addEventListener('click',function(e){var b=e.target.closest('.chip');if(!b)return;calcAct=+b.getAttribute('data-i');store.set('calc-act',calcAct);paintCalc();});
+calcTime.addEventListener('input',function(){store.set('calc-time',+calcTime.value);paintCalc();});
+
+/* ---------- worked example: 45 kg, 9 + 8 + 6 + 1 h ---------- */
+var EX_H=[9,8,6,1],EX_M=45,exStep=Math.min(6,store.get('ex-step',0)||0);
+function paintEx(){
+  var kcal=EX_H.map(function(h,i){return Math.round(ACT[i].met*EX_M*h);});
+  $('#exBody').innerHTML=ACT.map(function(a,i){
+    return '<tr><td>'+esc(a.name)+'</td><td class="num">'+EX_H[i]+'</td><td class="num">'+met(a)+'</td><td class="num">'+EX_M+'</td><td class="num"><b>'+(exStep>i?kcal[i]:'?')+'</b></td></tr>';
+  }).join('')+'<tr><td><b>Разом</b></td><td class="num"><b>'+(exStep>=6?'24':'?')+'</b></td><td class="num">—</td><td class="num">—</td><td class="num"><b>'+(exStep>=5?kcal.reduce(function(a,b){return a+b;},0):'?')+'</b></td></tr>';
+  var log='';
+  ACT.forEach(function(a,i){if(exStep>i)log+='<div class="log-line">'+esc(a.name)+': '+met(a)+' × '+EX_M+' × '+EX_H[i]+' = '+kcal[i]+' ккал</div>';});
+  if(exStep>=5)log+='<div class="log-line sum">'+kcal.join(' + ')+' = '+kcal.reduce(function(a,b){return a+b;},0)+' ккал за день</div>';
+  if(exStep>=6)log+='<div class="log-line ok">Перевірка годин: '+EX_H.join(' + ')+' = 24. Без неї розрахунок некоректний.</div>';
+  $('#exLog').innerHTML=log||'<p class="dim">Натискай «Наступний крок»: спершу чотири добутки, потім сума й перевірка годин.</p>';
+  var nx=$('#exNext');nx.disabled=exStep>=6;
+  nx.textContent=exStep<4?'Порахувати: '+ACT[exStep].name:exStep===4?'Додати всі чотири':exStep===5?'Перевірити суму годин':'Приклад завершено';
+  store.set('ex-step',exStep);
+}
+$('#exNext').addEventListener('click',function(){if(exStep<6){exStep++;paintEx();}});
+$('#exReset').addEventListener('click',function(){exStep=0;paintEx();});
+
+/* ---------- self-checking blank ---------- */
+var blank=store.get('blank',null);
+if(!blank||typeof blank!=='object')blank={};
+blank.h=blank.h||['','','',''];blank.a=blank.a||['','','',''];blank.mass=blank.mass||'';blank.total=blank.total||'';
+var massHidden=!!store.get('mass-hidden',false);
+var massEl=$('#mass');massEl.value=blank.mass;
+$('#blankBody').innerHTML=ACT.map(function(a,i){
+  return '<tr><td><b>'+esc(a.name)+'</b></td>'+
+    '<td><input class="input" id="bh'+i+'" data-h="'+i+'" inputmode="decimal" autocomplete="off" aria-label="Час, години: '+esc(a.name)+'" value="'+esc(blank.h[i])+'"></td>'+
+    '<td class="f" id="bf'+i+'"></td>'+
+    '<td><input class="input" id="ba'+i+'" data-a="'+i+'" inputmode="decimal" autocomplete="off" aria-label="Ккал: '+esc(a.name)+'" value="'+esc(blank.a[i])+'"></td>'+
+    '<td class="mark" id="bm'+i+'"></td></tr>';
+}).join('')+'<tr class="total"><td>РАЗОМ</td><td id="bhSum"></td><td class="f">сума чотирьох результатів</td>'+
+  '<td><input class="input" id="bTotal" inputmode="decimal" autocomplete="off" aria-label="Разом, ккал" value="'+esc(blank.total)+'"></td><td class="mark" id="bmT"></td></tr>';
+function mark(el,ans,exp,needMsg){
+  if(String(ans).trim()===''){el.textContent='';el.className='mark';return false;}
+  if(!isFinite(exp)){el.textContent=needMsg;el.className='mark';return false;}
+  var a=num(ans),ok=isFinite(a)&&Math.abs(a-exp)<=0.6;
+  el.textContent=ok?'✓ правильно':'✗ перевір';el.className='mark '+(ok?'ok':'bad');return ok;
+}
+function expected(){
+  var m=num(blank.mass);
+  return ACT.map(function(a,i){var h=num(blank.h[i]);return isFinite(m)&&m>0&&isFinite(h)&&h>=0?a.met*m*h:NaN;});
+}
+function total(){var e=expected();return e.every(isFinite)?e.reduce(function(a,b){return a+b;},0):NaN;}
+function paintBlank(){
+  var m=num(blank.mass),e=expected(),hs=blank.h.map(num),mShown=massHidden?'••':(isFinite(m)?fmt(m):'маса');
+  ACT.forEach(function(a,i){
+    $('#bf'+i).textContent=met(a)+' × '+mShown+' × '+(isFinite(hs[i])?fmt(hs[i]):'час')+' =';
+    mark($('#bm'+i),blank.a[i],e[i],'спершу впиши години й масу');
+  });
+  var hAll=hs.every(function(h){return isFinite(h)&&h>=0;}),hSum=hAll?hs.reduce(function(a,b){return a+b;},0):NaN;
+  $('#bhSum').textContent=hAll?fmt(hSum)+' год':'';
+  var hc=$('#hoursCheck');
+  if(!hAll){hc.textContent='Впиши години для всіх чотирьох категорій. Разом має бути 24.';hc.className='status';}
+  else if(Math.abs(hSum-24)<0.01){hc.textContent='Сума годин = 24. Можна рахувати.';hc.className='status ok';}
+  else{hc.textContent='Сума годин '+fmt(hSum)+', а має бути 24. '+(hSum<24?'Бракує '+fmt(24-hSum):'Зайві '+fmt(hSum-24))+' год.';hc.className='status bad';}
+  mark($('#bmT'),blank.total,total(),'спершу заповни всі рядки');
+  var sh=$('#shares'),t=total();
+  if(isFinite(t)&&t>0&&hSum>0){
+    sh.innerHTML=ACT.map(function(a,i){
+      return '<span class="bar-row"><span>'+esc(a.name)+'</span><span class="bar-track"><i style="width:'+(e[i]/t*100)+'%;background:'+S.cv(a.color)+'"></i></span><b>'+Math.round(hs[i]/hSum*100)+'% часу → '+Math.round(e[i]/t*100)+'% витрати</b></span>';
+    }).join('');
+  }else sh.innerHTML='<span class="small dim">Спершу заповни години й масу в бланку.</span>';
+  massEl.type=massHidden?'password':'text';
+  $('#massHide span').textContent=massHidden?'Показати масу':'Сховати масу';
+  store.set('blank',blank);store.set('mass-hidden',massHidden);
+  paintScale();
+}
+$('#blankBody').addEventListener('input',function(e){
+  var t=e.target;
+  if(t.hasAttribute('data-h'))blank.h[+t.getAttribute('data-h')]=t.value;
+  else if(t.hasAttribute('data-a'))blank.a[+t.getAttribute('data-a')]=t.value;
+  else if(t.id==='bTotal')blank.total=t.value;
+  paintBlank();
+});
+massEl.addEventListener('input',function(){blank.mass=massEl.value;paintBlank();});
+$('#mass45').addEventListener('click',function(){blank.mass='45';massEl.value='45';massEl.classList.remove('invalid');paintBlank();});
+$('#massHide').addEventListener('click',function(){massHidden=!massHidden;paintBlank();});
+$('#blankReset').addEventListener('click',function(){
+  blank={h:['','','',''],a:['','','',''],mass:'',total:''};massEl.value='';
+  $$('#blankBody input').forEach(function(i){i.value='';});paintBlank();
+});
+/* lesson 11 homework lives on the same origin when both pages are hosted together */
+(function(){
+  var hw=null;try{hw=JSON.parse(localStorage.getItem('stem7l11-hw'));}catch(e){}
+  if(!hw||!ACT.some(function(a){return hw[a.k]!=null&&String(hw[a.k]).trim()!=='';}))return;
+  var b=$('#fromHw');b.hidden=false;
+  b.addEventListener('click',function(){
+    ACT.forEach(function(a,i){var v=hw[a.k]==null?'':String(hw[a.k]);blank.h[i]=v;$('#bh'+i).value=v;});paintBlank();
+  });
+})();
+
+/* ---------- norm scale ---------- */
+var SC_MAX=3500,showMe=false;
+function pos(v){return Math.max(0,Math.min(100,v/SC_MAX*100))+'%';}
+$('#scaleBand').style.left=pos(2300);$('#scaleBand').style.width=(100/SC_MAX*100)+'%';
+$('#markEx').style.left=pos(1998);
+function paintScale(){
+  var t=total(),me=$('#markMe'),note=$('#showMeNote');
+  me.hidden=!(showMe&&isFinite(t));
+  if(showMe&&isFinite(t)){me.style.left=pos(t);$('#markMeVal').textContent=Math.round(t)+(t>SC_MAX?' →':'');}
+  $('#showMe').textContent=showMe?'Сховати мою позначку':'Показати мою позначку';
+  note.textContent=showMe&&!isFinite(t)?'Спершу заповни години й масу в бланку практичної роботи.':'Позначка береться з твого бланка практичної роботи й видима лише на твоєму пристрої.';
+}
+$('#showMe').addEventListener('click',function(){showMe=!showMe;paintScale();});
+
+/* ---------- tracker sensors ---------- */
+var sensors=store.get('sensors',[false,false,false,false]);
+var METER=['Груба оцінка: лише таблиця й час.','Трохи точніше — але це все ще оцінка.','Точніше — але це все ще оцінка.','Ще точніше — але це все ще оцінка.','Найкраще, що може пристрій. І все одно це ОЦІНКА, а не точний вимір.'];
+function paintMeter(){
+  var n=sensors.filter(Boolean).length;
+  $('#meterFill').style.width=(40+n*11)+'%';
+  $('#meterText').textContent=METER[n];$('#meterText').className='status'+(n===4?' warn':'');
+}
+$$('[data-sensor]').forEach(function(c,i){
+  c.checked=!!sensors[i];
+  c.addEventListener('change',function(){sensors[i]=c.checked;store.set('sensors',sensors);paintMeter();});
+});
+
+/* ---------- homework ---------- */
+var PROF=['Дієтолог','Спортивний тренер','Харчовий технолог','Агроном','Розробник фітнес-застосунків'];
+$('#profChips').innerHTML=PROF.map(function(p){return '<button type="button" class="chip">'+esc(p)+'</button>';}).join('');
+var profEl=$('#hwProf');
+function paintProf(){var v=profEl.value.trim().toLowerCase();$$('#profChips .chip').forEach(function(b){b.setAttribute('aria-pressed',String(b.textContent.toLowerCase()===v));});}
+$('#profChips').addEventListener('click',function(e){
+  var b=e.target.closest('.chip');if(!b)return;
+  profEl.value=b.textContent;profEl.dispatchEvent(new Event('input',{bubbles:true}));$('#hwWhy').focus();
+});
+profEl.addEventListener('input',paintProf);
+$('#hwPdf').addEventListener('click',function(){
+  var f=[$('#hwName'),$('#hwClass'),profEl,$('#hwWhy')],bad=null;
+  f.forEach(function(x){if(!x.value.trim()){S.shake(x);bad=bad||x;}});
+  if(bad){bad.focus();$('#hwStatus').textContent='Заповни підсвічені поля.';$('#hwStatus').className='pdf-status err';return;}
+  $('#pdfName').textContent=f[0].value.trim();$('#pdfClass').textContent=f[1].value.trim();$('#pdfDate').textContent=S.today();
+  $('#pdfProf').textContent=f[2].value.trim();$('#pdfWhy').textContent=f[3].value.trim();
+  $('#pdfReflect').textContent=$('#hwReflect').value.trim()||'—';
+  S.savePdf({sheet:$('#pdfSheet'),filename:S.fileName(f[0].value,f[1].value),status:$('#hwStatus'),btn:this});
+});
+
+document.addEventListener('themechange',function(){paintMet();paintBlank();});
+paintMet();paintCalc();paintEx();paintBlank();paintMeter();paintProf();
+})();
+</script>
+</body>
+</html>
