@@ -1,0 +1,1100 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="STEM, 7 клас. Урок 11. Аналіз даних харчування родини">
+<title>STEM 7 · Урок 11</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js"></script>
+<style>
+/* Layout: fixed top/bottom bars, one absolutely-positioned slide at a time, content column max 1180px */
+:root{
+  --bg:#f6f5fb;--surface:#ffffff;--surface-2:#f0eef8;--surface-3:#e5e1f2;--border:#dad5ea;
+  --ink:#14162a;--ink-dim:#474a66;--ink-faint:#7d809a;
+  --accent:#7c3aed;--accent-ink:#ffffff;--accent-soft:#ede5ff;
+  --s:#16a34a;--s-soft:#dcfce7;--t:#2563eb;--t-soft:#dbeafe;--e:#ca8a04;--e-soft:#fef3c7;--m:#dc2626;--m-soft:#fee2e2;
+  --shadow:0 1px 2px rgba(30,20,70,.06),0 4px 14px rgba(30,20,70,.06);
+  --shadow-lg:0 10px 40px rgba(30,20,70,.16);
+  --font-display:'Unbounded',system-ui,sans-serif;
+  --font-body:'IBM Plex Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --font-mono:'IBM Plex Mono',ui-monospace,Consolas,monospace;
+  --top-h:54px;--bot-h:58px;
+}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0f1020;--surface:#181a2e;--surface-2:#20233b;--surface-3:#2b2f4c;--border:#343a5c;
+  --ink:#eceafb;--ink-dim:#b6b8d2;--ink-faint:#8589a6;
+  --accent:#a78bfa;--accent-ink:#17122b;--accent-soft:#2b2350;
+  --s:#4ade80;--s-soft:#12301f;--t:#60a5fa;--t-soft:#14274a;--e:#facc15;--e-soft:#3a2f0b;--m:#f87171;--m-soft:#3d1a1c;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 4px 14px rgba(0,0,0,.3);--shadow-lg:0 10px 40px rgba(0,0,0,.6);
+  color-scheme:dark;
+}}
+:root[data-theme="dark"]{
+  --bg:#0f1020;--surface:#181a2e;--surface-2:#20233b;--surface-3:#2b2f4c;--border:#343a5c;
+  --ink:#eceafb;--ink-dim:#b6b8d2;--ink-faint:#8589a6;
+  --accent:#a78bfa;--accent-ink:#17122b;--accent-soft:#2b2350;
+  --s:#4ade80;--s-soft:#12301f;--t:#60a5fa;--t-soft:#14274a;--e:#facc15;--e-soft:#3a2f0b;--m:#f87171;--m-soft:#3d1a1c;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 4px 14px rgba(0,0,0,.3);--shadow-lg:0 10px 40px rgba(0,0,0,.6);
+  color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{height:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font-body);font-size:17px;line-height:1.5;overflow:hidden}
+h1,h2,h3{font-family:var(--font-display);margin:0;text-wrap:balance;line-height:1.2}
+h1{font-size:clamp(1.5rem,3.6vw,2.6rem);font-weight:700}
+h2{font-size:clamp(1.2rem,2.4vw,1.75rem);font-weight:600}
+h3{font-size:1rem;font-weight:600}
+p{margin:0}
+ul,ol{margin:0;padding-left:1.2em}
+li+li{margin-top:.3em}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+/* chrome */
+.topbar,.bottombar{position:fixed;left:0;right:0;z-index:20;background:var(--surface);display:flex;align-items:center;gap:12px;padding-inline:16px}
+.topbar{top:0;height:calc(var(--top-h) + env(safe-area-inset-top,0px));padding-top:env(safe-area-inset-top,0px);border-bottom:1px solid var(--border)}
+.bottombar{bottom:0;height:calc(var(--bot-h) + env(safe-area-inset-bottom,0px));padding-bottom:env(safe-area-inset-bottom,0px);border-top:1px solid var(--border);justify-content:space-between}
+.brand{display:flex;align-items:baseline;gap:10px;font-family:var(--font-display);font-weight:800;font-size:1.05rem;white-space:nowrap}
+.brand b.s{color:var(--s)}.brand b.t{color:var(--t)}.brand b.e{color:var(--e)}.brand b.m{color:var(--m)}
+.brand-sub{font-family:var(--font-mono);font-weight:500;font-size:.72rem;color:var(--ink-faint);letter-spacing:.04em;text-transform:uppercase}
+.progress{flex:1;height:6px;border-radius:99px;background:var(--surface-3);overflow:hidden;min-width:40px}
+.progress>i{display:block;height:100%;width:0;background:var(--accent);border-radius:99px;transition:width .4s ease}
+.icon-btn{width:38px;height:38px;border-radius:10px;border:1px solid var(--border);background:var(--surface-2);cursor:pointer;display:grid;place-items:center;flex:none}
+.icon-btn:hover{background:var(--surface-3)}
+.counter{font-family:var(--font-mono);font-size:.85rem;color:var(--ink-dim);font-variant-numeric:tabular-nums}
+.kbd-hint{font-family:var(--font-mono);font-size:.72rem;color:var(--ink-faint)}
+.nav{display:flex;gap:8px;align-items:center}
+
+.stage{position:fixed;left:0;right:0;top:calc(var(--top-h) + env(safe-area-inset-top,0px));bottom:calc(var(--bot-h) + env(safe-area-inset-bottom,0px))}
+.slide{position:absolute;inset:0;opacity:0;pointer-events:none;transition:opacity .5s ease, transform .5s ease;transform:translateY(8px);overflow-y:auto;display:flex;flex-direction:column;justify-content:flex-start;padding:26px 24px}
+.slide.active{opacity:1;pointer-events:auto;transform:none}
+.slide-inner{width:100%;max-width:1180px;margin-left:auto;margin-right:auto;margin-top:auto;margin-bottom:auto;display:flex;flex-direction:column;gap:18px;min-width:0}
+.slide-head{display:flex;flex-direction:column;gap:8px}
+.head-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between}
+.step-tag{font-family:var(--font-mono);font-size:.74rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);background:var(--accent-soft);padding:4px 10px;border-radius:99px;white-space:nowrap}
+.lead{font-size:1.08rem;color:var(--ink-dim);max-width:70ch}
+
+/* menu overlay */
+.menu{position:fixed;inset:0;z-index:40;background:rgba(10,8,30,.55);display:flex;justify-content:flex-end}
+.menu-panel{width:min(420px,100%);height:100%;background:var(--surface);box-shadow:var(--shadow-lg);padding:20px;overflow-y:auto;display:flex;flex-direction:column;gap:6px}
+.menu-panel h3{margin-bottom:8px}
+.menu-item{display:flex;gap:12px;align-items:baseline;text-align:left;padding:10px 12px;border-radius:10px;border:1px solid transparent;background:none;cursor:pointer;width:100%}
+.menu-item:hover{background:var(--surface-2)}
+.menu-item.current{background:var(--accent-soft);border-color:var(--accent)}
+.menu-item span:first-child{font-family:var(--font-mono);font-size:.78rem;color:var(--ink-faint);min-width:1.6em}
+
+/* building blocks */
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.grid-2>*,.grid-3>*,.grid-4>*{min-width:0}
+.split{display:grid;grid-template-columns:1.25fr 1fr;gap:18px}
+.split>*{min-width:0}
+.stack{display:flex;flex-direction:column;gap:12px;min-width:0}
+.row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:18px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:10px;min-width:0}
+.card.flat{box-shadow:none;background:var(--surface-2)}
+.label{font-family:var(--font-mono);font-size:.72rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-faint)}
+.big{font-family:var(--font-display);font-weight:700;font-size:clamp(1.6rem,3.4vw,2.4rem);font-variant-numeric:tabular-nums;line-height:1.1}
+.dim{color:var(--ink-dim)}.small{font-size:.9rem}
+.mono{font-family:var(--font-mono)}
+.tag{display:inline-flex;align-items:center;gap:6px;font-family:var(--font-mono);font-size:.76rem;font-weight:600;padding:3px 10px;border-radius:99px;background:var(--surface-3);color:var(--ink-dim)}
+.tag.s{background:var(--s-soft);color:var(--s)}.tag.t{background:var(--t-soft);color:var(--t)}.tag.e{background:var(--e-soft);color:var(--e)}.tag.m{background:var(--m-soft);color:var(--m)}
+.letter{font-family:var(--font-display);font-weight:800;font-size:1.5rem;width:44px;height:44px;border-radius:12px;display:grid;place-items:center;flex:none}
+.letter.s{background:var(--s-soft);color:var(--s)}.letter.t{background:var(--t-soft);color:var(--t)}.letter.e{background:var(--e-soft);color:var(--e)}.letter.m{background:var(--m-soft);color:var(--m)}
+.question{border-left:5px solid var(--accent);background:var(--accent-soft);border-radius:0 16px 16px 0;padding:16px 20px;font-size:1.12rem;font-weight:500}
+.say{display:flex;gap:12px;align-items:flex-start;background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:14px 16px}
+.say>.who{font-family:var(--font-mono);font-size:.7rem;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--accent);flex:none;padding-top:4px;min-width:64px}
+.online-note{display:flex;gap:12px;align-items:flex-start;background:var(--t-soft);border:1px dashed var(--t);border-radius:14px;padding:12px 16px;font-size:.95rem}
+.online-note>.ico{color:var(--t);flex:none;padding-top:2px}
+.online-note b{color:var(--t)}
+.steps{counter-reset:st;list-style:none;padding:0;display:flex;flex-direction:column;gap:8px}
+.steps>li{counter-increment:st;display:flex;gap:12px;align-items:flex-start;margin:0}
+.steps>li::before{content:counter(st);font-family:var(--font-display);font-weight:700;font-size:.85rem;width:28px;height:28px;border-radius:50%;background:var(--accent);color:var(--accent-ink);display:grid;place-items:center;flex:none;margin-top:1px}
+
+.btn{display:inline-flex;align-items:center;gap:8px;padding:9px 16px;border-radius:10px;border:1px solid var(--border);background:var(--surface-2);cursor:pointer;font-weight:600;font-size:.95rem}
+.btn:hover{background:var(--surface-3)}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.btn-primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.btn-primary:hover{background:var(--accent);filter:brightness(1.08)}
+.btn-sm{padding:5px 10px;font-size:.82rem}
+.chip{padding:7px 14px;border-radius:99px;border:1px solid var(--border);background:var(--surface);cursor:pointer;font-weight:500;font-size:.95rem}
+.chip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+
+.field{display:flex;flex-direction:column;gap:4px;min-width:0}
+.field>span{font-family:var(--font-mono);font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-faint)}
+.input,textarea.input{width:100%;padding:9px 12px;border-radius:10px;border:1.5px solid var(--border);background:var(--surface);min-width:0}
+textarea.input{min-height:84px;resize:vertical}
+.input:focus{outline:none;border-color:var(--accent)}
+.invalid{border-color:var(--m)!important;background:var(--m-soft)!important}
+.shake{animation:shake .4s}
+@keyframes shake{20%,60%{transform:translateX(-6px)}40%,80%{transform:translateX(6px)}}
+
+
+.table-wrap{overflow-x:auto;border:1px solid var(--border);border-radius:12px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:.93rem}
+th,td{padding:8px 12px;text-align:left;border-bottom:1px solid var(--border);vertical-align:top}
+tr:last-child>td{border-bottom:none}
+thead th{font-family:var(--font-mono);font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-faint);background:var(--surface-2);white-space:nowrap}
+td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
+
+/* spreadsheet look */
+.sheet-box{max-height:46vh;overflow:auto;border:1px solid var(--border);border-radius:12px;background:var(--surface)}
+.sheet{font-family:var(--font-mono);font-size:.84rem}
+.sheet th,.sheet td{border:1px solid var(--border);padding:5px 9px;white-space:nowrap}
+.sheet thead th{position:sticky;top:0;text-align:center;z-index:1}
+.sheet .rn{background:var(--surface-2);color:var(--ink-faint);text-align:center;width:2.4em;font-size:.74rem}
+.sheet .hdr td{font-weight:600;background:var(--accent-soft)}
+.sheet tr.new td:not(.rn){background:var(--e-soft)}
+.sheet tr.miss td:not(.rn){background:var(--m-soft)}
+.sheet td.cell{padding:0}
+.sheet td.cell input{border:0;background:transparent;width:100%;min-width:7.5em;padding:6px 9px;font:inherit}
+.sheet td.cell input:focus{outline:2px solid var(--accent);outline-offset:-2px}
+.formula{display:grid;grid-template-columns:1fr auto;gap:4px 12px;align-items:center;font-family:var(--font-mono);font-size:.82rem}
+.formula code{color:var(--ink-dim);overflow-wrap:anywhere}
+.formula b{font-size:1.05rem;font-variant-numeric:tabular-nums;text-align:right;min-width:2ch}
+.status{font-weight:600;padding:8px 12px;border-radius:10px;background:var(--surface-2)}
+.status.ok{background:var(--s-soft);color:var(--s)}
+.status.bad{background:var(--m-soft);color:var(--m)}
+.status.warn{background:var(--e-soft);color:var(--e)}
+
+.chart-box{position:relative;height:260px;min-width:0}
+.chart-box canvas{max-width:100%}
+.fb-bars{display:flex;flex-direction:column;gap:8px}
+.fb-title{font-family:var(--font-display);font-size:.9rem;font-weight:600}
+.bar-row{display:grid;grid-template-columns:minmax(90px,34%) 1fr auto;gap:10px;align-items:center;font-size:.9rem}
+.bar-track{height:18px;border-radius:6px;background:var(--surface-3);overflow:hidden}
+.bar-track>i{display:block;height:100%;border-radius:6px;transition:width .3s}
+.bar-row>b{font-variant-numeric:tabular-nums;min-width:2.5ch;text-align:right}
+
+
+.check{display:flex;gap:12px;align-items:flex-start;padding:10px 12px;border-radius:10px;border:1px solid var(--border);background:var(--surface);cursor:pointer}
+.check input{width:20px;height:20px;margin-top:2px;accent-color:var(--accent);flex:none}
+.check:has(input:checked){background:var(--s-soft);border-color:var(--s)}
+
+.reveal{text-align:left;cursor:pointer;border:1px dashed var(--border);background:var(--surface-2);border-radius:12px;padding:12px 14px;width:100%;display:flex;flex-direction:column;gap:4px}
+.reveal .hid{display:none}
+.reveal.open{border-style:solid;background:var(--surface)}
+.reveal.open .hid{display:block}
+.reveal.open .cue{display:none}
+.reveal .cue{font-family:var(--font-mono);font-size:.76rem;color:var(--ink-faint)}
+
+.pdf-status{font-size:.9rem;color:var(--ink-dim)}
+.pdf-status.err{color:var(--m);font-weight:600}
+.pdf-status.ok{color:var(--s);font-weight:600}
+.pdf-sheet{position:fixed;left:-10000px;top:0;width:794px;padding:48px;background:#ffffff !important;color:#14162a !important;font-family:'IBM Plex Sans',Arial,sans-serif;font-size:16px;line-height:1.5}
+.pdf-sheet h1{font-family:'Unbounded',Arial,sans-serif;font-size:22px;color:#14162a !important;margin:0 0 4px}
+.pdf-sheet h2{font-family:'Unbounded',Arial,sans-serif;font-size:15px;color:#14162a !important;margin:22px 0 8px}
+.pdf-sheet .pdf-meta{color:#474a66 !important;font-size:13px}
+.pdf-sheet table{width:100%;border-collapse:collapse;font-size:15px}
+.pdf-sheet td,.pdf-sheet th{border:1px solid #c9c4dd !important;padding:8px 10px;color:#14162a !important;background:#ffffff !important;text-align:left}
+.pdf-sheet th{background:#f0eef8 !important;font-family:'IBM Plex Sans',Arial,sans-serif;font-size:13px;text-transform:none;letter-spacing:0}
+.pdf-sheet .pdf-box{border:1px solid #c9c4dd !important;border-radius:8px;padding:12px 14px;color:#14162a !important;background:#ffffff !important;white-space:pre-wrap;overflow-wrap:anywhere}
+.pdf-sheet .pdf-line{border-top:3px solid #7c3aed !important;margin:14px 0 18px}
+
+@media(max-width:900px){
+  .grid-4{grid-template-columns:1fr 1fr}
+  .split,.grid-3{grid-template-columns:1fr}
+}
+@media(max-width:700px){
+  body{font-size:16px}
+  .grid-2,.grid-4{grid-template-columns:1fr}
+  .slide{padding:18px 16px}
+  .kbd-hint,.brand-sub{display:none}
+  .sheet-box{max-height:none}
+}
+@media(max-width:640px){
+  .say{flex-direction:column;gap:4px}
+  .step-tag{white-space:normal}
+  .bar-row{grid-template-columns:minmax(72px,36%) 1fr auto}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+
+/* self-study blocks */
+.def{border-left:4px solid var(--accent);padding:2px 0 2px 14px}
+.def>b{font-family:var(--font-display);font-weight:600;font-size:.95rem}
+.syntax{font-family:var(--font-mono);font-size:clamp(.95rem,1.7vw,1.2rem);font-weight:600;padding:12px 14px;border-radius:12px;background:var(--surface-2);overflow-wrap:anywhere}
+.syntax .p1{color:var(--t)}.syntax .p2{color:var(--m)}.syntax .p3{color:var(--s)}
+.c-t{color:var(--t)}.c-m{color:var(--m)}.c-s{color:var(--s)}.c-e{color:var(--e)}.c-a{color:var(--accent)}
+.quiz{display:flex;flex-direction:column;gap:8px}
+.quiz>.q{font-weight:600}
+.opt{text-align:left;padding:10px 14px;border-radius:10px;border:1.5px solid var(--border);background:var(--surface);cursor:pointer;width:100%}
+.opt:hover:not(:disabled){border-color:var(--accent)}
+.opt:disabled{cursor:default}
+.opt.right{border-color:var(--s);background:var(--s-soft);font-weight:600}
+.opt.wrong{border-color:var(--m);background:var(--m-soft)}
+.why{font-size:.92rem;color:var(--ink-dim)}
+.quiz-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.quiz-grid>*{min-width:0}
+@media(max-width:900px){.quiz-grid{grid-template-columns:1fr}}
+
+</style>
+</head>
+<body>
+<header class="topbar">
+  <span class="brand"><span><b class="s">S</b><b class="t">T</b><b class="e">E</b><b class="m">M</b></span><span class="brand-sub">7 клас · Урок 11</span></span>
+  <div class="progress" aria-hidden="true"><i id="progress"></i></div>
+  <button type="button" class="icon-btn" id="themeBtn" aria-label="Змінити тему" title="Світла / темна тема"><i class="fa-solid fa-circle-half-stroke"></i></button>
+  <button type="button" class="icon-btn" id="menuBtn" aria-label="Усі слайди" title="Усі слайди"><i class="fa-solid fa-bars"></i></button>
+</header>
+<div class="menu" id="menu" hidden><nav class="menu-panel" aria-label="Слайди"><h3>Урок 11 · слайди</h3><div id="menuList"></div></nav></div>
+<main class="stage">
+<!-- 1 -->
+<section class="slide" data-title="Тема уроку">
+  <div class="slide-inner">
+    <header class="slide-head">
+      <div class="row"><span class="step-tag">Урок 11</span><span class="tag m">M · математика</span><span class="tag t">T · інформатика</span></div>
+      <h1>Аналізую дані харчування родини: від щоденника до цифрової діаграми</h1>
+    </header>
+    <div class="question">Мій щоденник харчування родини за тиждень — це купа окремих паперових рядків. Як за кілька хвилин перетворити його на діаграму й конкретну відповідь на моє дослідницьке питання за допомогою комп'ютера?</div>
+    <div class="grid-4">
+      <div class="card"><span class="label">Знатимеш</span><p>як внести реальні дані в таблицю так, щоб формула порахувала їх правильно</p></div>
+      <div class="card"><span class="label">Проаналізуєш</span><p>власний щоденник формулою COUNTIF або SUM / AVERAGE</p></div>
+      <div class="card"><span class="label">Створиш</span><p>заповнену таблицю й автоматичну діаграму на власних даних</p></div>
+      <div class="card"><span class="label">Аргументуєш</span><p>висновок — пряму відповідь на своє питання з числами з діаграми</p></div>
+    </div>
+    <div class="grid-2">
+      <div class="card flat"><span class="label">Що знадобиться</span><ul><li>паперовий тижневий щоденник харчування родини;</li><li>твій файл Google Таблиць з уроку 10 — із заголовками колонок і формулою;</li><li>комп'ютер або ноутбук (на телефоні будувати діаграму незручно).</li></ul></div>
+      <div class="card flat"><span class="label">Як працювати з цією сторінкою</span><ul><li>гортай слайди кнопками внизу або стрілками ← →;</li><li>читай теорію, натискай на інтерактивні приклади, відповідай на запитання для самоперевірки;</li><li>твої відповіді зберігаються на цьому пристрої, тож можна зробити перерву й повернутися.</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- 2 -->
+<section class="slide" data-title="Теорія: сирі дані та їх обробка">
+  <div class="slide-inner">
+    <header class="slide-head">
+      <div class="row"><span class="step-tag">Теорія · 1</span></div>
+      <h2>Сирі дані ще не є відповіддю</h2>
+      <p class="lead">Твій щоденник — це перелік окремих записів. Щоб відповісти на дослідницьке питання, записи треба обробити: порахувати, скільки разів щось трапилось, або знайти суму чи середнє.</p>
+    </header>
+    <div class="grid-2">
+      <div class="card">
+        <div class="def"><b>Сирі (первинні) дані</b><p>Записи в тому вигляді, у якому їх зібрали: рядок за рядком, без підрахунків. Наприклад: «Пн, сніданок, вівсянка».</p></div>
+        <div class="def"><b>Категорія</b><p>Група, до якої належить запис. Вівсянка, гречка й рис — різні страви, але одна категорія «Крупи». Саме категорії роблять записи порівнюваними.</p></div>
+        <div class="def"><b>Частота</b><p>Скільки разів значення трапилось у наборі даних. Якщо «Крупи» записано 6 разів, частота цієї категорії — 6.</p></div>
+        <div class="def"><b>Сума й середнє арифметичне</b><p>Сума — результат додавання всіх чисел. Середнє — сума, поділена на кількість чисел. Порції овочів за 4 прийоми їжі: 1, 2, 0, 1 → сума 4, середнє 4 : 4 = 1.</p></div>
+      </div>
+      <div class="stack">
+        <div class="card">
+          <span class="label">Який спосіб обробки для якого питання</span>
+          <div class="table-wrap"><table>
+            <thead><tr><th>Питання звучить так</th><th>Рахуємо</th><th>Формула</th></tr></thead>
+            <tbody>
+              <tr><td>«Що трапляється найчастіше?», «Скільки разів було…?»</td><td>частоти категорій</td><td class="mono">COUNTIF</td></tr>
+              <tr><td>«Скільки всього порцій за тиждень?»</td><td>суму чисел</td><td class="mono">SUM</td></tr>
+              <tr><td>«Скільки в середньому за один прийом їжі?»</td><td>середнє</td><td class="mono">AVERAGE</td></tr>
+            </tbody>
+          </table></div>
+        </div>
+        <div class="card flat"><span class="label">Шлях даних</span><p><b>Зібрати</b> (щоденник) → <b>упорядкувати</b> (таблиця з однаковими колонками) → <b>обробити</b> (формула) → <b>показати</b> (діаграма) → <b>пояснити</b> (висновок). Сьогодні ти проходиш чотири останні кроки.</p></div>
+        <div class="quiz" data-quiz="raw" data-answer="1">
+          <p class="q">У щоденнику 21 запис, «Молочне» трапилось 7 разів. Що таке число 7?</p>
+          <button type="button" class="opt">Середнє арифметичне</button>
+          <button type="button" class="opt">Частота категорії</button>
+          <button type="button" class="opt">Сирі дані</button>
+          <p class="why" hidden>7 — це частота: стільки разів категорія трапилась серед усіх записів.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3 -->
+<section class="slide" data-title="Теорія: формули COUNTIF, SUM, AVERAGE">
+  <div class="slide-inner">
+    <header class="slide-head">
+      <div class="row"><span class="step-tag">Теорія · 2</span></div>
+      <h2>Як влаштовані формули у твоєму файлі</h2>
+      <p class="lead">Кожна формула починається зі знака «=». Далі йде назва функції, а в дужках — дані, з якими вона працює.</p>
+    </header>
+    <div class="grid-2">
+      <div class="card">
+        <span class="tag t">Варіанти 1 і 2 · рахуємо частоти</span>
+        <p class="syntax">=COUNTIF(<span class="p1">D2:D40</span>;<span class="p2">"Крупи"</span>)</p>
+        <ul>
+          <li><b class="c-t">D2:D40</b> — діапазон: клітинки колонки «Категорія», у яких функція шукає.</li>
+          <li><b class="c-m">"Крупи"</b> — умова: текст, який має стояти в клітинці. Текст завжди пишуть у лапках.</li>
+          <li>Результат — кількість клітинок діапазону, що відповідають умові. Для кожної категорії потрібна окрема формула.</li>
+        </ul>
+        <span class="tag m">Варіант 3 · рахуємо суму й середнє</span>
+        <p class="syntax">=SUM(<span class="p1">D2:D40</span>) &nbsp; =AVERAGE(<span class="p1">D2:D40</span>)</p>
+        <ul>
+          <li>SUM додає всі числа діапазону. AVERAGE ділить цю суму на кількість чисел.</li>
+          <li>Порожні клітинки й клітинки з текстом обидві функції пропускають.</li>
+        </ul>
+      </div>
+      <div class="stack">
+        <div class="card">
+          <span class="label">Правила, через які формула «помиляється»</span>
+          <ul>
+            <li><b>Текст має збігатися повністю.</b> «Крупи» і «Крупи » (з пробілом у кінці) для COUNTIF — різні значення. Те саме з пропущеною літерою чи дефісом.</li>
+            <li><b>Регістр літер не важливий.</b> «крупи» і «Крупи» функція порахує однаково. Проте краще писати однаково — так таблицю легше читати.</li>
+            <li><b>Число має бути числом.</b> «2 порції» або «2 » — це вже текст, і SUM його не додасть. Дробові числа пиши через кому: 1,5.</li>
+            <li><b>Діапазон має охоплювати всі рядки.</b> Якщо записів більше, ніж передбачає D2:D40, останні не потраплять у підрахунок.</li>
+            <li><b>Розділювач — крапка з комою.</b> У таблицях з українськими налаштуваннями частини формули розділяє «;».</li>
+          </ul>
+        </div>
+        <div class="quiz" data-quiz="avg" data-answer="2">
+          <p class="q">У клітинках D2:D5 записано 2, 1, «багато», 3. Що покаже =AVERAGE(D2:D5)?</p>
+          <button type="button" class="opt">1,5 — суму 6 поділено на 4 клітинки</button>
+          <button type="button" class="opt">Помилку</button>
+          <button type="button" class="opt">2 — суму 6 поділено на 3 числа</button>
+          <p class="why" hidden>Текст «багато» функція пропускає, тому чисел три: (2 + 1 + 3) : 3 = 2. Результат виглядає правдоподібно, хоча один запис загубився — тому дані треба перевіряти.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4 -->
+<section class="slide" data-title="Приклад: жива таблиця">
+  <div class="slide-inner">
+    <header class="slide-head">
+      <div class="row"><span class="step-tag">Приклад</span></div>
+      <h2>Вноси рядок — формула рахує сама</h2>
+      <p class="lead">Перед тобою демонстраційний щоденник (варіант 1): 18 вигаданих записів за тиждень. Вноси рядки по одному й стеж, як змінюються числа праворуч. Потім побудуй діаграму й підпиши її.</p>
+    </header>
+    <div class="split">
+      <div class="stack">
+        <div class="row">
+          <button type="button" class="btn btn-primary" id="demoAdd"><i class="fa-solid fa-plus"></i> Внести рядок</button>
+          <button type="button" class="btn" id="demoAll">Внести всі 18</button>
+          <button type="button" class="btn" id="demoReset">Спочатку</button>
+          <span class="tag" id="demoCount"></span>
+        </div>
+        <div class="sheet-box" id="demoBox"><table class="sheet">
+          <thead><tr><th class="rn"></th><th>A</th><th>B</th><th>C</th><th>D</th></tr></thead>
+          <tbody id="demoBody"></tbody>
+        </table></div>
+      </div>
+      <div class="stack">
+        <div class="card">
+          <span class="label">Підсумкові клітинки з формулою</span>
+          <div class="formula" id="demoFormula"></div>
+          <div class="status" id="demoCheck"></div>
+        </div>
+        <div class="card">
+          <div class="row"><button type="button" class="btn btn-primary" id="demoChartBtn"><i class="fa-solid fa-chart-column"></i> Вставити → Діаграма</button></div>
+          <div id="demoChartArea" hidden class="stack">
+            <div class="grid-2" data-flow>
+              <label class="field"><span>Заголовок діаграми</span><input class="input" id="demoTitle" data-save="demo-title" placeholder="Харчування моєї родини за тиждень"></label>
+              <label class="field"><span>Підпис осі X</span><input class="input" id="demoX" data-save="demo-x" placeholder="Категорія їжі"></label>
+              <label class="field"><span>Підпис осі Y</span><input class="input" id="demoY" data-save="demo-y" placeholder="Кількість записів"></label>
+            </div>
+            <div class="chart-box"><canvas id="demoCanvas"></canvas></div><div id="demoFb" hidden></div>
+          </div>
+        </div>
+        <div class="card flat" id="demoConclusion" hidden>
+          <span class="label">Висновок до цього прикладу</span>
+          <p>«У харчуванні моєї родини за тиждень переважають страви на основі круп (6 із 18 записів, тобто третина), а солодощі трапляються рідко (лише 1 раз)».</p>
+        </div>
+      </div>
+    </div>
+    <div class="card flat"><span class="label">Головна перевірка</span><p>Кожен запис належить рівно до однієї категорії, тому сума всіх результатів COUNTIF має дорівнювати кількості рядків. Тут 6 + 4 + 5 + 2 + 1 = 18. Якщо сума менша, якийсь запис формула не розпізнала.</p></div>
+  </div>
+</section>
+
+<!-- 5 -->
+<section class="slide" data-title="Теорія: частка й відсоток">
+  <div class="slide-inner">
+    <header class="slide-head">
+      <div class="row"><span class="step-tag">Теорія · 3</span></div>
+      <h2>Від частоти до частки: «6 із 18» — це багато чи мало?</h2>
+      <p class="lead">Саме число 6 мало що каже, доки не знаєш, скільки записів було всього. Тому частоту порівнюють із загальною кількістю.</p>
+    </header>
+    <div class="grid-2">
+      <div class="card">
+        <div class="def"><b>Частка (відносна частота)</b><p>Частота, поділена на загальну кількість записів: 6 : 18 = 1/3. Частку зручно називати словами: третина, половина, чверть.</p></div>
+        <div class="def"><b>Відсоток</b><p>Частка, помножена на 100: 6 : 18 × 100 ≈ 33 %. У таблиці це формула <span class="mono">=B2/B7</span> з форматом клітинки «Відсоток».</p></div>
+        <div class="def"><b>Навіщо це потрібно</b><p>Частки дають змогу порівнювати щоденники різної довжини. У тебе 18 записів, у когось 30: частоти порівнювати нечесно, а відсотки — можна.</p></div>
+        <p class="small dim">Сума всіх відсотків має бути 100 %. Через округлення іноді виходить 99 % або 101 % — це нормально.</p>
+      </div>
+      <div class="stack">
+        <div class="card">
+          <span class="label">Демонстраційний приклад · 18 записів</span>
+          <div class="table-wrap"><table>
+            <thead><tr><th>Категорія</th><th class="num">Частота</th><th class="num">Частка</th><th class="num">Відсоток</th></tr></thead>
+            <tbody>
+              <tr><td>Крупи</td><td class="num">6</td><td class="num">6/18</td><td class="num">33 %</td></tr>
+              <tr><td>Білкове</td><td class="num">5</td><td class="num">5/18</td><td class="num">28 %</td></tr>
+              <tr><td>Овочі-фрукти</td><td class="num">4</td><td class="num">4/18</td><td class="num">22 %</td></tr>
+              <tr><td>Молочне</td><td class="num">2</td><td class="num">2/18</td><td class="num">11 %</td></tr>
+              <tr><td>Солодке</td><td class="num">1</td><td class="num">1/18</td><td class="num">6 %</td></tr>
+              <tr><td><b>Разом</b></td><td class="num"><b>18</b></td><td class="num"><b>18/18</b></td><td class="num"><b>100 %</b></td></tr>
+            </tbody>
+          </table></div>
+        </div>
+        <div class="quiz" data-quiz="share" data-answer="0">
+          <p class="q">У щоденнику 20 записів, «Овочі-фрукти» — 5 разів. Яка це частка?</p>
+          <button type="button" class="opt">Чверть, тобто 25 %</button>
+          <button type="button" class="opt">П'ята частина, тобто 20 %</button>
+          <button type="button" class="opt">5 %</button>
+          <p class="why" hidden>5 : 20 = 1/4 = 0,25, тобто 25 %.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 6 -->
+<section class="slide" data-title="Теорія: яку діаграму обрати">
+  <div class="slide-inner">
+    <header class="slide-head">
+      <div class="row"><span class="step-tag">Теорія · 4</span></div>
+      <h2>Діаграма показує те, що в таблиці треба вишукувати</h2>
+      <p class="lead">Тип діаграми обирають за тим, що саме хочеш показати.</p>
+    </header>
+    <div class="grid-3">
+      <div class="card"><span class="tag t"><i class="fa-solid fa-chart-column"></i> Стовпчикова</span><p><b>Порівнює величини між категоріями.</b> Висота стовпчика — це число. Одразу видно, чого найбільше й найменше.</p><p class="small dim">Підходить для частот, сум, середніх. Це основний тип для сьогоднішньої роботи.</p></div>
+      <div class="card"><span class="tag e"><i class="fa-solid fa-chart-pie"></i> Кругова</span><p><b>Показує частки цілого.</b> Усе коло — 100 %, сектор — частка категорії.</p><p class="small dim">Підходить, коли категорій небагато (до 5–6) і разом вони складають ціле. Близькі за розміром сектори на ній важко порівняти.</p></div>
+      <div class="card"><span class="tag s"><i class="fa-solid fa-chart-line"></i> Лінійний графік</span><p><b>Показує зміну з часом.</b> Точки з'єднано лінією, бо між ними є порядок: день за днем.</p><p class="small dim">Підходить для питання «як змінювалась кількість порцій овочів протягом тижня».</p></div>
+    </div>
+    <div class="grid-2">
+      <div class="card">
+        <span class="label">З чого складається зрозуміла діаграма</span>
+        <ul>
+          <li><b>Заголовок</b> — що й за який період показано: «Харчування моєї родини за тиждень».</li>
+          <li><b>Підпис горизонтальної осі (X)</b> — що відкладено внизу: «Категорія їжі».</li>
+          <li><b>Підпис вертикальної осі (Y)</b> — що означає висота: «Кількість записів».</li>
+          <li><b>Вісь Y починається з нуля</b> — інакше різниця між стовпчиками здається більшою, ніж є насправді.</li>
+        </ul>
+        <span class="label">Як побудувати в Google Таблицях</span>
+        <ol class="steps">
+          <li><div>Виділи підсумкові клітинки: назви категорій і числа біля них.</div></li>
+          <li><div>Меню «Вставити» → «Діаграма».</div></li>
+          <li><div>У панелі редагування праворуч обери тип «Стовпчикова».</div></li>
+          <li><div>Там само додай заголовок діаграми й підписи осей.</div></li>
+        </ol>
+      </div>
+      <div class="stack">
+        <div class="quiz" data-quiz="chart1" data-answer="1">
+          <p class="q">Хочеш показати, яку частину всіх записів займає кожна з 5 категорій. Який тип найдоречніший?</p>
+          <button type="button" class="opt">Лінійний графік</button>
+          <button type="button" class="opt">Кругова діаграма</button>
+          <button type="button" class="opt">Жодна — досить таблиці</button>
+          <p class="why" hidden>Кругова діаграма створена для часток цілого. Стовпчикова теж підійшла б, якщо важливо порівняти категорії між собою.</p>
+        </div>
+        <div class="quiz" data-quiz="chart2" data-answer="0">
+          <p class="q">На діаграмі немає заголовка й підписів осей. У чому проблема?</p>
+          <button type="button" class="opt">Без пояснень незрозуміло, що саме й у яких одиницях показано</button>
+          <button type="button" class="opt">Формула перестане рахувати</button>
+          <button type="button" class="opt">Проблеми немає, це лише прикраса</button>
+          <p class="why" hidden>Діаграму має зрозуміти людина, яка не бачила твоєї таблиці. Заголовок і підписи осей відповідають на питання «що це?» і «в чому виміряно?».</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 7 -->
+<section class="slide" data-title="Практична робота у твоїй таблиці">
+  <div class="slide-inner">
+    <header class="slide-head">
+      <div class="row"><span class="step-tag">Практична робота</span></div>
+      <h2>Твій щоденник → твоя таблиця → твоя діаграма</h2>
+      <p class="lead">Це головна частина уроку. Відкрий свій файл з уроку 10 у сусідній вкладці й виконуй кроки по черзі.</p>
+    </header>
+    <div class="split">
+      <div class="card">
+        <span class="label">Алгоритм</span>
+        <ol class="steps">
+          <li><div>Відкрий файл, підготовлений на уроці 10: заголовки колонок і формула внизу вже готові.</div></li>
+          <li><div>Перенеси кожен рядок щоденника: <b>День, Прийом їжі, Що з'їли, Категорія</b>. Категорії пиши точно так само, як у формулі.</div></li>
+          <li><div>Перевір формулу. COUNTIF: сума всіх категорій дорівнює кількості рядків. SUM / AVERAGE: число виглядає реалістично.</div></li>
+          <li><div>Виділи назви категорій і числа → «Вставити» → «Діаграма» → «Стовпчикова». Додай заголовок і підписи осей.</div></li>
+          <li><div>Напиши висновок одним-двома реченнями: пряма відповідь на твоє питання з числами з діаграми.</div></li>
+        </ol>
+        <span class="label">Обери свій рівень</span>
+        <div class="grid-3">
+          <div class="card flat"><span class="tag s">Базовий</span><p class="small">Внеси перші рядки, звіряючись із прикладом на слайді «Жива таблиця», далі продовжуй за зразком. Діаграму будуй за кроком 4.</p></div>
+          <div class="card flat"><span class="tag e">Достатній</span><p class="small">Усе самостійно: дані, перевірка формули, діаграма із заголовком і підписами осей, висновок.</p></div>
+          <div class="card flat"><span class="tag m">Високий</span><p class="small">Додатково спробуй кругову діаграму й порівняй, яка зрозуміліша для твого результату. Або виконай ту саму задачу в Google Colab / Python, якщо вже програмуєш.</p></div>
+        </div>
+      </div>
+      <div class="stack">
+        <div class="card">
+          <div class="head-row"><span class="label">Контрольний список</span><span class="tag" id="checkCount"></span></div>
+          <label class="check"><input type="checkbox" id="ck1" data-check="1"><span>Усі рядки паперового щоденника внесено в таблицю</span></label>
+          <label class="check"><input type="checkbox" id="ck2" data-check="2"><span>Формула показує число, що логічно збігається з кількістю записів</span></label>
+          <label class="check"><input type="checkbox" id="ck3" data-check="3"><span>Діаграма побудована через «Вставити → Діаграма»</span></label>
+          <label class="check"><input type="checkbox" id="ck4" data-check="4"><span>Діаграма має заголовок і підписані осі</span></label>
+          <label class="check"><input type="checkbox" id="ck5" data-check="5"><span>Написано висновок з конкретними числами, що відповідає на дослідницьке питання</span></label>
+        </div>
+        <div class="card flat"><span class="label">Якщо щоденник неповний</span><p>Працюй із тими днями, які є. Якщо записів зовсім мало, візьми запасний набір даних на наступному слайді й потренуйся на ньому.</p></div>
+        <div class="online-note"><span class="ico"><i class="fa-solid fa-paperclip"></i></span><div><b>Що здати в Classroom.</b> Посилання на свій файл або знімок екрана таблиці з діаграмою, а також текст висновку.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 8 -->
+<section class="slide" data-title="Тренажер: чому формула рахує не все?">
+  <div class="slide-inner">
+    <header class="slide-head">
+      <div class="head-row"><span class="step-tag">Тренажер · запасний набір даних</span><div class="row"><button type="button" class="btn btn-sm" id="detHint">Підказка</button><button type="button" class="btn btn-sm" id="detAdd">+ рядок</button><button type="button" class="btn btn-sm" id="detReset">Скинути</button></div></div>
+      <h2>У таблиці 12 записів, а формули нарахували менше. Знайди й виправ клітинки</h2>
+      <p class="lead">Клітинки можна редагувати. Формула зараховує категорію лише тоді, коли текст збігається повністю: зайвий пробіл, пропущена літера чи дефіс — і запис не пораховано.</p>
+    </header>
+    <div class="split">
+      <div class="sheet-box"><table class="sheet">
+        <thead><tr><th class="rn"></th><th>A</th><th>B</th><th>C</th><th>D</th></tr></thead>
+        <tbody id="detBody"></tbody>
+      </table></div>
+      <div class="stack">
+        <div class="card">
+          <span class="label">COUNTIF по категоріях</span>
+          <div class="formula" id="detFormula"></div>
+          <div class="status" id="detCheck"></div>
+        </div>
+        <div class="card">
+          <div class="row"><span class="label">Тип діаграми</span>
+            <button type="button" class="chip" data-det-type="bar" aria-pressed="true">Стовпчикова</button>
+            <button type="button" class="chip" data-det-type="pie" aria-pressed="false">Кругова</button></div>
+          <div class="chart-box"><canvas id="detCanvas"></canvas></div><div id="detFb" hidden></div>
+        </div>
+      </div>
+    </div>
+    <div class="grid-2">
+      <div class="card flat"><span class="label">Типові помилки введення</span><ul>
+        <li><b>Зайвий пробіл</b> на початку чи в кінці — його не видно, але для формули це інший текст.</li>
+        <li><b>Одруківка</b>: пропущена або зайва літера.</li>
+        <li><b>Інший запис тієї самої категорії</b>: «Овочі фрукти» замість «Овочі-фрукти».</li>
+        <li><b>Латинська літера замість кириличної</b>: «о», «і», «с» в обох розкладках виглядають однаково.</li>
+      </ul></div>
+      <div class="card flat"><span class="label">Якщо рахуєш SUM / AVERAGE (варіант 3)</span><p>Середнє має бути правдоподібним: якщо в більшості прийомів їжі було по 1 порції овочів, AVERAGE буде близько 1, а не 10. Число дивне? Перевір, чи в клітинках лише числа — без пробілів і літер.</p><p class="small dim">Порада: щоб не помилятися в категоріях, копіюй назву з уже заповненої клітинки, а не набирай щоразу заново.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 9 -->
+<section class="slide" data-title="Теорія: як написати висновок">
+  <div class="slide-inner">
+    <header class="slide-head">
+      <div class="row"><span class="step-tag">Теорія · 5</span></div>
+      <h2>Висновок — це відповідь на питання, підкріплена числами</h2>
+    </header>
+    <div class="grid-2">
+      <div class="card">
+        <span class="label">Три складники сильного висновку</span>
+        <ol class="steps">
+          <li><div><b>Пряма відповідь</b> на твоє дослідницьке питання — тими самими словами, якими воно поставлене.</div></li>
+          <li><div><b>Числа з діаграми</b>: частота і, якщо можеш, частка («6 із 18, тобто третина»).</div></li>
+          <li><div><b>Порівняння</b>: що переважає, а чого найменше.</div></li>
+        </ol>
+        <div class="table-wrap"><table>
+          <thead><tr><th>Слабкий висновок</th><th>Сильний висновок</th></tr></thead>
+          <tbody>
+            <tr><td>«Ми їмо багато каш і мало солодкого».</td><td>«У харчуванні моєї родини за тиждень переважають страви на основі круп (6 із 18 записів, тобто третина), а солодощі трапляються рідко (лише 1 раз)».</td></tr>
+            <tr><td>Немає чисел, тож перевірити неможливо. Не сказано, за який період.</td><td>Є відповідь, період, числа й порівняння. Кожне твердження можна звірити з діаграмою.</td></tr>
+          </tbody>
+        </table></div>
+        <p class="small dim">Висновок описує лише твої дані за цей тиждень. Писати «наша родина завжди харчується так» не можна — для цього одного тижня замало.</p>
+      </div>
+      <div class="stack">
+        <div class="card">
+          <span class="label">Ручний метод (урок 3) і цифровий метод (сьогодні)</span>
+          <div class="table-wrap"><table>
+            <thead><tr><th></th><th>Зарубки й лінійка</th><th>Формула й діаграма</th></tr></thead>
+            <tbody>
+              <tr><td><b>Швидкість</b></td><td>повільно навіть для одного опитування</td><td>кілька хвилин</td></tr>
+              <tr><td><b>Підрахунок</b></td><td>легко збитися</td><td>без арифметичних помилок</td></tr>
+              <tr><td><b>Зміни в даних</b></td><td>усе перераховувати й перемальовувати</td><td>результат і діаграма оновлюються самі</td></tr>
+              <tr><td><b>Слабке місце</b></td><td>помилка зазвичай помітна одразу</td><td>помилка введення непомітна: формула порахує й неправильні дані</td></tr>
+            </tbody>
+          </table></div>
+        </div>
+        <div class="question">Комп'ютер рахує швидко й безпомилково — якщо дані введені правильно. Відповідальність за якість вхідних даних завжди залишається на людині.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 10 -->
+<section class="slide" data-title="Перевір себе">
+  <div class="slide-inner">
+    <header class="slide-head">
+      <div class="head-row"><span class="step-tag">Перевір себе</span><button type="button" class="btn btn-sm" data-quiz-reset>Пройти ще раз</button></div>
+      <h2>П'ять запитань за матеріалом уроку</h2>
+    </header>
+    <div class="quiz-grid">
+      <div class="card quiz" data-quiz="f1" data-answer="2">
+        <p class="q">1. У таблиці 20 рядків, а сума результатів COUNTIF за всіма категоріями — 18. Що це означає?</p>
+        <button type="button" class="opt">Усе гаразд, так і має бути</button>
+        <button type="button" class="opt">Формула зламалась, її треба видалити</button>
+        <button type="button" class="opt">Два записи формула не розпізнала — треба шукати помилки в категоріях</button>
+        <p class="why" hidden>Кожен запис має одну категорію, тож сума частот дорівнює кількості рядків. Різниця 2 — це два записи з помилкою в назві категорії.</p>
+      </div>
+      <div class="card quiz" data-quiz="f2" data-answer="0">
+        <p class="q">2. Яку клітинку формула =COUNTIF(D2:D40;"Молочне") НЕ порахує?</p>
+        <button type="button" class="opt">«Молочне » — із пробілом у кінці</button>
+        <button type="button" class="opt">«молочне» — з малої літери</button>
+        <button type="button" class="opt">«Молочне» у клітинці D40</button>
+        <p class="why" hidden>Пробіл — це теж символ, тому текст уже не збігається. Регістр літер COUNTIF не розрізняє, а D40 входить у діапазон.</p>
+      </div>
+      <div class="card quiz" data-quiz="f3" data-answer="1">
+        <p class="q">3. Порції овочів за п'ять прийомів їжі: 1, 0, 2, 1, 1. Чому дорівнює середнє?</p>
+        <button type="button" class="opt">5</button>
+        <button type="button" class="opt">1</button>
+        <button type="button" class="opt">2</button>
+        <p class="why" hidden>Сума 1 + 0 + 2 + 1 + 1 = 5, чисел п'ять, отже 5 : 5 = 1. Нуль теж рахується як число.</p>
+      </div>
+      <div class="card quiz" data-quiz="f4" data-answer="1">
+        <p class="q">4. Що з цього — сильний висновок?</p>
+        <button type="button" class="opt">«Діаграма вийшла гарна, усі стовпчики різні»</button>
+        <button type="button" class="opt">«За тиждень домашня їжа була в 15 із 21 прийому їжі, готова — у 6, тобто вдома готують значно частіше»</button>
+        <button type="button" class="opt">«Наша родина завжди харчується правильно»</button>
+        <p class="why" hidden>У другому варіанті є відповідь, період, числа й порівняння. Третій робить твердження, яке дані за один тиждень не підтверджують.</p>
+      </div>
+      <div class="card quiz" data-quiz="f5" data-answer="0">
+        <p class="q">5. У чому слабке місце цифрового методу?</p>
+        <button type="button" class="opt">Формула не помічає помилок у введених даних і рахує їх як є</button>
+        <button type="button" class="opt">Комп'ютер часто помиляється в додаванні</button>
+        <button type="button" class="opt">Діаграму щоразу треба перемальовувати вручну</button>
+        <p class="why" hidden>Обчислює комп'ютер точно, і діаграма оновлюється сама. Але якість результату залежить від того, що ти ввів(-ла).</p>
+      </div>
+      <div class="stack">
+        <div class="status" data-quiz-score><span></span></div>
+        <div class="card flat"><span class="label">Критерії оцінювання практичної роботи</span>
+          <ul class="small">
+            <li><b>Початковий:</b> дані внесено частково; формула показує помилку або нелогічний результат; діаграми й висновку немає.</li>
+            <li><b>Достатній:</b> усі дані внесено коректно; сума збігається з кількістю записів; діаграма побудована й підписана; висновок відповідає на питання з числами.</li>
+            <li><b>Високий:</b> усе з «Достатнього» + інший тип діаграми або додаткове форматування.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 11 -->
+<section class="slide" data-title="Домашнє завдання">
+  <div class="slide-inner">
+    <header class="slide-head">
+      <div class="row"><span class="step-tag">Домашнє завдання</span></div>
+      <h2>Ми порахували, що їмо. А на що витрачаємо енергію?</h2>
+      <p class="lead">Їжа — це енергія, яку організм отримує. На наступному уроці йтиметься про другу половину картини: скільки енергії він витрачає. Сьогодні ввечері пригадай свій день і орієнтовно розпиши його за годинами на 4 категорії. Точності до півгодини достатньо.</p>
+    </header>
+    <div class="split">
+      <div class="card" data-flow>
+        <div class="grid-2">
+          <label class="field"><span>Ім'я та прізвище</span><input class="input" id="hwName" data-save="hw-name" autocomplete="off"></label>
+          <label class="field"><span>Клас</span><input class="input" id="hwClass" data-save="hw-class" placeholder="7-А" autocomplete="off"></label>
+        </div>
+        <div class="grid-2">
+          <label class="field"><span>Сон, год</span><input class="input" id="hw-sleep" inputmode="decimal" placeholder="напр. 9"></label>
+          <label class="field"><span>Сидіння (уроки, екран, їжа), год</span><input class="input" id="hw-sit" inputmode="decimal" placeholder="напр. 8,5"></label>
+          <label class="field"><span>Повільний рух (ходьба, хатні справи), год</span><input class="input" id="hw-slow" inputmode="decimal" placeholder="напр. 5,5"></label>
+          <label class="field"><span>Активний рух або спорт, год</span><input class="input" id="hw-active" inputmode="decimal" placeholder="0, якщо не було"></label>
+        </div>
+        <label class="field"><span>Рефлексія: чи здивував тебе результат твоєї діаграми? Що було зручніше — цифровий метод чи ручний?</span><textarea class="input" id="hwReflect" data-save="hw-reflect"></textarea></label>
+        <div class="row"><button type="button" class="btn btn-primary" id="hwPdf" data-flow-end><i class="fa-solid fa-file-pdf"></i> Зберегти в PDF</button><span class="pdf-status" id="hwStatus"></span></div>
+      </div>
+      <div class="stack">
+        <div class="card">
+          <span class="label">Мій день · 24 години</span>
+          <div id="hwBars" class="fb-bars"></div>
+          <div class="status" id="hwSum"></div>
+        </div>
+        <div class="card flat"><span class="label">Як не помилитися</span><p>У добі 24 години, тому чотири числа разом мають дати 24. Якщо виходить менше — якусь частину дня забуто; якщо більше — якусь годину пораховано двічі.</p></div>
+        <div class="online-note"><span class="ico"><i class="fa-solid fa-paperclip"></i></span><div><b>Що здати в Classroom.</b> Заповни поля, натисни «Зберегти в PDF» і прикріпи файл до завдання «Урок 11». Немає змоги зберегти PDF — запиши розпис у зошит і надішли фото.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="pdf-sheet" id="pdfSheet" aria-hidden="true">
+  <div class="pdf-meta">STEM · 7 клас · Урок 11 · Домашнє завдання</div>
+  <h1>Мій день за чотирма категоріями активності</h1>
+  <div class="pdf-line"></div>
+  <table><tr><th>Ім'я та прізвище</th><th>Клас</th><th>Дата</th></tr><tr><td id="pdfName"></td><td id="pdfClass"></td><td id="pdfDate"></td></tr></table>
+  <h2>Розпис дня</h2>
+  <table><thead><tr><th>Категорія</th><th>Час, год</th></tr></thead><tbody id="pdfRows"></tbody></table>
+  <h2>Перевірка</h2>
+  <div class="pdf-box" id="pdfNote"></div>
+  <h2>Рефлексія</h2>
+  <div class="pdf-box" id="pdfReflect"></div>
+</div>
+
+</main>
+<footer class="bottombar">
+  <span class="kbd-hint">← → гортати · Home / End · Esc</span>
+  <div class="nav">
+    <button type="button" class="btn" id="prevBtn">← Назад</button>
+    <span class="counter" id="counter"></span>
+    <button type="button" class="btn btn-primary" id="nextBtn">Далі →</button>
+  </div>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script>window.STEM_LESSON=11;</script>
+<script>
+/* STEM 7 deck core: storage, theme, slide nav, charts, quizzes, PDF. Lesson number comes from window.STEM_LESSON. */
+(function(){
+'use strict';
+var L=window.STEM_LESSON, P='stem7l'+L+'-';
+var root=document.documentElement;
+function $(s,c){return (c||document).querySelector(s);}
+function $$(s,c){return [].slice.call((c||document).querySelectorAll(s));}
+
+var store={
+  get:function(k,d){try{var v=localStorage.getItem(P+k);return v===null?d:JSON.parse(v);}catch(e){return d;}},
+  set:function(k,v){try{localStorage.setItem(P+k,JSON.stringify(v));}catch(e){}}
+};
+function cv(n){return getComputedStyle(root).getPropertyValue(n).trim();}
+function esc(s){return String(s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+function num(v){var s=String(v==null?'':v).trim().replace(/\s/g,'').replace(',','.');if(s==='')return NaN;return /^-?\d*\.?\d+$/.test(s)||/^-?\d+\.$/.test(s)?parseFloat(s):NaN;}
+function fmt(n,d){if(!isFinite(n))return '—';var p=Math.pow(10,d==null?1:d);return String(Math.round(n*p)/p).replace('.',',');}
+function shake(el){if(!el)return;el.classList.remove('shake');void el.offsetWidth;el.classList.add('shake','invalid');
+  var clear=function(){el.classList.remove('invalid');el.removeEventListener('input',clear);};el.addEventListener('input',clear);
+  setTimeout(function(){el.classList.remove('shake');},450);}
+
+/* theme */
+var savedTheme=store.get('theme',null);
+if(savedTheme==='light'||savedTheme==='dark')root.setAttribute('data-theme',savedTheme);
+function isDark(){var a=root.getAttribute('data-theme');if(a)return a==='dark';return !!(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches);}
+$('#themeBtn').addEventListener('click',function(){
+  var t=isDark()?'light':'dark';root.setAttribute('data-theme',t);store.set('theme',t);
+  document.dispatchEvent(new CustomEvent('themechange'));
+});
+
+/* slides */
+var slides=$$('.slide'),cur=0;
+var counter=$('#counter'),bar=$('#progress'),menu=$('#menu'),menuList=$('#menuList');
+slides.forEach(function(s,i){
+  var b=document.createElement('button');b.type='button';b.className='menu-item';
+  b.innerHTML='<span>'+(i+1)+'</span><span>'+esc(s.getAttribute('data-title')||('Слайд '+(i+1)))+'</span>';
+  b.addEventListener('click',function(){go(i);toggleMenu(false);});
+  menuList.appendChild(b);
+});
+function go(i){
+  i=Math.max(0,Math.min(slides.length-1,i));cur=i;
+  slides.forEach(function(s,k){s.classList.toggle('active',k===i);});
+  $$('.menu-item',menuList).forEach(function(b,k){b.classList.toggle('current',k===i);});
+  counter.textContent=(i+1)+' / '+slides.length;
+  bar.style.width=((i+1)/slides.length*100)+'%';
+  $('#prevBtn').disabled=i===0;$('#nextBtn').disabled=i===slides.length-1;
+  slides[i].scrollTop=0;store.set('slide',i);
+  document.dispatchEvent(new CustomEvent('slidechange',{detail:i}));
+}
+function toggleMenu(on){menu.hidden=on===undefined?!menu.hidden:!on;}
+$('#prevBtn').addEventListener('click',function(){go(cur-1);});
+$('#nextBtn').addEventListener('click',function(){go(cur+1);});
+$('#menuBtn').addEventListener('click',function(){toggleMenu();});
+menu.addEventListener('click',function(e){if(e.target===menu)toggleMenu(false);});
+document.addEventListener('keydown',function(e){
+  var tag=(e.target&&e.target.tagName)||'';
+  if(tag==='INPUT'||tag==='TEXTAREA'||tag==='SELECT')return;
+  if(e.key==='Escape'){toggleMenu(false);return;}
+  if(e.altKey||e.ctrlKey||e.metaKey)return;
+  if(e.key==='ArrowRight'||e.key==='PageDown'){go(cur+1);e.preventDefault();}
+  else if(e.key==='ArrowLeft'||e.key==='PageUp'){go(cur-1);e.preventDefault();}
+  else if(e.key==='Home'){go(0);e.preventDefault();}
+  else if(e.key==='End'){go(slides.length-1);e.preventDefault();}
+});
+
+/* Enter in a single-line field moves on to the next field of its form block */
+document.addEventListener('keydown',function(e){
+  if(e.key!=='Enter'||!e.target||e.target.tagName!=='INPUT')return;
+  var box=e.target.closest('[data-flow]');if(!box)return;
+  e.preventDefault();
+  var f=$$('input,textarea,select,button[data-flow-end]',box).filter(function(x){return !x.disabled&&x.offsetParent!==null;});
+  var n=f[f.indexOf(e.target)+1];
+  if(n)n.focus();else e.target.blur();
+});
+
+/* auto-persisted fields */
+$$('[data-save]').forEach(function(el){
+  var k='f-'+el.getAttribute('data-save');
+  var v=store.get(k,null);if(v!==null)el.value=v;
+  el.addEventListener('input',function(){store.set(k,el.value);});
+});
+
+/* reveal cards */
+$$('.reveal').forEach(function(b){b.addEventListener('click',function(){b.classList.toggle('open');});});
+
+/* charts: Chart.js when it loaded, plain CSS bars otherwise */
+var charts={};
+function renderFallbackBars(box,cfg){
+  var max=Math.max.apply(null,cfg.data.concat([1]));
+  var sum=cfg.data.reduce(function(a,b){return a+b;},0);
+  var h=cfg.title?'<div class="fb-title">'+esc(cfg.title)+'</div>':'';
+  cfg.labels.forEach(function(l,i){
+    var w=cfg.type==='pie'?(sum?cfg.data[i]/sum*100:0):cfg.data[i]/max*100;
+    h+='<div class="bar-row"><span>'+esc(l)+'</span><span class="bar-track"><i style="width:'+w+'%;background:'+cfg.colors[i%cfg.colors.length]+'"></i></span><b>'+
+      (cfg.type==='pie'&&sum?Math.round(cfg.data[i]/sum*100)+'%':fmt(cfg.data[i]))+'</b></div>';
+  });
+  if(cfg.x||cfg.y)h+='<div class="small dim">'+esc([cfg.y,cfg.x].filter(Boolean).join(' · '))+'</div>';
+  box.className='fb-bars';box.innerHTML=h;box.hidden=false;
+}
+function drawChart(key,canvas,fb,cfg){
+  var wrap=canvas.parentNode;
+  try{
+    if(!window.Chart)throw new Error('Chart.js unavailable');
+    if(charts[key]){charts[key].destroy();delete charts[key];}
+    var ink=cv('--ink'),dim=cv('--ink-dim'),grid=cv('--border'),pie=cfg.type==='pie';
+    wrap.hidden=false;fb.hidden=true;
+    charts[key]=new window.Chart(canvas,{type:pie?'pie':'bar',
+      data:{labels:cfg.labels,datasets:[{data:cfg.data,backgroundColor:cfg.colors,borderColor:cv('--surface'),borderWidth:pie?2:0,borderRadius:pie?0:6}]},
+      options:{responsive:true,maintainAspectRatio:false,animation:{duration:250},
+        plugins:{legend:{display:pie,position:'right',labels:{color:ink,font:{family:'IBM Plex Sans'}}},
+          title:{display:!!cfg.title,text:cfg.title||'',color:ink,font:{family:'Unbounded',size:13,weight:'600'}}},
+        scales:pie?{}:{x:{title:{display:!!cfg.x,text:cfg.x||'',color:dim},ticks:{color:dim},grid:{display:false}},
+          y:{beginAtZero:true,title:{display:!!cfg.y,text:cfg.y||'',color:dim},ticks:{color:dim,precision:0},grid:{color:grid}}}}});
+  }catch(e){
+    wrap.hidden=true;renderFallbackBars(fb,cfg);
+  }
+}
+
+/* quizzes: one try per question, the explanation opens after the answer; [data-quiz-score] sums up its slide */
+var quizState=store.get('quiz',{});
+function paintQuiz(q){
+  var id=q.getAttribute('data-quiz'),right=+q.getAttribute('data-answer'),ch=quizState[id];
+  var done=typeof ch==='number';
+  $$('.opt',q).forEach(function(b,i){
+    b.disabled=done;b.classList.toggle('right',done&&i===right);b.classList.toggle('wrong',done&&i===ch&&i!==right);
+  });
+  var why=$('.why',q);if(why)why.hidden=!done;
+}
+function paintScores(){
+  $$('[data-quiz-score]').forEach(function(box){
+    var qs=$$('[data-quiz]',box.closest('.slide')),done=0,ok=0;
+    qs.forEach(function(q){var ch=quizState[q.getAttribute('data-quiz')];if(typeof ch==='number'){done++;if(ch===+q.getAttribute('data-answer'))ok++;}});
+    $('span',box).textContent=done<qs.length?'Відповідей: '+done+' із '+qs.length:'Правильно: '+ok+' із '+qs.length+(ok===qs.length?'. Чудово!':'. Переглянь пояснення до помилок.');
+    box.className='status'+(done<qs.length?'':ok===qs.length?' ok':' warn');
+  });
+}
+$$('[data-quiz]').forEach(function(q){
+  $$('.opt',q).forEach(function(b,i){
+    b.addEventListener('click',function(){quizState[q.getAttribute('data-quiz')]=i;store.set('quiz',quizState);paintQuiz(q);paintScores();});
+  });
+  paintQuiz(q);
+});
+$$('[data-quiz-reset]').forEach(function(b){
+  b.addEventListener('click',function(){
+    $$('[data-quiz]',b.closest('.slide')).forEach(function(q){delete quizState[q.getAttribute('data-quiz')];paintQuiz(q);});
+    store.set('quiz',quizState);paintScores();
+  });
+});
+paintScores();
+
+/* PDF: html2canvas -> jsPDF (A4, multi-page) -> downloads capability, else <a download>, else explicit error */
+function linkSave(blob,name){
+  var url=URL.createObjectURL(blob),a=document.createElement('a');
+  a.href=url;a.download=name;a.style.display='none';document.body.appendChild(a);a.click();
+  setTimeout(function(){URL.revokeObjectURL(url);a.remove();},4000);
+  return 'saved';
+}
+function deliver(blob,name){
+  var p=(window.claude&&typeof window.claude.use==='function')
+    ?Promise.resolve().then(function(){return window.claude.use('downloads');}).catch(function(){return null;})
+    :Promise.resolve(null);
+  return p.then(function(dl){
+    if(dl&&typeof dl.save==='function'){
+      return dl.save({filename:name,data:blob}).then(function(){return 'saved';},function(err){
+        if(err&&err.code==='declined')return 'declined';
+        if(err&&err.code==='rate_limited')return 'busy';
+        return linkSave(blob,name);
+      });
+    }
+    return linkSave(blob,name);
+  });
+}
+function fileName(name,cls){
+  var clean=function(s){return String(s).replace(/[\u0000-\u001f\u007f]/g,'').trim().replace(/[\\\/:*?"<>|]+/g,'').replace(/\s+/g,'_');};
+  return 'STEM7_Урок'+L+'_'+clean(name)+'_'+clean(cls)+'.pdf';
+}
+function savePdf(o){
+  var st=o.status,btn=o.btn;
+  function msg(t,c){st.textContent=t;st.className='pdf-status '+(c||'');}
+  if(!window.html2canvas||!window.jspdf||!window.jspdf.jsPDF){msg('Не вдалося завантажити бібліотеки для PDF. Перевір інтернет і онови сторінку.','err');return;}
+  msg('Готую PDF…');btn.disabled=true;
+  var sheetId=o.sheet.id;
+  window.html2canvas(o.sheet,{scale:2,backgroundColor:'#ffffff',useCORS:true,logging:false,onclone:function(doc){
+    var s=doc.getElementById(sheetId);if(!s)return;
+    s.style.setProperty('color','#14162a','important');s.style.setProperty('background','#ffffff','important');
+    [].forEach.call(s.querySelectorAll('*'),function(n){n.style.setProperty('color','#14162a','important');});
+  }}).then(function(canvas){
+    var pdf=new window.jspdf.jsPDF({unit:'mm',format:'a4'}),pw=210,ph=297,ih=canvas.height*pw/canvas.width;
+    var img=canvas.toDataURL('image/jpeg',0.92),y=0,left=ih-ph;
+    pdf.addImage(img,'JPEG',0,0,pw,ih);
+    while(left>1){y-=ph;pdf.addPage();pdf.addImage(img,'JPEG',0,y,pw,ih);left-=ph;}
+    return deliver(pdf.output('blob'),o.filename);
+  }).then(function(r){
+    if(r==='declined')msg('Збереження скасовано. Натисни кнопку ще раз, якщо передумаєш.');
+    else if(r==='busy')msg('Вікно збереження вже відкрите. Заверши його й спробуй ще раз.','err');
+    else msg('Готово: файл «'+o.filename+'» збережено. Прикріпи його до завдання в Classroom.','ok');
+  }).catch(function(e){
+    msg('Не вдалося створити PDF ('+((e&&e.message)||'невідома помилка')+'). Зроби знімок екрана з відповідями й надішли його в Classroom.','err');
+  }).then(function(){btn.disabled=false;});
+}
+
+window.STEM={store:store,cv:cv,esc:esc,num:num,fmt:fmt,shake:shake,go:go,$:$,$$:$$,drawChart:drawChart,renderFallbackBars:renderFallbackBars,savePdf:savePdf,fileName:fileName,
+  today:function(){var d=new Date();return ('0'+d.getDate()).slice(-2)+'.'+('0'+(d.getMonth()+1)).slice(-2)+'.'+d.getFullYear();}};
+go(store.get('slide',0)||0);
+})();
+</script>
+<script>
+/* Lesson 11: live COUNTIF sheet demo, find-the-uncounted-rows trainer, checklist, day-split homework */
+(function(){
+'use strict';
+var S=window.STEM,store=S.store,$=S.$,$$=S.$$,esc=S.esc;
+var CATS=['Крупи','Овочі-фрукти','Білкове','Молочне','Солодке'];
+function catColors(){return ['--e','--s','--m','--t','--accent'].map(S.cv);}
+/* COUNTIF matches the whole cell text; letter case is ignored, spaces and typos are not */
+function countIf(col,cat){var c=cat.toLowerCase();return col.filter(function(v){return String(v).toLowerCase()===c;}).length;}
+
+/* ---------- demo sheet ---------- */
+var DEMO=[
+  ['Пн','Сніданок','Вівсянка','Крупи'],['Пн','Обід','Куряча котлета','Білкове'],['Пн','Вечеря','Салат з капусти','Овочі-фрукти'],
+  ['Вт','Сніданок','Омлет','Білкове'],['Вт','Обід','Гречка','Крупи'],['Вт','Вечеря','Йогурт','Молочне'],
+  ['Ср','Сніданок','Пшоняна каша','Крупи'],['Ср','Обід','Запечена риба','Білкове'],['Ср','Вечеря','Яблуко','Овочі-фрукти'],
+  ['Чт','Сніданок','Кисломолочний сир','Молочне'],['Чт','Обід','Рис','Крупи'],['Чт','Вечеря','Овочеве рагу','Овочі-фрукти'],
+  ['Пт','Сніданок','Булгур','Крупи'],['Пт','Обід','Тушкована квасоля','Білкове'],['Пт','Вечеря','Печиво','Солодке'],
+  ['Сб','Сніданок','Варені яйця','Білкове'],['Сб','Обід','Кукурудзяна каша','Крупи'],['Сб','Вечеря','Банан','Овочі-фрукти']
+];
+var HDR='<tr class="hdr"><td class="rn">1</td><td>День</td><td>Прийом їжі</td><td>Що з\'їли</td><td>Категорія</td></tr>';
+var demoN=Math.min(DEMO.length,store.get('demo-n',0)||0),demoChart=!!store.get('demo-chart',false);
+function formulaHtml(range,counts){
+  return CATS.map(function(c,i){return '<code>=COUNTIF('+range+';"'+c+'")</code><b>'+counts[i]+'</b>';}).join('');
+}
+function drawDemoChart(counts){
+  S.drawChart('demo',$('#demoCanvas'),$('#demoFb'),{labels:CATS,data:counts,colors:catColors(),
+    title:$('#demoTitle').value.trim(),x:$('#demoX').value.trim(),y:$('#demoY').value.trim()});
+}
+function renderDemo(scroll){
+  var h=HDR;
+  for(var i=0;i<demoN;i++)h+='<tr'+(i===demoN-1?' class="new"':'')+'><td class="rn">'+(i+2)+'</td><td>'+DEMO[i].map(esc).join('</td><td>')+'</td></tr>';
+  if(demoN<DEMO.length)h+='<tr><td class="rn">'+(demoN+2)+'</td><td colspan="4" class="dim">наступний рядок щоденника…</td></tr>';
+  $('#demoBody').innerHTML=h;
+  var col=DEMO.slice(0,demoN).map(function(r){return r[3];});
+  var counts=CATS.map(function(c){return countIf(col,c);}),sum=counts.reduce(function(a,b){return a+b;},0);
+  $('#demoFormula').innerHTML=formulaHtml('D2:D19',counts);
+  $('#demoCount').textContent='Рядків: '+demoN+' із '+DEMO.length;
+  var ck=$('#demoCheck');
+  ck.textContent='Сума: '+counts.join(' + ')+' = '+sum+(demoN?' — збігається з кількістю рядків ('+demoN+')':'');
+  ck.className='status'+(demoN?' ok':'');
+  $('#demoAdd').disabled=$('#demoAll').disabled=demoN>=DEMO.length;
+  $('#demoChartArea').hidden=!demoChart;
+  if(demoChart)drawDemoChart(counts);
+  $('#demoConclusion').hidden=!(demoChart&&demoN===DEMO.length);
+  if(scroll){var box=$('#demoBox');box.scrollTop=box.scrollHeight;}
+  store.set('demo-n',demoN);store.set('demo-chart',demoChart);
+}
+$('#demoAdd').addEventListener('click',function(){if(demoN<DEMO.length){demoN++;renderDemo(true);}});
+$('#demoAll').addEventListener('click',function(){demoN=DEMO.length;renderDemo(true);});
+$('#demoReset').addEventListener('click',function(){demoN=0;demoChart=false;renderDemo();});
+$('#demoChartBtn').addEventListener('click',function(){demoChart=true;renderDemo();});
+['demoTitle','demoX','demoY'].forEach(function(id){$('#'+id).addEventListener('input',function(){if(demoChart)renderDemo();});});
+
+/* ---------- trainer: rows the formula does not count ---------- */
+function detDefault(){return [
+  ['Пн','Сніданок','Гречана каша','Крупи'],['Пн','Обід','Суп з куркою','Білкове'],['Пн','Вечеря','Салат з огірків','Овочі фрукти'],
+  ['Вт','Сніданок','Сирники','молочне'],['Вт','Обід','Плов','Крупи '],['Вт','Вечеря','Груша','Овочі-фрукти'],
+  ['Ср','Сніданок','Омлет','Білкве'],['Ср','Обід','Вівсянка','Крупи'],['Ср','Вечеря','Кефір','Молочне'],
+  ['Чт','Сніданок','Терта морква','Овочі-фрукти'],['Чт','Обід','Рибна котлета','Білкове'],['Чт','Вечеря','Цукерки','Солодке']
+];}
+var det=store.get('det-rows',null);if(!Array.isArray(det)||!det.length)det=detDefault();
+var detType=store.get('det-type','bar')==='pie'?'pie':'bar',detHint=false;
+var COLS=['День','Прийом їжі','Що з\'їли','Категорія'];
+function isCounted(v){var x=String(v).toLowerCase();return CATS.some(function(c){return c.toLowerCase()===x;});}
+function filled(r){return r.some(function(v){return String(v).trim()!=='';});}
+function renderDetTable(){
+  var h=HDR;
+  det.forEach(function(r,i){
+    h+='<tr data-r="'+i+'"><td class="rn">'+(i+2)+'</td>';
+    r.forEach(function(v,c){h+='<td class="cell"><input id="det-'+i+'-'+c+'" data-r="'+i+'" data-c="'+c+'" value="'+esc(v)+'" aria-label="'+COLS[c]+', рядок '+(i+2)+'" autocomplete="off" spellcheck="false"></td>';});
+    h+='</tr>';
+  });
+  $('#detBody').innerHTML=h;updateDet();
+}
+function updateDet(){
+  var rows=det.filter(filled),col=rows.map(function(r){return r[3];});
+  var counts=CATS.map(function(c){return countIf(col,c);}),sum=counts.reduce(function(a,b){return a+b;},0);
+  $('#detFormula').innerHTML=formulaHtml('D2:D'+(det.length+1),counts);
+  var ck=$('#detCheck'),miss=rows.length-sum;
+  if(!rows.length){ck.textContent='Таблиця порожня — внеси перший рядок.';ck.className='status';}
+  else if(miss===0){ck.textContent='Сума формул '+sum+' = рядків '+rows.length+'. Усі записи пораховано — можна будувати діаграму.';ck.className='status ok';}
+  else{ck.textContent='Сума формул '+sum+', а рядків '+rows.length+'. Не пораховано: '+miss+'. Шукай відмінності в колонці D.';ck.className='status bad';}
+  $$('#detBody tr[data-r]').forEach(function(tr){
+    var r=det[+tr.getAttribute('data-r')];
+    tr.classList.toggle('miss',detHint&&filled(r)&&!isCounted(r[3]));
+  });
+  S.drawChart('det',$('#detCanvas'),$('#detFb'),{type:detType,labels:CATS,data:counts,colors:catColors(),y:detType==='bar'?'Кількість записів':''});
+  store.set('det-rows',det);
+}
+$('#detBody').addEventListener('input',function(e){
+  var t=e.target;if(!t.hasAttribute('data-r'))return;
+  det[+t.getAttribute('data-r')][+t.getAttribute('data-c')]=t.value;updateDet();
+});
+/* Enter behaves like a spreadsheet: go one row down in the same column */
+$('#detBody').addEventListener('keydown',function(e){
+  if(e.key!=='Enter')return;var t=e.target;if(!t.hasAttribute('data-r'))return;
+  e.preventDefault();
+  var n=$('#det-'+(+t.getAttribute('data-r')+1)+'-'+t.getAttribute('data-c'));
+  if(n){n.focus();n.select();}else t.blur();
+});
+$('#detHint').addEventListener('click',function(){detHint=!detHint;this.textContent=detHint?'Сховати підказку':'Підказка';updateDet();});
+$('#detAdd').addEventListener('click',function(){det.push(['','','','']);renderDetTable();var n=$('#det-'+(det.length-1)+'-0');if(n)n.focus();});
+$('#detReset').addEventListener('click',function(){det=detDefault();detHint=false;$('#detHint').textContent='Підказка';renderDetTable();});
+$$('[data-det-type]').forEach(function(b){
+  b.setAttribute('aria-pressed',String(b.getAttribute('data-det-type')===detType));
+  b.addEventListener('click',function(){
+    detType=b.getAttribute('data-det-type');store.set('det-type',detType);
+    $$('[data-det-type]').forEach(function(x){x.setAttribute('aria-pressed',String(x===b));});updateDet();
+  });
+});
+
+/* ---------- checklist ---------- */
+var checks=store.get('checks',{});
+function paintChecks(){var n=$$('[data-check]').filter(function(c){return c.checked;}).length;$('#checkCount').textContent=n+' із 5';$('#checkCount').className='tag'+(n===5?' s':'');}
+$$('[data-check]').forEach(function(c){
+  c.checked=!!checks[c.getAttribute('data-check')];
+  c.addEventListener('change',function(){checks[c.getAttribute('data-check')]=c.checked;store.set('checks',checks);paintChecks();});
+});
+paintChecks();
+
+/* ---------- homework ---------- */
+var HW=[{k:'sleep',name:'Сон',color:'--t'},{k:'sit',name:'Сидіння (уроки, екран, їжа)',color:'--accent'},
+        {k:'slow',name:'Повільний рух (ходьба, хатні справи)',color:'--s'},{k:'active',name:'Активний рух або спорт',color:'--m'}];
+var hw=store.get('hw',{});
+function hwVals(){return HW.map(function(a){return S.num($('#hw-'+a.k).value);});}
+function paintHw(){
+  var v=hwVals(),h='',sum=0,all=true;
+  HW.forEach(function(a,i){
+    var ok=isFinite(v[i])&&v[i]>=0&&v[i]<=24;if(!ok)all=false;else sum+=v[i];
+    h+='<div class="bar-row"><span>'+esc(a.name.split(' (')[0])+'</span><span class="bar-track"><i style="width:'+(ok?Math.min(100,v[i]/24*100):0)+'%;background:'+S.cv(a.color)+'"></i></span><b>'+(ok?S.fmt(v[i]):'—')+'</b></div>';
+  });
+  $('#hwBars').innerHTML=h;
+  var st=$('#hwSum');
+  if(!all){st.textContent='Заповни всі чотири категорії. Разом має вийти 24 години.';st.className='status';}
+  else if(Math.abs(sum-24)<0.01){st.textContent='Разом 24 години — розпис сходиться.';st.className='status ok';}
+  else{st.textContent='Разом '+S.fmt(sum)+' год, а в добі 24. '+(sum<24?'Бракує '+S.fmt(24-sum):'Зайві '+S.fmt(sum-24))+' год — перевір розпис.';st.className='status warn';}
+  return {vals:v,all:all,sum:sum};
+}
+HW.forEach(function(a){
+  var el=$('#hw-'+a.k);if(hw[a.k]!=null)el.value=hw[a.k];
+  el.addEventListener('input',function(){hw[a.k]=el.value;store.set('hw',hw);paintHw();});
+});
+paintHw();
+document.addEventListener('themechange',function(){renderDemo();updateDet();paintHw();});
+$('#hwPdf').addEventListener('click',function(){
+  var name=$('#hwName'),cls=$('#hwClass'),bad=null,r=paintHw();
+  [name,cls].forEach(function(f){if(!f.value.trim()){S.shake(f);bad=bad||f;}});
+  HW.forEach(function(a,i){var f=$('#hw-'+a.k);if(!(isFinite(r.vals[i])&&r.vals[i]>=0&&r.vals[i]<=24)){S.shake(f);bad=bad||f;}});
+  if(bad){bad.focus();$('#hwStatus').textContent='Заповни підсвічені поля: ім\'я, клас і години від 0 до 24.';$('#hwStatus').className='pdf-status err';return;}
+  $('#pdfName').textContent=name.value.trim();$('#pdfClass').textContent=cls.value.trim();$('#pdfDate').textContent=S.today();
+  $('#pdfRows').innerHTML=HW.map(function(a,i){return '<tr><td>'+esc(a.name)+'</td><td>'+S.fmt(r.vals[i])+'</td></tr>';}).join('')+
+    '<tr><th>Разом</th><th>'+S.fmt(r.sum)+'</th></tr>';
+  $('#pdfNote').textContent=Math.abs(r.sum-24)<0.01?'Сума годин дорівнює 24 — розпис сходиться.':'Сума годин — '+S.fmt(r.sum)+', а не 24. Розпис треба уточнити перед уроком 12.';
+  $('#pdfReflect').textContent=$('#hwReflect').value.trim()||'—';
+  S.savePdf({sheet:$('#pdfSheet'),filename:S.fileName(name.value,cls.value),status:$('#hwStatus'),btn:this});
+});
+
+renderDemo();renderDetTable();
+})();
+</script>
+</body>
+</html>
